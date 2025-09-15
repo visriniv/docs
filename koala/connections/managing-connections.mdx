@@ -1,0 +1,133 @@
+---
+title: "Managing Connections"
+description: "Create, edit, and switch between Oracle Fusion connections"
+---
+
+## Overview
+
+Koala Data Explorer allows you to manage multiple connections to different Oracle Fusion Cloud instances. This guide covers how to create, edit, and switch between connections.
+
+## Connection Manager
+
+Access the Connection Manager through:
+
+1. **Command Palette**: `Ctrl+Shift+P` → "Koala: Manage Connections"
+2. **Status Bar**: Click the connection indicator in the bottom status bar
+3. **Koala Panel**: Click the Koala icon in VS Code Activity Bar
+
+## Creating Connections
+
+### Add New Connection
+
+1. Open Connection Manager
+2. Click "Add Connection"
+3. Choose authentication type:
+   - Basic Authentication (free)
+   - OAuth 2.0 PKCE (paid)
+   - SSO (paid)
+4. Enter connection details
+5. Test connection
+6. Save connection
+
+### Connection Properties
+
+Each connection stores:
+
+- **Name**: Unique identifier for the connection
+- **Host URL**: Oracle Fusion instance URL
+- **Authentication**: Type and credentials
+- **Connection Timeout**: Custom timeout settings
+
+## Editing Connections
+
+### Update Connection Details
+
+1. Select connection in manager
+2. Click "Edit"
+3. Modify fields as needed
+4. Test changes
+5. Save updates
+
+### Change Authentication Method
+
+To switch authentication types:
+
+1. Edit connection
+2. Select new authentication type
+3. Enter new credentials
+4. Re-test connection
+5. Save changes
+
+<Warning>
+  Changing authentication type will clear existing credentials. Ensure you have new credentials ready.
+</Warning>
+
+## Switching Connections
+
+### Connection Switching
+
+Switch between connections:
+
+- Use connection dropdown in status bar
+- Select from connection manager
+- Active connection shown in status bar
+
+### Connection Context
+
+Each connection maintains:
+
+- Query history
+- Current session state
+- Authentication tokens
+
+## Connection Security
+
+### Credential Storage
+
+- Stored in VS Code's secure storage
+- Encrypted at rest
+- Never in plain text files
+
+### Best Practices
+
+- Use OAuth PKCE for production environments
+- Use descriptive connection names
+- Remove unused connections
+- Rotate credentials regularly
+
+## Troubleshooting Connections
+
+### Connection Failed
+
+Common solutions:
+
+1. **Network Issues**
+   - Check internet connectivity
+   - Verify firewall settings
+
+2. **Authentication Problems**
+   - Verify credentials
+   - Check account status
+   - Refresh OAuth tokens
+
+3. **Oracle Fusion Issues**
+   - Verify instance is running
+   - Check maintenance windows
+   - Confirm user permissions
+
+### Slow Connections
+
+1. Check network connectivity
+2. Adjust timeout settings in extension settings
+3. Verify Oracle Fusion instance performance
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Start querying your data
+  </Card>
+  <Card title="Extension Settings" icon="cog" href="/koala/config/extension-settings">
+    Configure connection defaults
+  </Card>
+</CardGroup>

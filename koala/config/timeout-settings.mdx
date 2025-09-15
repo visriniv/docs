@@ -1,0 +1,277 @@
+---
+title: "Timeout Settings"
+description: "Configure query timeout and connection settings"
+---
+
+## Overview
+
+Koala Data Explorer provides configurable timeout settings to control how long queries can run before being cancelled. This helps prevent runaway queries and manage system resources effectively.
+
+## Timeout Configuration
+
+### Default Timeout
+
+The default query timeout is:
+- **120 seconds (2 minutes)**: Standard timeout for most queries
+- **Configurable**: Can be adjusted based on your needs
+- **Per-connection**: Can be set differently for different environments
+
+### Setting Timeout Values
+
+Configure timeout through VS Code settings:
+
+```json
+{
+  "koalaDataExplorer.timeout": 120000
+}
+```
+
+Timeout value is specified in milliseconds:
+- `30000` = 30 seconds
+- `120000` = 2 minutes (default)
+- `300000` = 5 minutes
+
+## Timeout Types
+
+### Query Execution Timeout
+
+Controls how long queries can run:
+- **Execution time**: Maximum time for SQL execution
+- **Automatic cancellation**: Queries stopped when timeout reached
+- **User notification**: Warning when timeout occurs
+- **Resource protection**: Prevents long-running queries
+
+### Connection Timeout
+
+Controls connection establishment:
+- **Connection time**: Maximum time to establish database connection
+- **Network issues**: Handles slow network responses
+- **Authentication delays**: Accounts for slow authentication
+- **Retry logic**: Automatic retry for temporary issues
+
+## Configuring Timeouts
+
+### VS Code Settings
+
+Access timeout settings:
+
+1. Open VS Code Settings (`Ctrl+,`)
+2. Search for "koala"
+3. Find "Koala Data Explorer: Timeout"
+4. Set desired value in milliseconds
+
+### Settings File
+
+Direct settings.json configuration:
+
+```json
+{
+  "koalaDataExplorer.timeout": 180000,
+  "koalaDataExplorer.connectionTimeout": 30000
+}
+```
+
+### Per-Environment Settings
+
+Different timeouts for different environments:
+
+```json
+{
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.environments": {
+    "production": {
+      "timeout": 60000
+    },
+    "development": {
+      "timeout": 300000
+    }
+  }
+}
+```
+
+## Timeout Behavior
+
+### When Timeout Occurs
+
+When a query times out:
+1. **Query cancellation**: SQL execution is stopped
+2. **Error message**: Timeout error displayed
+3. **Connection preservation**: Database connection remains active
+4. **Partial results**: Any received data is discarded
+
+### Warning Notifications
+
+Before timeout occurs:
+- **Progress indication**: Shows query is still running
+- **Time elapsed**: Displays current execution time
+- **Cancel option**: Manual cancellation available
+- **Timeout warning**: Alert when approaching timeout
+
+## Timeout Strategies
+
+### Short Timeouts (30-60 seconds)
+
+Good for:
+- **Interactive queries**: Quick data exploration
+- **Production environments**: Prevent resource overload
+- **Testing queries**: Fast feedback during development
+- **Shared systems**: Avoid impacting other users
+
+### Medium Timeouts (2-5 minutes)
+
+Good for:
+- **Complex queries**: Multi-table joins and aggregations
+- **Development work**: Building and testing complex SQL
+- **Data analysis**: Reasonable time for analysis queries
+- **General use**: Balanced approach for most scenarios
+
+### Long Timeouts (5+ minutes)
+
+Good for:
+- **Reports**: Complex reporting queries
+- **Data migration**: Large data processing
+- **Analytics**: Deep data analysis
+- **Batch processing**: Scheduled or background queries
+
+## Managing Long-Running Queries
+
+### Query Optimization
+
+Instead of increasing timeouts:
+
+1. **Add row limits**: Use `ROWNUM <= 1000`
+2. **Optimize filters**: Use indexed columns
+3. **Reduce scope**: Filter data more specifically
+4. **Check execution plan**: Look for performance issues
+
+### Alternative Approaches
+
+For very long queries:
+- **BIP Integration**: Use Oracle BIP for large reports
+- **Scheduled execution**: Run during off-peak hours
+- **Incremental processing**: Break into smaller chunks
+- **Asynchronous processing**: Use Oracle's async capabilities
+
+## Timeout Troubleshooting
+
+### Frequent Timeouts
+
+If queries often timeout:
+
+1. **Review query complexity**: Check for performance issues
+2. **Network connectivity**: Verify stable connection
+3. **Server performance**: Check Oracle Fusion performance
+4. **Resource contention**: Avoid peak usage times
+
+### Timeout Too Short
+
+If legitimate queries are timing out:
+
+1. **Increase timeout**: Adjust timeout setting
+2. **Optimize query**: Improve query performance
+3. **Environment check**: Verify system performance
+4. **Query rewrite**: Consider alternative approaches
+
+### Timeout Too Long
+
+If timeout is too generous:
+
+1. **Reduce timeout**: Set appropriate limits
+2. **Resource protection**: Prevent runaway queries
+3. **User experience**: Provide faster feedback
+4. **System stability**: Protect shared resources
+
+## Best Practices
+
+### Setting Appropriate Timeouts
+
+Choose timeout values based on:
+
+1. **Query complexity**: More complex queries need more time
+2. **Environment type**: Production vs development needs
+3. **Network conditions**: Account for latency
+4. **User expectations**: Balance patience vs productivity
+
+### Environment-Specific Settings
+
+Consider different timeouts for:
+- **Production**: Shorter timeouts (60-120 seconds)
+- **Development**: Longer timeouts (300-600 seconds)
+- **Testing**: Medium timeouts (120-300 seconds)
+- **Training**: Longer timeouts for learning
+
+### Monitoring and Adjustment
+
+Regularly review timeout settings:
+
+1. **Query performance**: Monitor average execution times
+2. **Timeout frequency**: Track how often timeouts occur
+3. **User feedback**: Listen to user experiences
+4. **System performance**: Adjust based on infrastructure changes
+
+## Advanced Configuration
+
+### Dynamic Timeouts
+
+Future enhancement considerations:
+- **Query-based timeouts**: Different timeouts for different query types
+- **Adaptive timeouts**: Automatic adjustment based on query complexity
+- **User-specific timeouts**: Per-user timeout preferences
+- **Connection-aware timeouts**: Adjust based on connection quality
+
+### Integration Settings
+
+Timeout interaction with other features:
+- **Performance monitoring**: Track timeout vs execution time
+- **Query history**: Record timeout events
+- **Error handling**: Proper timeout error reporting
+- **Resource management**: Coordinate with system resources
+
+## Common Timeout Values
+
+### Recommended Settings
+
+| Environment | Timeout | Reasoning |
+|-------------|---------|-----------|
+| Production | 60-120 seconds | Protect resources, fast feedback |
+| Development | 300-600 seconds | Allow complex query development |
+| Testing | 120-300 seconds | Balance testing needs and resources |
+| Training | 300+ seconds | Allow learning and experimentation |
+
+### Query Type Considerations
+
+| Query Type | Suggested Timeout | Notes |
+|------------|------------------|-------|
+| Simple SELECT | 30-60 seconds | Fast exploration |
+| Complex joins | 120-300 seconds | Multi-table analysis |
+| Aggregations | 300-600 seconds | Summary calculations |
+| Reports | 600+ seconds | Complex reporting |
+
+## Error Handling
+
+### Timeout Error Messages
+
+Clear error messages for timeouts:
+- **Timeout reason**: Why the query was cancelled
+- **Execution time**: How long the query ran
+- **Suggestions**: Recommendations for resolution
+- **Retry options**: How to try again
+
+### Recovery Options
+
+When timeout occurs:
+1. **Optimize query**: Improve performance
+2. **Increase timeout**: Adjust settings if appropriate
+3. **Break down query**: Split into smaller parts
+4. **Use alternatives**: Consider BIP or other tools
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Logging" icon="file-text" href="/koala/config/logging">
+    Configure logging and diagnostics
+  </Card>
+  <Card title="Performance Monitor" icon="chart-line" href="/koala/advanced/performance-monitor">
+    Monitor query performance
+  </Card>
+</CardGroup>

@@ -1,0 +1,278 @@
+---
+title: "Executing Queries"
+description: "Run SQL queries and manage execution in Koala Data Explorer"
+---
+
+## Overview
+
+Koala Data Explorer provides multiple ways to execute SQL queries against your Oracle Fusion Cloud data. This guide covers query execution methods, options, and best practices.
+
+## Execution Methods
+
+### Quick Execute
+
+The fastest way to run queries:
+
+1. **Keyboard Shortcut**: `Ctrl+Enter` (Windows/Linux) or `Cmd+Enter` (Mac)
+2. **Button**: Click the green "Run" button in the editor toolbar
+3. **Context Menu**: Right-click → "Execute Query"
+
+### Execute Selection
+
+Run only selected SQL:
+
+1. Select the SQL text you want to run
+2. Press `Ctrl+Shift+Enter` or click "Run Selection"
+3. Only the selected text will be executed
+
+<Tip>
+  This is useful when you have multiple queries in one editor and want to run them individually.
+</Tip>
+
+### Execute Current Statement
+
+Automatically detect and run the statement at cursor position:
+
+1. Place cursor anywhere in a SQL statement
+2. Press `Alt+Enter`
+3. Koala will identify statement boundaries and execute
+
+## Query Execution Options
+
+### Execution Settings
+
+Configure how queries are executed:
+
+```json
+{
+  "koala.execution.timeout": 30000,
+  "koala.execution.fetchSize": 100,
+  "koala.execution.maxRows": 1000,
+  "koala.execution.stopOnError": true
+}
+```
+
+### Row Limits
+
+Control how many rows are returned:
+
+- **Free Version**: Maximum 50 rows per query
+- **Paid Version**: Configurable, unlimited rows
+
+Set custom limits:
+1. Click the settings icon in query editor
+2. Adjust "Max Rows" value
+3. Use `FETCH FIRST n ROWS ONLY` in SQL for precise control
+
+### Timeout Configuration
+
+Prevent long-running queries:
+
+- Default timeout: 30 seconds
+- Maximum timeout: 5 minutes
+- Configure per-query or globally
+
+To set query-specific timeout:
+```sql
+-- @timeout: 60000
+SELECT * FROM large_table;
+```
+
+## Multi-Statement Execution
+
+### Sequential Execution (Paid)
+
+Execute multiple statements in order:
+
+```sql
+-- Statement 1
+SELECT COUNT(*) FROM employees;
+
+-- Statement 2
+SELECT department_id, COUNT(*) 
+FROM employees 
+GROUP BY department_id;
+
+-- Statement 3
+SELECT * FROM departments;
+```
+
+Press `Ctrl+Shift+Enter` to run all statements sequentially.
+
+### Multi-Statement Execution
+
+When executing multiple statements:
+- Each statement executes sequentially
+- Execution stops on first error
+- Results shown for each completed statement
+
+## Query Parameters
+
+### Bind Variables
+
+Use bind variables for dynamic queries:
+
+```sql
+SELECT * FROM employees 
+WHERE department_id = :dept_id
+AND hire_date > :start_date;
+```
+
+When executed, Koala will prompt for parameter values in an input dialog.
+
+## Execution Status
+
+### Progress Indicators
+
+Monitor query execution:
+
+- **Spinner**: Query is running
+- **Progress Bar**: Shows fetch progress for large results
+- **Timer**: Displays elapsed time
+- **Cancel Button**: Stop long-running queries
+
+### Status Messages
+
+Execution feedback appears in:
+
+- Status bar (brief summary)
+- Output panel (detailed logs)
+- Results panel (row count, execution time)
+
+## Cancel Query Execution
+
+### How to Cancel
+
+Stop a running query:
+
+1. Click the "Cancel" button in the toolbar
+2. Press `Ctrl+Alt+C`
+3. Click "Stop" in the progress notification
+
+### What Happens on Cancel
+
+- Query execution stops on the server
+- Partial results may be returned
+- Connection remains active
+- Transaction is rolled back (if applicable)
+
+<Warning>
+  Some queries may continue running on the Oracle server even after cancellation. Check with your DBA if concerned about long-running queries.
+</Warning>
+
+## Execution History
+
+### View Recent Queries
+
+Access query history:
+
+1. Press `Ctrl+H` or click History icon
+2. Browse executed queries
+3. Click to reload any query
+4. Filter by date, status, or connection
+
+### History Features
+
+- **Free Version**: Last 50 queries
+- **Paid Version**: Last 500 queries with search
+
+Each history entry includes:
+- SQL text
+- Execution time
+- Row count
+- Timestamp
+- Connection used
+
+## Performance Optimization
+
+### Query Performance Tips
+
+1. **Use Indexes**: Include indexed columns in WHERE clauses
+2. **Limit Rows**: Add FETCH FIRST or ROWNUM conditions
+3. **Select Specific Columns**: Avoid SELECT *
+4. **Use Bind Variables**: Improve query plan caching
+
+### Query Performance
+
+Monitor query performance:
+- Execution time displayed in results
+- Row count shown
+- Timeout warnings if query runs long
+
+## Error Handling
+
+### Common Execution Errors
+
+#### ORA-00942: Table or view does not exist
+- Verify table name and schema
+- Check user permissions
+- Ensure correct connection
+
+#### ORA-00936: Missing expression
+- Check SQL syntax
+- Verify all columns exist
+- Review JOIN conditions
+
+#### ORA-01017: Invalid username/password
+- Re-authenticate connection
+- Update stored credentials
+- Check account status
+
+### Error Display
+
+Errors appear in:
+- **Inline**: Red squiggly lines in editor
+- **Problems Panel**: Detailed error list
+- **Output Panel**: Full error stack trace
+
+## Export Results
+
+After query execution, you can export results:
+
+1. Click Export button in results toolbar
+2. Choose format (CSV, JSON, or Excel for paid version)
+3. Select save location
+4. Results are saved to file
+
+## Best Practices
+
+### Before Execution
+
+1. Review query for errors
+2. Estimate result size
+3. Consider adding row limits
+4. Use explain plan for complex queries
+
+### During Execution
+
+1. Monitor progress for long queries
+2. Be ready to cancel if needed
+3. Watch for timeout warnings
+4. Check connection stability
+
+### After Execution
+
+1. Verify result accuracy
+2. Check execution time
+3. Save useful queries
+4. Export important results
+
+## Keyboard Shortcuts
+
+| Action | Windows/Linux | Mac |
+|--------|--------------|-----|
+| Execute Query | `Ctrl+Enter` | `Cmd+Enter` |
+| Execute Selection | `Ctrl+Shift+Enter` | `Cmd+Shift+Enter` |
+| Cancel Execution | `Ctrl+Alt+C` | `Cmd+Option+C` |
+| Query History | `Ctrl+H` | `Cmd+H` |
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Keyboard Shortcuts" icon="keyboard" href="/koala/editor/keyboard-shortcuts">
+    Master all keyboard shortcuts
+  </Card>
+  <Card title="Viewing Results" icon="table" href="/koala/results/viewing-data">
+    Work with query results
+  </Card>
+</CardGroup>

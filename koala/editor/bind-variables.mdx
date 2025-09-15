@@ -1,0 +1,276 @@
+---
+title: "Bind Variables"
+description: "Use parameters and bind variables for dynamic, reusable queries"
+---
+
+## Overview
+
+Bind variables (also called parameters) allow you to create dynamic, reusable queries with values that can be supplied at runtime. This feature improves query performance, security, and maintainability.
+
+## Benefits of Bind Variables
+
+### Performance
+- Query plans are cached and reused
+- Reduces parsing overhead
+- Improves database performance
+
+### Security
+- Prevents SQL injection attacks
+- Safely handles user input
+- Automatic escaping of special characters
+
+### Reusability
+- Same query with different values
+- Create query templates
+- Share parameterized queries
+
+## Basic Syntax
+
+### Colon Notation
+
+Standard Oracle bind variable syntax:
+
+```sql
+SELECT * FROM employees 
+WHERE department_id = :dept_id
+AND hire_date > :start_date;
+```
+
+### Named Parameters
+
+Use descriptive parameter names:
+
+```sql
+SELECT 
+    e.employee_id,
+    e.first_name,
+    e.last_name,
+    d.department_name
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id
+WHERE 
+    e.salary BETWEEN :min_salary AND :max_salary
+    AND e.job_id = :job_code;
+```
+
+## Using Bind Variables
+
+### Interactive Input
+
+When you execute a query with bind variables:
+
+1. Koala detects all parameters
+2. Opens input dialog
+3. Enter values for each parameter
+4. Query executes with supplied values
+
+### Input Dialog Features
+
+The parameter input dialog provides:
+
+- **Parameter Name**: Clear identification
+- **Data Type**: Automatic type detection
+- **Default Values**: Previously used values
+- **Validation**: Type and format checking
+- **Help Text**: Optional descriptions
+
+## Parameter Types
+
+### String Parameters
+
+```sql
+SELECT * FROM employees 
+WHERE last_name = :last_name
+AND email LIKE :email_pattern;
+```
+
+Input examples:
+- `:last_name` → 'Smith'
+- `:email_pattern` → '%@oracle.com'
+
+### Numeric Parameters
+
+```sql
+SELECT * FROM orders 
+WHERE total_amount > :min_amount
+AND quantity <= :max_quantity;
+```
+
+Input examples:
+- `:min_amount` → 1000.00
+- `:max_quantity` → 50
+
+### Date Parameters
+
+```sql
+SELECT * FROM transactions 
+WHERE transaction_date BETWEEN :start_date AND :end_date;
+```
+
+Input formats:
+- 'YYYY-MM-DD'
+- 'DD-MON-YYYY'
+- 'MM/DD/YYYY'
+
+### Boolean Parameters
+
+```sql
+SELECT * FROM products 
+WHERE is_active = :active_flag;
+```
+
+Input values:
+- 'TRUE' or 'FALSE'
+- '1' or '0'
+- 'Y' or 'N'
+
+## Advanced Features
+
+### Default Values
+
+When you execute a query with bind variables, Koala will prompt you to enter values for each parameter. Previously used values are remembered and suggested as defaults.
+
+## Common Usage Patterns
+
+### IN Clause with Multiple Values
+
+For queries that need multiple values, you can use bind variables with IN clauses:
+
+```sql
+SELECT * FROM employees 
+WHERE department_id = :dept_id
+AND job_id IN ('IT_PROG', 'SA_REP');
+```
+
+## Query Templates
+
+You can create reusable query patterns with bind variables:
+
+```sql
+-- Employee Search Template
+SELECT 
+    employee_id,
+    first_name || ' ' || last_name as full_name,
+    email,
+    hire_date,
+    salary
+FROM employees
+WHERE department_id = :dept_id
+AND hire_date >= :start_date
+ORDER BY employee_id;
+```
+
+## Performance Considerations
+
+### Query Plan Caching
+
+Bind variables improve performance:
+
+1. Query plan generated once
+2. Reused for different values
+3. Reduces database load
+4. Faster execution
+
+### Best Practices
+
+1. Use bind variables for frequently changing values
+2. Don't use for static values
+3. Name parameters clearly
+4. Group related parameters
+
+## Security Benefits
+
+### SQL Injection Prevention
+
+Bind variables prevent injection:
+
+```sql
+-- Safe: Uses bind variable
+SELECT * FROM users WHERE username = :username;
+
+-- Unsafe: String concatenation (never do this!)
+SELECT * FROM users WHERE username = '" + userInput + "';
+```
+
+### Data Sanitization
+
+Automatic handling of:
+- Special characters
+- Quotes and escapes
+- Null values
+- Data type conversion
+
+## Troubleshooting
+
+### Common Issues
+
+#### "Invalid parameter value"
+- Check data type matches column
+- Verify format (especially dates)
+- Ensure value within valid range
+
+#### "Parameter not found"
+- Check parameter name spelling
+- Ensure colon prefix (`:param`)
+- Verify parameter is used in query
+
+#### "Too many bind variables"
+- Oracle limit: 65,535 per query
+- Simplify complex queries
+- Use temporary tables for large datasets
+
+## Integration with Query History
+
+When you use bind variables:
+- Parameters are saved with query history
+- Previous parameter values are remembered
+- You can recall and reuse parameterized queries
+
+## Examples
+
+### Financial Report
+
+```sql
+-- @param fiscal_year = 2024
+-- @param department = 'SALES'
+-- @param min_revenue = 10000
+SELECT 
+    d.department_name,
+    TO_CHAR(t.transaction_date, 'Q') as quarter,
+    SUM(t.amount) as total_revenue,
+    COUNT(*) as transaction_count
+FROM transactions t
+JOIN departments d ON t.department_id = d.department_id
+WHERE 
+    EXTRACT(YEAR FROM t.transaction_date) = :fiscal_year
+    AND d.department_name = :department
+    AND t.amount >= :min_revenue
+GROUP BY d.department_name, TO_CHAR(t.transaction_date, 'Q')
+ORDER BY quarter;
+```
+
+### Employee Search
+
+```sql
+SELECT 
+    employee_id,
+    first_name || ' ' || last_name as name,
+    email,
+    department_id,
+    salary
+FROM employees
+WHERE department_id = :dept_id
+AND salary >= :min_salary
+ORDER BY employee_id;
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Executing Queries" icon="play" href="/koala/editor/executing-queries">
+    Learn query execution options
+  </Card>
+  <Card title="Query Templates" icon="file-code" href="/koala/advanced/sql-history">
+    Create reusable templates
+  </Card>
+</CardGroup>

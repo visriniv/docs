@@ -1,0 +1,213 @@
+---
+title: "Data Sources"
+description: "Explore Oracle Fusion Cloud data sources and schemas"
+---
+
+## Overview
+
+The Data Sources explorer in Koala Data Explorer provides a view of your Oracle Fusion Cloud database structure. This feature helps you discover tables, views, and understand the available data.
+
+<Note>
+  Data Sources explorer is available in the paid version of Koala Data Explorer.
+</Note>
+
+## Accessing Data Sources
+
+### Opening the Explorer
+
+Access the Data Sources explorer:
+
+1. Click the Koala icon in VS Code Activity Bar
+2. Expand the "Data Sources" section
+3. Explorer appears in the sidebar showing your schema structure
+
+### Auto-refresh
+
+The explorer automatically refreshes when you connect to a database, loading the available schemas, tables, and views.
+
+## Schema Structure
+
+### What You'll See
+
+The explorer shows:
+
+```
+📁 Connection Name
+├── 📊 Schema1
+│   ├── 📋 Tables
+│   │   ├── EMPLOYEES
+│   │   ├── DEPARTMENTS
+│   │   └── JOBS
+│   └── 👁️ Views
+│       ├── EMP_DETAILS_VIEW
+│       └── DEPARTMENT_VIEW
+└── 📊 Schema2
+```
+
+### Schema Information
+
+For each schema you can see:
+- **Schema name**: Database schema identifier
+- **Tables**: Regular database tables
+- **Views**: Database views and materialized views
+- **Object count**: Number of objects in each category
+
+## Exploring Tables and Views
+
+### Table Information
+
+When you expand a table, you can see:
+- **Table name**: Database table name
+- **Basic structure**: Available for browsing
+
+### Quick Actions
+
+Right-click on any table or view for options:
+- **Generate SELECT**: Creates a basic SELECT statement
+- **Copy Name**: Copies table/view name to clipboard
+
+### Drag and Drop
+
+You can drag table names from the explorer directly into your query editor to quickly add them to your SQL.
+
+## Search Functionality
+
+### Finding Objects
+
+Use the search box in the Data Sources panel to:
+- Search for table names
+- Find views by name
+- Locate specific database objects quickly
+
+The search is case-insensitive and searches across all visible schemas.
+
+## Working with Schemas
+
+### Available Schemas
+
+The explorer shows schemas that:
+- You have access to query
+- Contain tables or views you can SELECT from
+- Are part of your Oracle Fusion environment
+
+### Schema Access
+
+Only schemas and objects you have SELECT permissions for will appear in the explorer. This respects your database security settings.
+
+## Favorites
+
+### Bookmark Important Tables
+
+Mark frequently used tables as favorites:
+1. Right-click on a table
+2. Select "Add to Favorites"
+3. Favorites appear at the top for quick access
+
+This helps you quickly find the tables you use most often.
+
+## Performance and Refreshing
+
+### Auto-refresh Settings
+
+The Data Sources explorer can be configured to:
+- Automatically refresh when connecting
+- Update schema information periodically
+- Refresh manually when needed
+
+### Manual Refresh
+
+To manually refresh the schema information:
+1. Right-click in the Data Sources panel
+2. Select "Refresh"
+3. Schema information updates with current database state
+
+## Troubleshooting
+
+### Schema Not Showing
+
+If expected schemas don't appear:
+1. **Check permissions**: Ensure you have SELECT access
+2. **Verify connection**: Confirm you're connected to the right instance
+3. **Refresh manually**: Try refreshing the data sources
+4. **Contact DBA**: May need additional database permissions
+
+### Slow Loading
+
+If the Data Sources panel loads slowly:
+1. **Network latency**: Check connection to Oracle Fusion
+2. **Large schemas**: Many objects can slow loading
+3. **Permissions**: Complex permission structures may impact performance
+
+## Best Practices
+
+### Organization
+
+To make the most of Data Sources:
+1. **Use favorites**: Bookmark your most-used tables
+2. **Descriptive queries**: Use the generated SELECT as starting points
+3. **Explore gradually**: Start with familiar schemas
+
+### Security
+
+Remember that:
+- Only accessible objects are shown
+- Respect data sensitivity
+- Follow your organization's data access policies
+
+## Integration with Queries
+
+### Generated SQL
+
+When you use "Generate SELECT" from the context menu:
+- Basic SELECT statement is created
+- Includes ROWNUM limit for safety
+- Ready to execute or modify
+
+### Query Building
+
+Use the Data Sources explorer to:
+1. **Discover tables**: Find relevant data sources
+2. **Build joins**: Identify related tables
+3. **Understand structure**: See what data is available
+
+## Settings
+
+### Configure Data Sources
+
+You can configure the Data Sources behavior through VS Code settings:
+
+```json
+{
+  "koalaDataExplorer.autoRefreshDataSources": true,
+  "koalaDataExplorer.maxRows": 1000
+}
+```
+
+## Limitations
+
+### Current Limitations
+
+The Data Sources explorer:
+- Shows basic schema structure
+- Provides table and view browsing
+- Offers simple search functionality
+- Includes favorites management
+
+### Future Enhancements
+
+Planned improvements include:
+- Column details view
+- Relationship information
+- Enhanced search capabilities
+- Additional metadata display
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Start writing SQL queries
+  </Card>
+  <Card title="SQL History" icon="history" href="/koala/advanced/sql-history">
+    Manage your query history
+  </Card>
+</CardGroup>

@@ -1,44 +1,88 @@
-# Mintlify Starter Kit
+# Koala Data Explorer Documentation
 
-Use the starter kit to get your docs deployed and ready to customize.
+This repository contains the official documentation for Koala Data Explorer, a professional SQL tool for Oracle Fusion Cloud.
 
-Click the green **Use this template** button at the top of this repo to copy the Mintlify starter kit. The starter kit contains examples with
+## About Koala Data Explorer
 
-- Guide pages
-- Navigation
-- Customizations
-- API reference pages
-- Use of popular components
+Koala Data Explorer is a VS Code extension that provides:
 
-**[Follow the full quickstart guide](https://starter.mintlify.com/quickstart)**
+- Professional SQL editor with syntax highlighting
+- Direct connection to Oracle Fusion Cloud
+- Export capabilities (CSV, JSON, Excel)
+- Query performance monitoring
+- Multiple environment management
+
+## Documentation Structure
+
+- **Getting Started**: Installation and setup guides
+- **Connections**: Authentication and connection management
+- **Query Editor**: SQL editing and execution
+- **Results**: Data viewing, filtering, and export
+- **Advanced**: Performance monitoring and advanced features
+- **Configuration**: Settings and customization
+- **Licensing**: Free vs paid features
+- **Troubleshooting**: Common issues and solutions
+- **Support**: Getting help and reporting issues
 
 ## Development
 
-Install the [Mintlify CLI](https://www.npmjs.com/package/mint) to preview your documentation changes locally. To install, use the following command:
+This documentation is built with [Mintlify](https://mintlify.com). To preview changes locally:
 
-```
+### Install Mintlify CLI
+
+```bash
 npm i -g mint
 ```
 
-Run the following command at the root of your documentation, where your `docs.json` is located:
+### Run Local Development
 
-```
+```bash
 mint dev
 ```
 
 View your local preview at `http://localhost:3000`.
 
-## Publishing changes
+## Publishing Changes
 
-Install our GitHub app from your [dashboard](https://dashboard.mintlify.com/settings/organization/github-app) to propagate changes from your repo to your deployment. Changes are deployed to production automatically after pushing to the default branch.
+Changes are automatically deployed to production when pushed to the main branch via GitHub integration.
 
-## Need help?
+## Contributing
 
-### Troubleshooting
+When updating documentation:
 
-- If your dev environment isn't running: Run `mint update` to ensure you have the most recent version of the CLI.
-- If a page loads as a 404: Make sure you are running in a folder with a valid `docs.json`.
+1. Follow the existing style and format
+2. Test all code examples
+3. Include proper frontmatter (title, description)
+4. Use relative links for internal references
+5. Add appropriate icons for cards and sections
+
+## Need Help?
+
+### Documentation Issues
+- Check existing documentation first
+- Review troubleshooting sections
+- Test with minimal examples
 
 ### Resources
 - [Mintlify documentation](https://mintlify.com/docs)
-- [Mintlify community](https://mintlify.com/community)
+- [Koala Data Explorer VS Code extension](https://marketplace.visualstudio.com/items?itemName=btss.koala-data-explorer)
+- [BTSS Corporation](https://btsscorp.com)
+
+## Project Structure
+
+```
+docs/
+├── koala/                   # Main Koala documentation
+│   ├── installation/       # Setup guides
+│   ├── connections/         # Connection management
+│   ├── editor/             # Query editor features
+│   ├── results/            # Data viewing and export
+│   ├── advanced/           # Advanced features
+│   ├── config/             # Configuration
+│   ├── licensing/          # License information
+│   ├── troubleshooting/    # Common issues
+│   └── support/            # Getting help
+├── logo/                   # Koala logos (light/dark)
+├── images/                 # Documentation images
+└── docs.json              # Navigation configuration
+```

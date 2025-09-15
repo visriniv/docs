@@ -1,0 +1,243 @@
+---
+title: "SQL History"
+description: "Track and reuse your query history in Koala Data Explorer"
+---
+
+## Overview
+
+Koala Data Explorer automatically tracks your query history, allowing you to easily recall and reuse previously executed SQL statements. This feature helps you build on previous work and maintain a record of your database interactions.
+
+## Accessing Query History
+
+### Open History Panel
+
+Access your query history:
+
+1. Press `Ctrl+H` (Windows/Linux) or `Cmd+H` (Mac)
+2. Or click the History icon in the toolbar
+3. History panel opens showing recent queries
+
+### History Location
+
+Query history appears in:
+- **Dedicated history panel**: Full query text and execution details
+- **Quick access**: Recent queries in dropdown menus
+- **Search functionality**: Find specific queries
+
+## History Features
+
+### What's Stored
+
+Each history entry includes:
+- **Complete SQL text**: Full query as executed
+- **Execution timestamp**: When the query was run
+- **Execution time**: How long the query took
+- **Row count**: Number of rows returned
+- **Connection used**: Which database connection
+- **Success/failure status**: Whether query completed successfully
+
+### History Limits
+
+Query history storage limits:
+- **Free version**: Last 50 executed queries
+- **Paid version**: Last 500 executed queries
+
+Older queries are automatically removed when limits are reached.
+
+## Using History
+
+### Recall Previous Queries
+
+To reuse a query from history:
+
+1. Open the history panel (`Ctrl+H`)
+2. Browse through your previous queries
+3. Click on any query to load it into the editor
+4. Modify as needed and execute
+
+### History Search
+
+Find specific queries:
+- Type in the search box to filter by query content
+- Search looks through SQL text and table names
+- Results update as you type
+
+### Quick Navigation
+
+Navigate through history:
+- **Most recent first**: Newest queries at the top
+- **Chronological order**: Easy to find recent work
+- **Date grouping**: Queries grouped by day (paid version)
+
+## History Management
+
+### Automatic Cleanup
+
+History is automatically managed:
+- **Persistent storage**: Survives VS Code restarts
+- **Automatic pruning**: Old queries removed when limit reached
+- **Error handling**: Failed queries also stored for reference
+
+### Manual Management
+
+You can manually manage history:
+- **Clear all history**: Remove all stored queries
+- **Delete specific entries**: Remove individual queries
+- **Export history**: Save queries to file (paid version)
+
+## Working with History Entries
+
+### Query Details
+
+Each history entry shows:
+- **SQL preview**: First few lines of the query
+- **Timestamp**: Exact execution time
+- **Performance**: Execution duration
+- **Results**: Row count or error message
+
+### Context Actions
+
+Right-click on history entries for options:
+- **Load query**: Copy to current editor
+- **Copy SQL**: Copy query text to clipboard
+- **Delete entry**: Remove from history
+- **View details**: See full execution information
+
+## Search and Filter
+
+### Search Functionality
+
+Find queries quickly:
+- **Text search**: Search within SQL content
+- **Table search**: Find queries using specific tables
+- **Date range**: Filter by execution date (paid version)
+
+### Filter Options
+
+Filter history by:
+- **Success/failure**: Show only successful or failed queries
+- **Connection**: Queries from specific databases
+- **Date range**: Recent queries or specific time periods
+
+## Best Practices
+
+### Organizing Queries
+
+Make the most of query history:
+
+1. **Use descriptive comments**: Add comments to important queries
+2. **Test queries first**: Build up complex queries incrementally
+3. **Save important queries**: Copy critical queries to files
+4. **Regular cleanup**: Clear history periodically if needed
+
+### Development Workflow
+
+Effective use of history:
+1. **Iterative development**: Build on previous query attempts
+2. **Error learning**: Review failed queries to avoid mistakes
+3. **Pattern reuse**: Find similar queries for new requirements
+4. **Performance comparison**: Compare execution times
+
+## History Settings
+
+### Configuration Options
+
+Configure history behavior through VS Code settings:
+
+```json
+{
+  "koalaDataExplorer.history.maxEntries": 50,
+  "koalaDataExplorer.history.searchEnabled": true,
+  "koalaDataExplorer.history.groupByDate": false
+}
+```
+
+### Privacy Settings
+
+Control what's stored:
+- **Query text**: Full SQL statements
+- **Parameter values**: Bind variable values (if any)
+- **Results metadata**: Row counts and timing
+- **Error details**: Failure reasons
+
+## Integration Features
+
+### Parameter History
+
+For queries with bind variables:
+- **Parameter values**: Previous values remembered
+- **Parameter suggestions**: Auto-suggest based on history
+- **Parameter patterns**: Common value combinations
+
+### Export Integration
+
+History works with exports:
+- **Export queries**: Save history entries to files
+- **Import patterns**: Use history for new query development
+- **Documentation**: Generate query documentation from history
+
+## Troubleshooting
+
+### History Not Saving
+
+If history isn't working:
+1. **Check settings**: Verify history is enabled
+2. **Storage permissions**: Ensure VS Code can write to workspace
+3. **Memory limits**: Check if storage quota exceeded
+4. **Restart extension**: Reload Koala Data Explorer
+
+### Performance Issues
+
+If history is slow:
+1. **Large history**: Clear old entries
+2. **Complex queries**: Large SQL statements may slow search
+3. **Search optimization**: Use specific search terms
+4. **Limit results**: Reduce history display size
+
+### Missing Queries
+
+If queries don't appear in history:
+1. **Execution status**: Only completed executions are stored
+2. **Connection issues**: Failed connections may not save
+3. **Storage errors**: Check for storage problems
+4. **Manual execution**: Only manual queries stored (not automated)
+
+## Keyboard Shortcuts
+
+### History Navigation
+
+| Action | Shortcut | Description |
+|--------|----------|-------------|
+| Open History | `Ctrl+H` | Open history panel |
+| Search History | `Ctrl+Shift+H` | Focus on history search |
+| Previous Query | `Alt+Up` | Load previous query |
+| Next Query | `Alt+Down` | Load next query |
+
+### Quick Actions
+
+| Action | Shortcut | Description |
+|--------|----------|-------------|
+| Load from History | `Ctrl+Click` | Load query into editor |
+| Copy Query | `Ctrl+C` | Copy query text |
+| Clear History | `Ctrl+Del` | Clear all history |
+
+## Future Enhancements
+
+### Planned Features
+
+Upcoming history improvements:
+- **Query tagging**: Label important queries
+- **History sync**: Share history across installations
+- **Advanced search**: More sophisticated filtering
+- **Query analytics**: Usage patterns and insights
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Performance Monitor" icon="chart-line" href="/koala/advanced/performance-monitor">
+    Monitor query performance
+  </Card>
+  <Card title="Multiple Tabs" icon="tabs" href="/koala/advanced/multiple-tabs">
+    Work with multiple query tabs
+  </Card>
+</CardGroup>

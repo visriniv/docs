@@ -1,0 +1,316 @@
+---
+title: "First Connection Setup"
+description: "Set up your first connection to Oracle Fusion Cloud"
+---
+
+## Quick Start
+
+Get connected to Oracle Fusion Cloud in minutes with this step-by-step guide.
+
+## Step 1: Open SQL Query Editor
+
+First, open the Koala Data Explorer interface:
+
+1. Open VS Code Command Palette:
+   - Windows/Linux: `Ctrl+Shift+P`
+   - Mac: `Cmd+Shift+P`
+2. Type: **"Koala Data Explorer: Open SQL Query Editor"**
+3. Press Enter
+
+The SQL Query Editor will open in a new tab.
+
+## Step 2: Open Connection Manager
+
+In the SQL Query Editor:
+
+1. Look for the **Manage Connections** button in the top-left corner
+2. Click the button to open the Connection Manager dialog
+
+<Info>
+  The Manage Connections button looks like a database icon with a gear.
+</Info>
+
+## Step 3: Add New Connection
+
+In the Connection Manager dialog:
+
+1. Click **Add Connection** button
+2. Choose your authentication type:
+   - **Basic Auth** (Free): Username and password
+   - **OAuth PKCE** (Paid): Enterprise SSO
+   - **SSO** (Paid): Single Sign-On
+
+## Step 4: Configure Connection
+
+### Basic Authentication (Free)
+
+Fill in the connection details:
+
+```json
+{
+  "name": "Production Oracle Fusion",
+  "host": "your-instance.fa.ocs.oraclecloud.com",
+  "username": "your.username@company.com",
+  "password": "your-password"
+}
+```
+
+**Field Descriptions**:
+- **Name**: Friendly name for this connection (e.g., "Prod", "Test", "Dev")
+- **Host**: Your Oracle Fusion instance URL (without https://)
+- **Username**: Your Oracle Fusion username
+- **Password**: Your Oracle Fusion password
+
+<Warning>
+  Do not include `https://` in the host field. Enter only the domain name.
+</Warning>
+
+### OAuth/SSO Authentication (Paid)
+
+For OAuth PKCE authentication:
+
+```json
+{
+  "name": "Production SSO",
+  "host": "your-instance.fa.ocs.oraclecloud.com",
+  "clientId": "your-client-id",
+  "scope": "your-scope",
+  "authorizationUrl": "https://idcs.oracle.com/oauth2/v1/authorize",
+  "tokenUrl": "https://idcs.oracle.com/oauth2/v1/token"
+}
+```
+
+**OAuth Configuration**:
+- **Client ID**: OAuth application client ID
+- **Scope**: Required OAuth scopes
+- **Authorization URL**: IDCS authorization endpoint
+- **Token URL**: IDCS token endpoint
+
+<Note>
+  Contact your Oracle Fusion administrator for OAuth configuration details.
+</Note>
+
+## Step 5: Test Connection
+
+Before saving:
+
+1. Click **Test Connection** button
+2. Wait for the connection test to complete
+3. Look for success message: "Connection successful!"
+
+If the test fails, check:
+- Network connectivity to Oracle Fusion
+- Correct hostname (no typos)
+- Valid credentials
+- Firewall/proxy settings
+
+## Step 6: Save Connection
+
+Once the test passes:
+
+1. Click **Save** button
+2. Connection appears in your connections list
+3. Click **Done** to close the dialog
+
+## Step 7: Connect to Oracle Fusion
+
+Back in the SQL Query Editor:
+
+1. Find the connection dropdown in the query tab header
+2. Select your newly created connection
+3. Click the **Connect** button
+4. Wait for "Connected" status
+
+<Check>
+  When connected successfully, you'll see:
+  - Green "Connected" status
+  - Data sources loading in the sidebar (Paid feature)
+  - Ready to execute queries
+</Check>
+
+## Step 8: Run Your First Query
+
+Try a simple query to verify everything works:
+
+```sql
+-- Get current user information
+SELECT 
+    USER_NAME,
+    USER_GUID,
+    CREATED_BY,
+    CREATION_DATE
+FROM 
+    PER_USERS
+WHERE 
+    ROWNUM <= 10;
+```
+
+Press `Ctrl+Enter` (Windows/Linux) or `Cmd+Enter` (Mac) to execute.
+
+## Connection Best Practices
+
+### Naming Conventions
+
+Use clear, descriptive names:
+- ✅ "Production - Finance"
+- ✅ "DEV Environment"
+- ✅ "Test Instance - US"
+- ❌ "Connection 1"
+- ❌ "Oracle"
+
+### Security Recommendations
+
+1. **Never share credentials**: Each user should use their own account
+2. **Use SSO when available**: More secure than basic auth
+3. **Rotate passwords regularly**: Update connections after password changes
+4. **Limit access**: Only connect to instances you need
+
+### Multiple Environments
+
+Organize connections by environment:
+
+```
+Production - Primary
+Production - DR
+Test - Integration
+Test - UAT
+Development - Sprint 1
+Development - Sprint 2
+```
+
+## Common Connection URLs
+
+### Oracle Fusion Cloud
+
+```
+# Production
+your-prod.fa.ocs.oraclecloud.com
+
+# Test
+your-test.fa.ocs.oraclecloud.com
+
+# Development
+your-dev.fa.ocs.oraclecloud.com
+```
+
+### Regional Instances
+
+```
+# US Commercial
+instance.fa.us2.oraclecloud.com
+
+# EU Frankfurt
+instance.fa.eu-frankfurt-1.oraclecloud.com
+
+# UK London
+instance.fa.uk-london-1.oraclecloud.com
+```
+
+## Troubleshooting Connection Issues
+
+### "Connection Failed" Error
+
+**Check these common causes**:
+
+1. **Incorrect Host**:
+   - Remove `https://` prefix
+   - Verify no trailing slashes
+   - Check for typos
+
+2. **Invalid Credentials**:
+   - Verify username format
+   - Check password is current
+   - Ensure account isn't locked
+
+3. **Network Issues**:
+   - Test Oracle Fusion access in browser
+   - Check VPN connection if required
+   - Verify firewall rules
+
+### "Timeout" Error
+
+Increase timeout in settings:
+
+```json
+{
+  "koalaDataExplorer.timeout": 180000
+}
+```
+
+### "Certificate" Error
+
+For self-signed certificates:
+
+```json
+{
+  "http.proxyStrictSSL": false
+}
+```
+
+<Warning>
+  Only disable SSL verification for development/test environments.
+</Warning>
+
+### Proxy Configuration
+
+If behind a corporate proxy:
+
+```json
+{
+  "http.proxy": "http://proxy.company.com:8080",
+  "http.proxyAuthorization": null
+}
+```
+
+## Managing Multiple Connections
+
+### Switch Between Connections
+
+1. Use the dropdown in the query tab
+2. Select different connection
+3. Click Connect
+
+### Edit Existing Connections
+
+1. Open Manage Connections
+2. Click edit icon next to connection
+3. Update details
+4. Test and save
+
+### Delete Connections
+
+1. Open Manage Connections
+2. Click delete icon
+3. Confirm deletion
+
+<Note>
+  Deleting a connection doesn't affect saved queries or history.
+</Note>
+
+## Connection Status Indicators
+
+| Status | Meaning | Action |
+|--------|---------|--------|
+| 🔴 Disconnected | Not connected | Click Connect button |
+| 🟡 Connecting | Connection in progress | Wait for completion |
+| 🟢 Connected | Active connection | Ready to query |
+| ⚠️ Error | Connection failed | Check credentials/network |
+
+## Next Steps
+
+Now that you're connected:
+
+<CardGroup cols={2}>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Learn to write and execute SQL queries
+  </Card>
+  <Card title="Data Sources" icon="database" href="/koala/advanced/data-sources">
+    Explore available tables and views
+  </Card>
+  <Card title="Keyboard Shortcuts" icon="keyboard" href="/koala/editor/keyboard-shortcuts">
+    Master productivity shortcuts
+  </Card>
+  <Card title="Export Data" icon="download" href="/koala/results/exporting-data">
+    Export query results
+  </Card>
+</CardGroup>

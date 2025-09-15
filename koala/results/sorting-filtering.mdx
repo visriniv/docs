@@ -1,0 +1,409 @@
+---
+title: "Sorting & Filtering"
+description: "Sort and filter query results to analyze your data effectively"
+---
+
+## Overview
+
+Koala Data Explorer provides powerful sorting and filtering capabilities to help you analyze query results. These features allow you to focus on specific data subsets and organize results for better insights.
+
+## Sorting Data
+
+### Basic Sorting
+
+#### Single Column Sort
+
+Click any column header to sort:
+
+1. **First click**: Sort ascending (A-Z, 0-9, oldest-newest)
+2. **Second click**: Sort descending (Z-A, 9-0, newest-oldest)
+3. **Third click**: Remove sort (return to original order)
+
+#### Sort Indicators
+
+Column headers show sort direction:
+- **▲**: Ascending sort
+- **▼**: Descending sort
+- **No arrow**: No sort applied
+
+### Multi-Column Sorting
+
+<Note>
+  Multi-column sorting is available in the paid version.
+</Note>
+
+Sort by multiple columns for complex ordering:
+
+1. Click first column header
+2. Hold `Ctrl` and click additional columns
+3. Sort priority shown by numbers (1, 2, 3...)
+4. Drag columns in sort panel to reorder priority
+
+#### Sort Priority
+
+When sorting by multiple columns:
+- Primary sort: Most important ordering
+- Secondary sort: Applied within primary groups
+- Tertiary sort: Applied within secondary groups
+
+Example: Sort employees by Department (primary), then Salary (secondary)
+
+### Sort Types by Data Type
+
+#### Text Sorting
+- **Ascending**: A-Z alphabetical
+- **Descending**: Z-A reverse alphabetical
+- **Case sensitivity**: Configurable (default: case-insensitive)
+- **Natural sorting**: Numbers in text sorted numerically
+
+#### Numeric Sorting
+- **Ascending**: Smallest to largest
+- **Descending**: Largest to smallest
+- **NULL handling**: NULLs first or last (configurable)
+- **Scientific notation**: Handled correctly
+
+#### Date Sorting
+- **Ascending**: Oldest to newest
+- **Descending**: Newest to oldest
+- **Time component**: Included in sort order
+- **Time zones**: Respected in sorting
+
+### Custom Sort Options
+
+#### Sort Settings
+
+Configure sorting behavior:
+
+```json
+{
+  "koala.results.sorting.nullsFirst": true,
+  "koala.results.sorting.caseSensitive": false,
+  "koala.results.sorting.naturalSort": true,
+  "koala.results.sorting.maxColumns": 5
+}
+```
+
+#### Sort Menu
+
+Right-click column header for advanced options:
+- Sort A-Z / Z-A
+- Custom sort
+- Clear sort
+- Sort options
+
+## Filtering Data
+
+### Quick Filter
+
+#### Text Filter
+
+Use the filter box at the top of results:
+
+1. Type text to search across all visible columns
+2. Results immediately update as you type
+3. Case-insensitive by default
+4. Searches all text-based columns
+
+#### Filter Operators
+
+Use operators for precise filtering:
+
+```
+=value          Exact match
+!=value         Not equal
+>value          Greater than
+>=value         Greater than or equal
+<value          Less than
+<=value         Less than or equal
+*value*         Contains (wildcards)
+value*          Starts with
+*value          Ends with
+```
+
+### Column Filters
+
+#### Filter by Column
+
+Click the filter icon in column headers:
+
+1. Shows unique values in that column
+2. Check/uncheck values to include/exclude
+3. Use search box to find specific values
+4. Apply multiple selections
+
+#### Text Column Filters
+
+For text columns, available filters:
+- **Equals**: Exact match
+- **Contains**: Partial match
+- **Starts with**: Prefix match
+- **Ends with**: Suffix match
+- **Regular expression**: Pattern matching
+- **Is empty**: Empty string
+- **Is not empty**: Has content
+- **Is null**: NULL values
+- **Is not null**: Non-NULL values
+
+#### Numeric Column Filters
+
+For numeric columns:
+- **Equals**: Exact value
+- **Not equals**: Exclude value
+- **Greater than**: &gt; value
+- **Greater than or equal**: &gt;= value
+- **Less than**: &lt; value
+- **Less than or equal**: &lt;= value
+- **Between**: Range of values
+- **Top N**: Highest N values
+- **Bottom N**: Lowest N values
+
+#### Date Column Filters
+
+For date columns:
+- **Equals**: Specific date
+- **Before**: Earlier than date
+- **After**: Later than date
+- **Between**: Date range
+- **Last N days**: Recent period
+- **This week/month/year**: Current period
+- **Custom range**: Flexible date picker
+
+### Advanced Filtering
+
+#### Multiple Filters
+
+Apply filters to multiple columns:
+
+1. Each column filter is independent
+2. Results show rows matching ALL filters (AND logic)
+3. Filter summary shows active filters
+4. Clear individual or all filters
+
+#### Filter Expressions
+
+<Note>
+  Advanced filter expressions are available in the paid version.
+</Note>
+
+Create complex filter expressions:
+
+```sql
+-- Filter by expression
+department_id IN (10, 20, 30) 
+AND salary > 50000 
+AND hire_date > '2020-01-01'
+```
+
+#### Saved Filters
+
+Save frequently used filters:
+
+1. Apply desired filters
+2. Click "Save Filter"
+3. Name the filter configuration
+4. Reuse with one click
+
+### Filter Panel
+
+#### Filter Manager
+
+Access the filter panel:
+- Click filter icon in toolbar
+- Press `Ctrl+Shift+F`
+- Shows all active filters
+- Modify or remove filters
+
+#### Filter Information
+
+The filter panel displays:
+- **Active filters**: Currently applied filters
+- **Affected rows**: Count of matching rows
+- **Filter logic**: How filters combine
+- **Performance**: Filter execution time
+
+## Combined Sorting and Filtering
+
+### Workflow
+
+Common workflow for data analysis:
+
+1. **Filter first**: Reduce data to relevant subset
+2. **Then sort**: Order the filtered results
+3. **Analyze**: Focus on specific patterns
+4. **Export**: Save the filtered and sorted view
+
+### Performance Optimization
+
+#### Efficient Filtering
+
+Best practices for performance:
+
+1. Filter early in the query when possible
+2. Use indexed columns for filtering
+3. Apply most selective filters first
+4. Combine filters in SQL for better performance
+
+#### Sorting Performance
+
+Optimize sorting:
+
+1. Sort by indexed columns when possible
+2. Limit result set before sorting
+3. Use database sorting (ORDER BY) for large datasets
+4. Consider composite indexes for multi-column sorts
+
+## Visual Indicators
+
+### Active Filters
+
+Visual cues for active filters:
+- **Column headers**: Filter icon shows when filtered
+- **Status bar**: Shows "Filtered: X of Y rows"
+- **Filter panel**: Lists all active filters
+- **Row striping**: Maintains readability
+
+### Sort Indicators
+
+Visual cues for sorting:
+- **Arrow icons**: Show sort direction
+- **Numbers**: Show sort priority for multi-column
+- **Column highlighting**: Sorted columns highlighted
+- **Status bar**: Shows current sort configuration
+
+## Keyboard Shortcuts
+
+### Sorting Shortcuts
+
+| Action | Shortcut | Description |
+|--------|----------|-------------|
+| Sort ascending | `Alt+↑` | Sort current column ascending |
+| Sort descending | `Alt+↓` | Sort current column descending |
+| Clear sort | `Alt+0` | Remove sort from current column |
+| Multi-column sort | `Ctrl+click` | Add column to sort |
+
+### Filtering Shortcuts
+
+| Action | Shortcut | Description |
+|--------|----------|-------------|
+| Open filter | `Ctrl+F` | Open quick filter box |
+| Column filter | `Alt+F` | Open filter for current column |
+| Clear filters | `Ctrl+Shift+F` | Clear all filters |
+| Next filtered | `F3` | Jump to next filtered result |
+
+## Common Use Cases
+
+### Data Analysis
+
+#### Find Top Performers
+
+```
+1. Filter: department_id = 'SALES'
+2. Sort: commission_pct DESC
+3. Result: Top sales performers by commission
+```
+
+#### Identify Recent Changes
+
+```
+1. Filter: last_update_date > '2024-01-01'
+2. Sort: last_update_date DESC
+3. Result: Most recently updated records
+```
+
+#### Range Analysis
+
+```
+1. Filter: salary BETWEEN 50000 AND 100000
+2. Sort: salary ASC
+3. Result: Salary distribution in range
+```
+
+### Quality Assurance
+
+#### Find Data Issues
+
+```
+1. Filter: email NOT LIKE '%@%'
+2. Result: Invalid email addresses
+```
+
+#### Null Value Detection
+
+```
+1. Filter: important_field IS NULL
+2. Result: Records missing critical data
+```
+
+## Common Filter Types
+
+### Text Filters
+- **Contains**: Search for text within values
+- **Equals**: Exact match
+- **Starts with**: Values beginning with text
+- **Ends with**: Values ending with text
+
+### Numeric Filters
+- **Equals**: Exact numeric value
+- **Greater than**: Values above threshold
+- **Less than**: Values below threshold
+- **Between**: Values within range
+
+### Date Filters
+- **Equals**: Specific date
+- **Before**: Earlier than date
+- **After**: Later than date
+- **Between**: Date range
+
+## Troubleshooting
+
+### Performance Issues
+
+If sorting/filtering is slow:
+
+1. Check result set size
+2. Consider database-side filtering (WHERE clause)
+3. Reduce number of columns
+4. Use simpler filter expressions
+
+### Memory Issues
+
+For large result sets:
+
+1. Apply filters before sorting
+2. Use database sorting when possible
+3. Limit visible columns
+4. Consider exporting filtered results
+
+### Filter Not Working
+
+If filters don't work as expected:
+
+1. Check data types
+2. Verify null value handling
+3. Test with simpler expressions
+4. Clear and reapply filters
+
+## Best Practices
+
+### Performance
+
+1. Filter first, then sort
+2. Use SQL WHERE clauses for large datasets
+3. Be specific with filter criteria
+
+### Data Analysis
+
+1. Start with broad filters, then narrow down
+2. Combine sorting and filtering for better insights
+3. Export filtered results for further analysis
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Exporting Data" icon="download" href="/koala/results/exporting-data">
+    Export filtered and sorted results
+  </Card>
+  <Card title="Excel Export" icon="file-excel" href="/koala/results/excel-export">
+    Advanced Excel export features
+  </Card>
+</CardGroup>

@@ -1,0 +1,134 @@
+---
+title: "Basic Authentication"
+description: "Connect to Oracle Fusion Cloud using username and password"
+---
+
+## Overview
+
+Basic authentication allows you to connect to Oracle Fusion Cloud using your standard username and password. This is the simplest authentication method and is included in the free version of Koala Data Explorer.
+
+## Prerequisites
+
+- Valid Oracle Fusion Cloud user account
+- User credentials (username and password)
+- Network access to your Oracle Fusion instance
+
+## Setting Up Basic Authentication
+
+### Step 1: Open Connection Manager
+
+1. Open VS Code with Koala Data Explorer installed
+2. Press `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac) to open the command palette
+3. Type "Koala: Manage Connections" and select it
+
+### Step 2: Add New Connection
+
+1. Click the "Add Connection" button
+2. Select "Basic Authentication" as the authentication type
+
+### Step 3: Enter Connection Details
+
+Fill in the following required fields:
+
+- **Connection Name**: A descriptive name for this connection (e.g., "Production", "Test Environment")
+- **Host URL**: Your Oracle Fusion Cloud URL (e.g., `https://your-instance.oraclecloud.com`)
+- **Username**: Your Oracle Fusion username
+- **Password**: Your Oracle Fusion password
+
+<Note>
+  Credentials are securely stored in VS Code's secret storage and are never saved in plain text.
+</Note>
+
+### Step 4: Test Connection
+
+1. Click "Test Connection" to verify your credentials
+2. Wait for the connection test to complete
+3. If successful, you'll see a green checkmark
+4. If failed, verify your credentials and network connectivity
+
+### Step 5: Save Connection
+
+Click "Save" to store the connection for future use.
+
+## Using Basic Authentication
+
+Once configured, you can:
+
+1. Select your connection from the dropdown in the Koala panel
+2. The connection will be automatically established
+3. Start writing and executing queries immediately
+
+## Security Considerations
+
+### Password Storage
+
+- Passwords are stored using VS Code's built-in secret storage
+- Credentials are encrypted at rest
+- Never shared or transmitted except to Oracle Fusion Cloud
+
+### Best Practices
+
+For enterprise environments, OAuth PKCE authentication is also available in the paid version.
+
+- Use strong, unique passwords
+- Rotate passwords regularly
+- Enable multi-factor authentication in Oracle Fusion when available
+- Avoid sharing connections or credentials
+
+## Limitations
+
+Basic authentication in the free version includes:
+
+- Single active connection at a time
+- Manual password updates when changed
+- No SSO integration
+- Limited to 50 rows per query
+
+## Troubleshooting
+
+### Invalid Credentials
+
+If you receive an authentication error:
+
+1. Verify your username and password are correct
+2. Check if your account is locked or expired
+3. Ensure you're using the correct Oracle Fusion instance URL
+
+### Connection Timeout
+
+If the connection times out:
+
+1. Check your network connectivity
+2. Verify firewall settings allow HTTPS traffic
+3. Confirm the Oracle Fusion instance is accessible
+
+### Password Changes
+
+When your Oracle Fusion password changes:
+
+1. Open Connection Manager
+2. Edit the existing connection
+3. Update the password field
+4. Test and save the connection
+
+## OAuth PKCE Authentication
+
+For enterprise environments, the paid version also offers:
+
+- OAuth 2.0 PKCE authentication
+- Single Sign-On (SSO) support
+- Automatic token refresh
+- Enterprise integration features
+
+See [OAuth PKCE & SSO Authentication](/koala/connections/oauth-sso) for more details.
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Start writing SQL queries
+  </Card>
+  <Card title="Managing Connections" icon="server" href="/koala/connections/managing-connections">
+    Learn to manage multiple connections
+  </Card>
+</CardGroup>

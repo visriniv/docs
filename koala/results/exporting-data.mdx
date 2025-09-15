@@ -1,0 +1,193 @@
+---
+title: "Exporting Data"
+description: "Export query results to CSV, JSON, and Excel formats"
+---
+
+## Overview
+
+Koala Data Explorer allows you to export your query results to common file formats for further analysis, sharing, or reporting.
+
+## Available Export Formats
+
+### Free Version
+- **CSV**: Comma-separated values
+- **JSON**: JavaScript Object Notation
+
+### Paid Version
+- **Excel (.xlsx)**: Excel workbook format (in addition to CSV and JSON)
+
+## How to Export
+
+### Export Steps
+
+1. Execute your query to get results
+2. Click the "Export" button in the results toolbar
+3. Select your desired format (CSV, JSON, or Excel)
+4. Choose save location
+5. File is saved
+
+### Export Button Location
+
+The Export button appears in the results panel toolbar after you run a query and get results.
+
+## Export Formats
+
+### CSV Export
+
+**Comma-Separated Values** format:
+- Universal compatibility with spreadsheet applications
+- Plain text format
+- Includes column headers
+- Configurable delimiter (comma, semicolon, tab)
+
+Example CSV output:
+```csv
+employee_id,first_name,last_name,email
+100,Steven,King,SKING@oracle.com
+101,Neena,Kochhar,NKOCHHAR@oracle.com
+```
+
+### JSON Export
+
+**JavaScript Object Notation** format:
+- Structured data format
+- Good for API integration
+- Array of objects format
+
+Example JSON output:
+```json
+[
+  {
+    "employee_id": 100,
+    "first_name": "Steven",
+    "last_name": "King",
+    "email": "SKING@oracle.com"
+  },
+  {
+    "employee_id": 101,
+    "first_name": "Neena", 
+    "last_name": "Kochhar",
+    "email": "NKOCHHAR@oracle.com"
+  }
+]
+```
+
+### Excel Export (Paid)
+
+**Excel (.xlsx)** format:
+- Professional formatting
+- Proper data types
+- Ready for business use
+- See [Excel Export Guide](/koala/results/excel-export) for detailed information
+
+## Export Options
+
+### Basic Options
+
+When exporting, you can configure:
+- **Include headers**: Column names in first row
+- **File location**: Where to save the export
+- **Delimiter** (CSV only): Comma, semicolon, or tab
+
+### Row Limits
+
+Exports respect the configured row limits:
+- **Free version**: Maximum 50 rows
+- **Paid version**: Up to 10,000 rows for Excel, configurable for CSV/JSON
+
+## Use Cases
+
+### CSV Export
+- **Spreadsheet analysis**: Open in Excel, Google Sheets
+- **Data exchange**: Universal format for sharing
+- **System integration**: Import into other applications
+
+### JSON Export  
+- **API development**: Structured data for applications
+- **Web development**: JavaScript-friendly format
+- **Data processing**: Programmatic data handling
+
+### Excel Export (Paid)
+- **Business reporting**: Professional formatted reports
+- **Presentations**: Ready-to-share spreadsheets
+- **Analysis**: Use Excel's built-in tools
+
+## Best Practices
+
+### Before Exporting
+
+1. **Limit your data**: Use appropriate row limits
+2. **Select needed columns**: Avoid SELECT * for large tables
+3. **Clean your query**: Remove test data or filters
+
+### Choosing Format
+
+- **CSV**: For general data sharing and analysis
+- **JSON**: For technical/development use
+- **Excel**: For business reports and presentations
+
+### File Management
+
+- **Descriptive names**: Include date and query purpose
+- **Organized storage**: Keep exports in project folders
+- **Regular cleanup**: Remove old export files
+
+## Troubleshooting
+
+### Export Issues
+
+#### "No data to export"
+- Ensure your query returned results
+- Check that query execution completed successfully
+
+#### "Export failed"
+- Check file permissions at save location
+- Ensure sufficient disk space
+- Try a different save location
+
+#### "Excel export not available"
+- Your result set has more than 10,000 rows
+- Excel export is disabled for datasets over 10K rows
+- Use CSV export instead for large datasets
+
+#### "File too large"
+- Reduce row count in your query
+- Use CSV instead of Excel for very large datasets
+- Apply more restrictive WHERE clauses
+
+### Performance Tips
+
+For large exports:
+1. **Use row limits**: Add `WHERE ROWNUM <= 10000` for Excel compatibility
+2. **Select specific columns**: Avoid unnecessary columns
+3. **Choose appropriate format**: CSV for data over 10K rows, Excel for smaller reports
+
+## File Compatibility
+
+### CSV Files
+- **Excel**: Opens directly
+- **Google Sheets**: Import capability  
+- **Text editors**: Readable as plain text
+- **Database tools**: Universal import format
+
+### JSON Files
+- **Code editors**: Syntax highlighting and formatting
+- **Web browsers**: Can view formatted JSON
+- **Programming languages**: Native support in most languages
+
+### Excel Files (Paid)
+- **Microsoft Excel**: Native format
+- **Google Sheets**: Import and convert
+- **LibreOffice Calc**: Open and edit
+- **Numbers (Mac)**: Import capability
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Excel Export Details" icon="file-excel" href="/koala/results/excel-export">
+    Learn about Excel export features
+  </Card>
+  <Card title="Viewing Results" icon="table" href="/koala/results/viewing-data">
+    Working with query results
+  </Card>
+</CardGroup>

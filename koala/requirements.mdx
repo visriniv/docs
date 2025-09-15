@@ -1,0 +1,245 @@
+---
+title: "System Requirements"
+description: "Prerequisites and system requirements for Koala Data Explorer"
+---
+
+## Minimum Requirements
+
+Before installing Koala Data Explorer, ensure your system meets these requirements:
+
+### VS Code
+
+- **Version**: 1.74.0 or higher
+- **Platform**: Windows, macOS, or Linux
+- **Architecture**: x64, ARM64, or Universal
+
+<Note>
+  You can check your VS Code version by going to **Help → About** in the menu bar.
+</Note>
+
+### Operating System
+
+#### Windows
+- Windows 10 version 1809 or higher
+- Windows 11
+- Windows Server 2019 or higher
+
+#### macOS
+- macOS 10.15 (Catalina) or higher
+- Apple Silicon (M1/M2) supported
+
+#### Linux
+- Ubuntu 18.04 or higher
+- Debian 9 or higher
+- RHEL 7 or higher
+- Fedora 28 or higher
+
+### Network Requirements
+
+#### Oracle Fusion Access
+- Network connectivity to your Oracle Fusion Cloud instance
+- HTTPS access (port 443) to Oracle Fusion endpoints
+- Firewall rules allowing outbound HTTPS connections
+
+#### Proxy Support
+- HTTP/HTTPS proxy configuration supported
+- Authentication proxy support via VS Code settings
+- SOCKS proxy support
+
+<Warning>
+  If your organization uses a corporate proxy, you may need to configure VS Code's proxy settings. See [Proxy Configuration](#proxy-configuration) below.
+</Warning>
+
+### Oracle Fusion Requirements
+
+#### User Account
+- Valid Oracle Fusion Cloud user account
+- Appropriate data access permissions
+- BI Publisher access (for report features)
+
+#### Supported Versions
+- Oracle Fusion Cloud Release 13 or higher
+- Oracle Cloud Infrastructure (OCI) hosted instances
+- On-premise Oracle Fusion (with internet connectivity)
+
+#### Required Services
+- Oracle BI Publisher Web Services
+- Oracle Fusion Security Token Service
+- Oracle Fusion Data Model access
+
+## Recommended Specifications
+
+For optimal performance, we recommend:
+
+### Hardware
+- **CPU**: 2+ cores, 2.0 GHz or faster
+- **RAM**: 8 GB or more
+- **Storage**: 500 MB free space for extension and cache
+- **Display**: 1920x1080 resolution or higher
+
+### Network
+- **Bandwidth**: 10 Mbps or higher
+- **Latency**: < 100ms to Oracle Fusion instance
+- **Stable Connection**: Persistent connection recommended
+
+## Browser Requirements
+
+For OAuth/SSO authentication (Paid feature):
+
+### Supported Browsers
+- Chrome 90 or higher
+- Edge 90 or higher
+- Firefox 88 or higher
+- Safari 14 or higher
+
+<Note>
+  The default system browser is used for OAuth authentication flows.
+</Note>
+
+## Dependencies
+
+Koala Data Explorer automatically manages its dependencies, but these are installed:
+
+### Runtime Dependencies
+- Monaco Editor for SQL editing
+- AG-Grid for data grid functionality
+- React for UI components
+- Node-fetch for API calls
+- Fast-xml-parser for SOAP parsing
+
+### Optional Dependencies
+- XLSX library for Excel export (Paid feature)
+- PapaParse for CSV processing
+
+## Proxy Configuration
+
+If you're behind a corporate proxy, configure VS Code settings:
+
+```json
+{
+  "http.proxy": "http://proxy.company.com:8080",
+  "http.proxyStrictSSL": false,
+  "http.proxyAuthorization": null
+}
+```
+
+### Proxy Authentication
+
+For authenticated proxies:
+
+1. Open VS Code settings (`Ctrl+,` or `Cmd+,`)
+2. Search for "proxy"
+3. Configure `http.proxy` with credentials:
+   ```
+   http://username:password@proxy.company.com:8080
+   ```
+
+<Warning>
+  Storing passwords in settings is not recommended. Consider using environment variables or proxy auto-configuration.
+</Warning>
+
+## Permissions Required
+
+### VS Code Permissions
+- File system access for query storage
+- Secret storage for credentials
+- Webview for UI rendering
+- Network access for API calls
+
+### Oracle Fusion Permissions
+The user account needs these minimum permissions:
+
+- **Data Access**: Read access to required tables/views
+- **BI Publisher**: View and execute reports
+- **Web Services**: Access to SOAP endpoints
+
+### Recommended Roles
+- BI Administrator
+- BI Consumer
+- Data Analyst
+- Report Developer
+
+## Troubleshooting Requirements
+
+### Check VS Code Version
+```bash
+code --version
+```
+
+### Test Network Connectivity
+```bash
+# Test Oracle Fusion connectivity
+curl -I https://your-instance.fa.ocs.oraclecloud.com
+```
+
+### Verify Proxy Settings
+```bash
+# Check environment variables
+echo $HTTP_PROXY
+echo $HTTPS_PROXY
+```
+
+## Platform-Specific Notes
+
+### Windows
+- May require Windows WebView2 Runtime for SSO features
+- Administrator rights not required for installation
+
+### macOS
+- May prompt for keychain access for credential storage
+- Gatekeeper approval may be needed on first run
+
+### Linux
+- libsecret required for credential storage
+- May need to install gnome-keyring or similar
+
+## Performance Considerations
+
+### Large Datasets
+- For datasets > 10,000 rows, consider using scheduled reports
+- Increase VS Code memory limit if needed:
+  ```bash
+  code --max-memory=4096
+  ```
+
+### Multiple Connections
+- Each connection consumes ~50-100 MB RAM
+- Limit concurrent connections for better performance
+
+### Query Optimization
+- Use row limits for exploratory queries
+- Add WHERE clauses to reduce data transfer
+- Consider indexing frequently queried columns
+
+## Security Requirements
+
+### Network Security
+- TLS 1.2 or higher required
+- Certificate validation enabled by default
+- Support for custom CA certificates
+
+### Credential Storage
+- VS Code SecretStorage API used
+- Platform-specific secure storage:
+  - Windows: Credential Manager
+  - macOS: Keychain
+  - Linux: libsecret
+
+## Next Steps
+
+Once you've verified all requirements are met:
+
+<CardGroup cols={2}>
+  <Card title="Install Extension" icon="download" href="/koala/installation/vscode-marketplace">
+    Install from VS Code Marketplace
+  </Card>
+  <Card title="Manual Installation" icon="file-archive" href="/koala/installation/manual-install">
+    Install from VSIX file
+  </Card>
+  <Card title="First Connection" icon="plug" href="/koala/installation/first-connection">
+    Set up your first connection
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/koala/troubleshooting/connection-issues">
+    Resolve common issues
+  </Card>
+</CardGroup>

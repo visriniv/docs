@@ -1,0 +1,201 @@
+---
+title: "Features"
+description: "Comprehensive overview of Koala Data Explorer capabilities"
+---
+
+## Core Features
+
+### SQL Query Editor
+
+Professional-grade SQL editing experience powered by Monaco Editor:
+
+- **Syntax Highlighting**: Full SQL syntax highlighting for better readability
+- **IntelliSense** (Paid): Auto-completion for tables, columns, and SQL keywords
+- **Quick Execute**: Run queries with `Ctrl+Enter` (Windows/Linux) or `Cmd+Enter` (Mac)
+- **Multi-tab Support** (Paid): Work with multiple queries simultaneously
+- **Save Queries**: Persist your queries for later use
+
+### Query Execution
+
+Powerful query execution with enterprise features:
+
+- **Bind Variables**: Support for parameterized queries
+- **Performance Monitoring** (Paid): Track query execution time and performance metrics
+- **Row Limits**: Configurable maximum rows (50 in free mode, unlimited in paid)
+- **Timeout Settings**: Configurable request timeouts for long-running queries
+- **Error Handling**: Detailed error messages with SOAP fault parsing
+
+### Results Management
+
+Advanced data viewing and manipulation:
+
+- **Grid View**: Professional data grid powered by AG-Grid
+- **Sorting & Filtering**: Sort and filter results without re-querying
+- **Column Selection**: Choose which columns to display
+- **Cell Selection**: Select and copy individual cells or ranges
+- **Virtual Scrolling**: Handle large datasets efficiently
+
+### Data Export
+
+Multiple export formats for different use cases:
+
+- **CSV Export**: Standard comma-separated values format
+- **JSON Export**: Structured JSON for programmatic use
+- **Excel Export** (Paid): Native Excel format with formatting preserved
+- **Clipboard Copy**: Copy selected data to clipboard
+
+## Connection Management
+
+### Authentication Methods
+
+- **Basic Authentication**: Username and password (Free)
+- **OAuth 2.0 PKCE** (Paid): Secure OAuth with Proof Key for Code Exchange
+- **SSO Integration** (Paid): Enterprise Single Sign-On support
+
+### Connection Features
+
+- **Multiple Connections**: Manage multiple Oracle Fusion environments
+- **Secure Storage**: Credentials stored using VS Code's SecretStorage API
+- **Connection Testing**: Validate connections before saving
+- **Quick Switch**: Easily switch between different connections
+
+## Data Exploration
+
+### Data Sources Explorer (Paid)
+
+Browse and explore your Oracle Fusion data model:
+
+- **Searchable Catalog**: Find tables and views quickly
+- **Schema Information**: View table structures and relationships
+- **Auto-refresh**: Automatically load data sources on connection
+- **Favorites**: Mark frequently used tables for quick access
+
+### SQL History
+
+Track and reuse your query history:
+
+- **Recent Queries**: Access your recently executed queries
+- **Search History**: Find previous queries by content
+- **History Limits**: 50 entries (Free), 500 entries (Paid)
+- **Persistent Storage**: History preserved across sessions
+
+## Advanced Features
+
+### Performance Monitor (Paid)
+
+Detailed performance analytics:
+
+- **Execution Timing**: Track query execution time
+- **Performance Metrics**: View detailed performance statistics
+- **Historical Tracking**: Monitor performance trends over time
+- **Optimization Hints**: Suggestions for query optimization
+
+### BIP Integration
+
+Oracle Business Intelligence Publisher integration:
+
+- **Report Execution**: Run BIP reports directly from VS Code
+- **Scheduled Reports**: Support for large dataset processing
+- **CSV Processing**: Advanced CSV parsing and handling
+- **Catalog Deployment**: Deploy BIP catalogs
+
+## Configuration Options
+
+### Extension Settings
+
+Customize Koala to your workflow:
+
+```json
+{
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.maxRows": 1000,
+  "koalaDataExplorer.autoRefreshDataSources": true,
+  "koalaDataExplorer.logging.enabled": false,
+  "koalaDataExplorer.logging.level": "INFO"
+}
+```
+
+### Logging & Diagnostics
+
+Comprehensive logging for troubleshooting:
+
+- **Debug Logging**: Configurable logging levels
+- **Log Viewer**: Built-in log viewing panel
+- **Performance Logs**: Track performance issues
+- **Secure Logging**: Sensitive data redaction
+
+## Security Features
+
+### Data Protection
+
+- **Read-Only Access**: Only SELECT queries are allowed
+- **Encrypted Storage**: Credentials encrypted at rest
+- **Session Management**: Secure session handling
+- **No Telemetry**: No usage data collected
+
+### Enterprise Compliance
+
+- **OAuth 2.0**: Industry-standard authentication
+- **SSO Support**: Integration with enterprise identity providers
+- **Audit Trail**: Query history for compliance tracking
+- **Secure Communication**: HTTPS-only connections
+
+## User Experience
+
+### Interface Design
+
+- **Intuitive Layout**: Clean, professional interface
+- **Dark Theme Support**: Follows VS Code theme preferences
+- **Responsive Design**: Adapts to different window sizes
+- **Keyboard Shortcuts**: Comprehensive keyboard navigation
+
+### Productivity Features
+
+- **Quick Actions**: Common tasks accessible via buttons
+- **Context Menus**: Right-click actions for efficiency
+- **Status Bar**: Real-time connection and query status
+- **Progress Indicators**: Visual feedback for long operations
+
+## Feature Comparison
+
+| Feature | Free Mode | Paid Mode |
+|---------|-----------|-----------|
+| Query Tabs | 1 | Unlimited |
+| Max Rows | 50 (locked) | Configurable |
+| Authentication | Basic only | Basic, OAuth, SSO |
+| Data Sources | ❌ | ✅ |
+| Excel Export | ❌ | ✅ |
+| IntelliSense | ❌ | ✅ |
+| Performance Monitor | ❌ | ✅ |
+| SQL History | 50 entries | 500 entries |
+| CSV/JSON Export | ✅ | ✅ |
+| Bind Variables | ✅ | ✅ |
+| Grid Features | ✅ | ✅ |
+
+## Coming Soon
+
+We're constantly improving Koala Data Explorer. Features in development:
+
+- Query templates and snippets
+- Advanced query builder UI
+- Data visualization charts
+- Query sharing and collaboration
+- Custom keyboard shortcuts
+- Extended Oracle dialect support
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Installation" icon="download" href="/koala/installation/vscode-marketplace">
+    Get started with installation
+  </Card>
+  <Card title="First Connection" icon="plug" href="/koala/installation/first-connection">
+    Set up your first connection
+  </Card>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Learn query editor features
+  </Card>
+  <Card title="Licensing" icon="key" href="/koala/licensing/free-vs-paid">
+    Compare free vs paid features
+  </Card>
+</CardGroup>

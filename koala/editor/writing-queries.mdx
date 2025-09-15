@@ -1,0 +1,407 @@
+---
+title: "Writing Queries"
+description: "Master the SQL query editor and write efficient Oracle Fusion queries"
+---
+
+## Query Editor Overview
+
+The Koala SQL Editor is powered by Monaco Editor (the same editor used in VS Code) providing a professional SQL development experience.
+
+## Basic Query Structure
+
+### Simple SELECT Query
+
+```sql
+-- Basic query structure
+SELECT 
+    column1,
+    column2,
+    column3
+FROM 
+    table_name
+WHERE 
+    condition = 'value'
+ORDER BY 
+    column1 DESC;
+```
+
+### Oracle Fusion Example
+
+```sql
+-- Get recent invoices
+SELECT 
+    INVOICE_NUM,
+    INVOICE_DATE,
+    SUPPLIER_NAME,
+    INVOICE_AMOUNT
+FROM 
+    AP_INVOICES_ALL
+WHERE 
+    CREATION_DATE >= SYSDATE - 30
+    AND ROWNUM <= 100
+ORDER BY 
+    CREATION_DATE DESC;
+```
+
+## Editor Features
+
+### Syntax Highlighting
+
+The editor provides full SQL syntax highlighting:
+- **Keywords**: Blue (SELECT, FROM, WHERE)
+- **Strings**: Red ('value')
+- **Numbers**: Green (123)
+- **Comments**: Gray (-- comment)
+
+### IntelliSense (Paid Feature)
+
+Auto-completion for:
+- SQL keywords
+- Table names
+- Column names
+- Functions
+
+Trigger with `Ctrl+Space` or start typing.
+
+### Code Formatting
+
+Format your SQL for readability:
+- Automatic indentation
+- Keyword capitalization
+- Consistent spacing
+
+## Query Best Practices
+
+### 1. Always Use Row Limits
+
+```sql
+-- Good: Limits rows for performance
+SELECT * FROM large_table WHERE ROWNUM <= 1000;
+
+-- Bad: No limit on large table
+SELECT * FROM large_table;
+```
+
+### 2. Use Specific Columns
+
+```sql
+-- Good: Select only needed columns
+SELECT employee_id, first_name, last_name FROM employees;
+
+-- Bad: Select all columns unnecessarily
+SELECT * FROM employees;
+```
+
+### 3. Add Meaningful Aliases
+
+```sql
+SELECT 
+    emp.EMPLOYEE_ID AS "Employee ID",
+    emp.FIRST_NAME || ' ' || emp.LAST_NAME AS "Full Name",
+    dept.DEPARTMENT_NAME AS "Department"
+FROM 
+    PER_EMPLOYEES emp
+    JOIN HR_DEPARTMENTS dept ON emp.DEPARTMENT_ID = dept.DEPARTMENT_ID;
+```
+
+## Common Oracle Fusion Tables
+
+### Human Resources
+
+```sql
+-- Employees
+SELECT * FROM PER_ALL_PEOPLE_F WHERE ROWNUM <= 10;
+
+-- Assignments  
+SELECT * FROM PER_ALL_ASSIGNMENTS_M WHERE ROWNUM <= 10;
+
+-- Jobs
+SELECT * FROM PER_JOBS WHERE ROWNUM <= 10;
+```
+
+### Financials
+
+```sql
+-- Invoices
+SELECT * FROM AP_INVOICES_ALL WHERE ROWNUM <= 10;
+
+-- Suppliers
+SELECT * FROM POZ_SUPPLIERS WHERE ROWNUM <= 10;
+
+-- Payments
+SELECT * FROM AP_INVOICE_PAYMENTS_ALL WHERE ROWNUM <= 10;
+```
+
+### Supply Chain
+
+```sql
+-- Purchase Orders
+SELECT * FROM PO_HEADERS_ALL WHERE ROWNUM <= 10;
+
+-- Inventory Items
+SELECT * FROM EGP_SYSTEM_ITEMS_B WHERE ROWNUM <= 10;
+
+-- Shipments
+SELECT * FROM RCV_SHIPMENT_HEADERS WHERE ROWNUM <= 10;
+```
+
+## Advanced Query Techniques
+
+### Using WITH Clauses (CTEs)
+
+```sql
+WITH recent_invoices AS (
+    SELECT 
+        INVOICE_ID,
+        INVOICE_NUM,
+        INVOICE_AMOUNT
+    FROM 
+        AP_INVOICES_ALL
+    WHERE 
+        INVOICE_DATE >= ADD_MONTHS(SYSDATE, -3)
+)
+SELECT 
+    ri.*,
+    s.SUPPLIER_NAME
+FROM 
+    recent_invoices ri
+    JOIN POZ_SUPPLIERS s ON ri.VENDOR_ID = s.VENDOR_ID
+WHERE 
+    ROWNUM <= 100;
+```
+
+### Analytical Functions
+
+```sql
+SELECT 
+    EMPLOYEE_ID,
+    SALARY,
+    DEPARTMENT_ID,
+    AVG(SALARY) OVER (PARTITION BY DEPARTMENT_ID) AS dept_avg_salary,
+    RANK() OVER (PARTITION BY DEPARTMENT_ID ORDER BY SALARY DESC) AS salary_rank
+FROM 
+    PER_EMPLOYEES
+WHERE 
+    ROWNUM <= 100;
+```
+
+### Date Operations
+
+```sql
+-- Common date filters
+SELECT * FROM table_name WHERE:
+    -- Last 30 days
+    creation_date >= SYSDATE - 30
+    
+    -- Current month
+    EXTRACT(MONTH FROM creation_date) = EXTRACT(MONTH FROM SYSDATE)
+    
+    -- Date range
+    creation_date BETWEEN DATE '2024-01-01' AND DATE '2024-12-31'
+    
+    -- Fiscal year
+    creation_date >= ADD_MONTHS(TRUNC(SYSDATE, 'YEAR'), -3)
+```
+
+## Query Optimization Tips
+
+### 1. Use Indexes
+
+```sql
+-- Check available indexes
+SELECT 
+    INDEX_NAME,
+    TABLE_NAME,
+    COLUMN_NAME
+FROM 
+    USER_IND_COLUMNS
+WHERE 
+    TABLE_NAME = 'AP_INVOICES_ALL';
+```
+
+### 2. Avoid Functions on Indexed Columns
+
+```sql
+-- Bad: Function prevents index use
+SELECT * FROM employees 
+WHERE UPPER(last_name) = 'SMITH';
+
+-- Good: Use exact match when possible
+SELECT * FROM employees 
+WHERE last_name = 'Smith';
+```
+
+### 3. Use EXISTS Instead of IN
+
+```sql
+-- Better performance with EXISTS
+SELECT * FROM invoices i
+WHERE EXISTS (
+    SELECT 1 FROM invoice_lines il
+    WHERE il.invoice_id = i.invoice_id
+);
+```
+
+## Working with Bind Variables
+
+### Declaring Variables
+
+```sql
+-- Use bind variables for dynamic queries
+SELECT 
+    INVOICE_NUM,
+    INVOICE_DATE,
+    INVOICE_AMOUNT
+FROM 
+    AP_INVOICES_ALL
+WHERE 
+    SUPPLIER_NAME = :supplier_name
+    AND INVOICE_DATE >= :start_date
+    AND ROWNUM <= :max_rows;
+```
+
+When executed, you'll be prompted to enter values for:
+- `:supplier_name`
+- `:start_date`
+- `:max_rows`
+
+<Info>
+  See [Bind Variables Guide](/koala/editor/bind-variables) for detailed usage
+</Info>
+
+## Multi-line Queries
+
+### Formatting Long Queries
+
+```sql
+SELECT 
+    -- Employee Information
+    emp.EMPLOYEE_NUMBER,
+    emp.FIRST_NAME,
+    emp.LAST_NAME,
+    emp.EMAIL_ADDRESS,
+    
+    -- Job Information
+    job.JOB_TITLE,
+    job.JOB_CODE,
+    
+    -- Department Information
+    dept.DEPARTMENT_NAME,
+    dept.DEPARTMENT_CODE,
+    
+    -- Assignment Details
+    asg.ASSIGNMENT_STATUS,
+    asg.EFFECTIVE_START_DATE,
+    asg.EFFECTIVE_END_DATE
+
+FROM 
+    PER_ALL_PEOPLE_F emp
+    INNER JOIN PER_ALL_ASSIGNMENTS_M asg 
+        ON emp.PERSON_ID = asg.PERSON_ID
+        AND SYSDATE BETWEEN asg.EFFECTIVE_START_DATE 
+                       AND asg.EFFECTIVE_END_DATE
+    LEFT JOIN PER_JOBS job 
+        ON asg.JOB_ID = job.JOB_ID
+    LEFT JOIN HR_DEPARTMENTS dept 
+        ON asg.ORGANIZATION_ID = dept.ORGANIZATION_ID
+
+WHERE 
+    emp.PERSON_TYPE = 'EMPLOYEE'
+    AND asg.ASSIGNMENT_TYPE = 'E'
+    AND asg.PRIMARY_FLAG = 'Y'
+    AND ROWNUM <= 100
+
+ORDER BY 
+    emp.EMPLOYEE_NUMBER;
+```
+
+## Query Templates
+
+### Data Audit Query
+
+```sql
+-- Audit trail query template
+SELECT 
+    TABLE_NAME,
+    CREATION_DATE,
+    CREATED_BY,
+    LAST_UPDATE_DATE,
+    LAST_UPDATED_BY
+FROM 
+    your_table
+WHERE 
+    LAST_UPDATE_DATE >= SYSDATE - 7
+ORDER BY 
+    LAST_UPDATE_DATE DESC;
+```
+
+### Count and Group Query
+
+```sql
+-- Summary statistics template
+SELECT 
+    CATEGORY_COLUMN,
+    COUNT(*) AS record_count,
+    SUM(AMOUNT_COLUMN) AS total_amount,
+    AVG(AMOUNT_COLUMN) AS avg_amount,
+    MIN(DATE_COLUMN) AS earliest_date,
+    MAX(DATE_COLUMN) AS latest_date
+FROM 
+    your_table
+GROUP BY 
+    CATEGORY_COLUMN
+HAVING 
+    COUNT(*) > 10
+ORDER BY 
+    record_count DESC;
+```
+
+## Keyboard Shortcuts
+
+| Action | Windows/Linux | Mac |
+|--------|--------------|-----|
+| Execute Query | `Ctrl+Enter` | `Cmd+Enter` |
+| Format SQL | `Shift+Alt+F` | `Shift+Option+F` |
+| Comment Line | `Ctrl+/` | `Cmd+/` |
+| Find | `Ctrl+F` | `Cmd+F` |
+| Replace | `Ctrl+H` | `Cmd+H` |
+| Save Query | `Ctrl+S` | `Cmd+S` |
+
+## Common Issues and Solutions
+
+### Query Too Slow
+
+1. Add `ROWNUM` limit
+2. Use specific columns instead of `*`
+3. Add WHERE conditions to filter data
+4. Check indexes on filtered columns
+
+### Out of Memory
+
+1. Reduce row limit in settings
+2. Select fewer columns
+3. Use scheduled reports for large datasets
+
+### Syntax Errors
+
+1. Check for missing commas
+2. Verify table/column names
+3. Ensure quotes match
+4. Check parentheses balance
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Executing Queries" icon="play" href="/koala/editor/executing-queries">
+    Learn query execution features
+  </Card>
+  <Card title="Bind Variables" icon="variable" href="/koala/editor/bind-variables">
+    Use dynamic query parameters
+  </Card>
+  <Card title="Query Results" icon="table" href="/koala/results/viewing-data">
+    Work with query results
+  </Card>
+  <Card title="Performance Tips" icon="gauge" href="/koala/advanced/performance-monitor">
+    Optimize query performance
+  </Card>
+</CardGroup>

@@ -1,0 +1,236 @@
+---
+title: "OAuth PKCE & SSO Authentication"
+description: "Enterprise authentication with OAuth 2.0 PKCE and Single Sign-On"
+---
+
+## Overview
+
+OAuth 2.0 PKCE and SSO authentication provide enterprise-grade authentication for connecting to Oracle Fusion Cloud. This feature is available in the paid version of Koala Data Explorer and integrates seamlessly with your organization's identity provider.
+
+<Note>
+  OAuth/SSO authentication requires a paid license. See [Free vs Paid Features](/koala/licensing/free-vs-paid) for more information.
+</Note>
+
+## Benefits of OAuth/SSO
+
+### Enhanced Security
+- No password storage required
+- Token-based authentication
+- Automatic token refresh
+- Supports multi-factor authentication
+
+### Enterprise Integration
+- Single Sign-On with corporate identity providers
+- Centralized access management
+- Compliance with security policies
+- Audit trail capabilities
+
+### User Experience
+- One-click authentication
+- No manual password management
+- Seamless re-authentication
+- Session persistence
+
+## Supported Providers
+
+Koala Data Explorer supports OAuth 2.0 PKCE authentication with:
+
+- Oracle Identity Cloud Service (IDCS)
+- Oracle Access Manager (OAM)
+- Azure Active Directory (via Oracle integration)
+- Other OAuth 2.0 PKCE compliant providers
+
+## Setting Up OAuth Authentication
+
+### Prerequisites
+
+1. Paid license for Koala Data Explorer
+2. OAuth client credentials from your Oracle Fusion administrator
+3. Redirect URI configuration in Oracle Fusion
+
+### Step 1: Obtain OAuth Credentials
+
+Contact your Oracle Fusion administrator to:
+
+1. Register Koala Data Explorer as an OAuth client
+2. Obtain the following credentials:
+   - Client ID
+   - Client Secret (if applicable)
+   - Authorization URL
+   - Token URL
+   - Scope (typically `offline_access`)
+
+### Step 2: Configure Connection
+
+1. Open Connection Manager (`Ctrl+Shift+P` → "Koala: Manage Connections")
+2. Click "Add Connection"
+3. Select "OAuth 2.0 PKCE" as authentication type
+
+### Step 3: Enter OAuth Details
+
+Configure the following fields:
+
+- **Connection Name**: Descriptive name for the connection
+- **Host URL**: Oracle Fusion Cloud instance URL
+- **Client ID**: OAuth client identifier
+- **Client Secret**: OAuth client secret (if required)
+- **Authorization URL**: OAuth authorization endpoint
+- **Token URL**: OAuth token endpoint
+- **Scope**: OAuth scope (default: `offline_access`)
+- **Redirect URI**: `vscode://btss.koala-data-explorer/oauth-callback`
+
+### Step 4: Authenticate
+
+1. Click "Authenticate"
+2. Your browser will open to the Oracle login page
+3. Enter your corporate credentials
+4. Complete any MFA requirements
+5. Authorize Koala Data Explorer
+6. Return to VS Code when prompted
+
+### Step 5: Verify Connection
+
+The connection status will show as "Authenticated" with token expiry information.
+
+## SSO Configuration
+
+### SAML-Based SSO
+
+For organizations using SAML 2.0:
+
+1. Configure SAML assertion consumer service
+2. Set up identity provider metadata
+3. Map SAML attributes to Oracle Fusion roles
+4. Test SSO flow end-to-end
+
+### Azure AD Integration
+
+For Azure AD SSO via Oracle:
+
+```json
+{
+  "authType": "oauth",
+  "provider": "azure",
+  "tenantId": "your-tenant-id",
+  "clientId": "your-client-id",
+  "redirectUri": "vscode://btss.koala-data-explorer/oauth-callback"
+}
+```
+
+## Token Management
+
+### Automatic Refresh
+
+Koala Data Explorer automatically:
+- Monitors token expiration
+- Refreshes tokens before expiry
+- Handles refresh failures gracefully
+- Prompts for re-authentication when needed
+
+### Manual Refresh
+
+To manually refresh tokens:
+
+1. Open Connection Manager
+2. Select the connection
+3. Click "Refresh Token"
+
+## Security Features
+
+### Token Storage
+
+- Tokens stored in VS Code's secure storage
+- Encrypted at rest
+- Isolated per workspace
+- Never logged or exposed
+
+### Session Management
+
+- Configurable session timeout
+- Automatic logout on idle
+- Clear session on VS Code close (optional)
+- Multi-session support
+
+## Troubleshooting OAuth/SSO
+
+### Authorization Failed
+
+If authorization fails:
+
+1. Verify client ID and secret are correct
+2. Check redirect URI matches configuration
+3. Ensure user has appropriate Oracle Fusion permissions
+4. Verify OAuth scope includes required permissions
+
+### Token Refresh Issues
+
+If token refresh fails:
+
+1. Check network connectivity
+2. Verify refresh token hasn't expired
+3. Ensure client credentials are still valid
+4. Re-authenticate if necessary
+
+### SSO Loop
+
+If you experience SSO redirect loops:
+
+1. Clear browser cookies
+2. Check SAML assertion validity
+3. Verify identity provider configuration
+4. Contact your IT administrator
+
+### Session Timeout
+
+To adjust session timeout:
+
+1. Open VS Code settings
+2. Search for "Koala: Session Timeout"
+3. Set desired timeout in minutes
+4. Restart VS Code for changes to take effect
+
+## Best Practices
+
+### Security
+
+- Use OAuth/SSO for all production environments
+- Enable MFA in your identity provider
+- Regularly review access logs
+- Rotate client secrets periodically
+
+### Performance
+
+- Configure appropriate token lifetime
+- Use refresh tokens for long sessions
+- Cache authentication state
+- Minimize re-authentication prompts
+
+## Compliance
+
+OAuth/SSO authentication helps meet:
+
+- SOC 2 requirements
+- GDPR compliance
+- HIPAA standards (when configured properly)
+- Corporate security policies
+
+## Migration from Basic Auth
+
+To migrate existing connections:
+
+1. Export connection settings (without passwords)
+2. Create new OAuth connection
+3. Test queries work correctly
+4. Delete old basic auth connection
+5. Update any saved queries
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Managing Connections" icon="server" href="/koala/connections/managing-connections">
+    Manage multiple connections
+  </Card>
+  <Card title="Security Best Practices" icon="shield" href="/koala/config/extension-settings">
+    Configure security settings
+  </Card>
+</CardGroup>

@@ -1,108 +1,143 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "Koala Data Explorer Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#1f2937",
+    "light": "#374151",
+    "dark": "#111827"
   },
-  "favicon": "/favicon.svg",
+  "favicon": "/favicon-32.png",
+  "styles": "/custom.css",
+  "headTags": "/head.html",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Getting Started",
         "groups": [
           {
-            "group": "Getting started",
+            "group": "Overview",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "koala/introduction",
+              "koala/features",
+              "koala/requirements"
             ]
           },
           {
-            "group": "Customization",
+            "group": "Installation",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
-            ]
-          },
-          {
-            "group": "Writing content",
-            "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
-            ]
-          },
-          {
-            "group": "AI tools",
-            "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "koala/installation/vscode-marketplace",
+              "koala/installation/manual-install",
+              "koala/installation/first-connection"
             ]
           }
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "User Guide",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "Connections",
             "pages": [
-              "api-reference/introduction"
+              "koala/connections/basic-auth",
+              "koala/connections/oauth-sso",
+              "koala/connections/managing-connections"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Query Editor",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "koala/editor/writing-queries",
+              "koala/editor/executing-queries",
+              "koala/editor/keyboard-shortcuts",
+              "koala/editor/bind-variables"
+            ]
+          },
+          {
+            "group": "Working with Results",
+            "pages": [
+              "koala/results/viewing-data",
+              "koala/results/sorting-filtering",
+              "koala/results/exporting-data",
+              "koala/results/excel-export"
+            ]
+          },
+          {
+            "group": "Advanced Features",
+            "pages": [
+              "koala/advanced/data-sources",
+              "koala/advanced/sql-history",
+              "koala/advanced/performance-monitor",
+              "koala/advanced/multiple-tabs"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Configuration",
+        "groups": [
+          {
+            "group": "Settings",
+            "pages": [
+              "koala/config/extension-settings",
+              "koala/config/timeout-settings",
+              "koala/config/logging"
+            ]
+          },
+          {
+            "group": "Licensing",
+            "pages": [
+              "koala/licensing/free-vs-paid",
+              "koala/licensing/activating-license",
+              "koala/licensing/managing-license"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Troubleshooting",
+        "groups": [
+          {
+            "group": "Common Issues",
+            "pages": [
+              "koala/troubleshooting/connection-issues",
+              "koala/troubleshooting/query-errors",
+              "koala/troubleshooting/performance-issues"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "koala/support/getting-help",
+              "koala/support/reporting-issues",
+              "koala/support/faq"
             ]
           }
         ]
       }
     ],
     "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Community",
-          "href": "https://mintlify.com/community",
-          "icon": "slack"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/light.png",
+    "dark": "/logo/dark.png"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:support@btsscorp.com"
+      },
+      {
+        "label": "License Portal",
+        "href": "https://app.lemonsqueezy.com/my-orders/"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Install Extension",
+      "href": "https://marketplace.visualstudio.com/items?itemName=btss-corp.koala-data-explorer"
     }
   },
   "contextual": {
@@ -119,9 +154,8 @@
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "website": "https://www.btsscorp.com",
+      "linkedin": "https://linkedin.com/company/btss-corp"
     }
   }
 }

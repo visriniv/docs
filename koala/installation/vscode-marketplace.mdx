@@ -1,0 +1,222 @@
+---
+title: "VS Code Marketplace Installation"
+description: "Install Koala Data Explorer from the VS Code Marketplace"
+---
+
+## Quick Installation
+
+The easiest way to install Koala Data Explorer is directly from the VS Code Marketplace.
+
+### Method 1: Install from VS Code
+
+1. Open VS Code
+2. Click the Extensions icon in the Activity Bar (or press `Ctrl+Shift+X`)
+3. Search for "Koala Data Explorer"
+4. Click **Install** on the extension by BTSS Corp
+5. Wait for installation to complete
+
+<Note>
+  Make sure you select the official extension published by **btss-corp**
+</Note>
+
+### Method 2: Install from Marketplace Website
+
+1. Visit the [VS Code Marketplace](https://marketplace.visualstudio.com/items?itemName=btss-corp.koala-data-explorer)
+2. Click **Install**
+3. VS Code will open automatically
+4. Confirm the installation in VS Code
+
+### Method 3: Command Palette
+
+1. Open VS Code Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
+2. Type: `ext install btss-corp.koala-data-explorer`
+3. Press Enter to install
+
+## Verify Installation
+
+After installation, verify the extension is installed correctly:
+
+1. Open Command Palette (`Ctrl+Shift+P` or `Cmd+Shift+P`)
+2. Type: "Koala"
+3. You should see **"Koala Data Explorer: Open SQL Query Editor"**
+
+<Check>
+  If you see the command, the extension is installed successfully!
+</Check>
+
+## Post-Installation Steps
+
+### 1. Open the SQL Query Editor
+
+```bash
+# Using Command Palette
+Ctrl+Shift+P (Windows/Linux)
+Cmd+Shift+P (Mac)
+
+# Then type:
+Koala Data Explorer: Open SQL Query Editor
+```
+
+### 2. Initial Configuration
+
+The extension works out of the box, but you can customize settings:
+
+1. Open VS Code Settings (`Ctrl+,` or `Cmd+,`)
+2. Search for "Koala"
+3. Configure options like timeout, max rows, and logging
+
+### 3. Set Up Your First Connection
+
+Once installed, you'll need to:
+1. Open the SQL Query Editor
+2. Click **Manage Connections** in the top-left
+3. Add your Oracle Fusion connection details
+
+<Info>
+  See [First Connection Setup](/koala/installation/first-connection) for detailed connection instructions
+</Info>
+
+## Extension Information
+
+### Publisher Details
+- **Publisher**: BTSS Corp (btss-corp)
+- **Extension ID**: btss-corp.koala-data-explorer
+- **Version**: Check marketplace for latest
+- **Size**: ~15 MB
+
+### What Gets Installed
+
+The extension includes:
+- SQL Query Editor with Monaco Editor
+- Data grid components (AG-Grid)
+- Oracle Fusion SOAP client
+- Authentication providers
+- Export utilities
+
+### Installation Location
+
+The extension is installed in your VS Code extensions folder:
+
+**Windows**:
+```
+%USERPROFILE%\.vscode\extensions\btss-corp.koala-data-explorer-x.x.x
+```
+
+**macOS/Linux**:
+```
+~/.vscode/extensions/btss-corp.koala-data-explorer-x.x.x
+```
+
+## Updating the Extension
+
+### Automatic Updates
+
+VS Code automatically checks for extension updates by default. When an update is available:
+
+1. You'll see a notification
+2. Click **Update** to install
+3. Reload VS Code when prompted
+
+### Manual Update Check
+
+1. Open Extensions view (`Ctrl+Shift+X`)
+2. Click the **...** menu
+3. Select **Check for Extension Updates**
+4. Update Koala Data Explorer if available
+
+### Update Settings
+
+Configure auto-update behavior in VS Code settings:
+
+```json
+{
+  "extensions.autoUpdate": true,
+  "extensions.autoCheckUpdates": true
+}
+```
+
+## Troubleshooting Installation
+
+### Extension Not Found
+
+If you can't find the extension:
+- Ensure VS Code version is 1.74.0 or higher
+- Check your internet connection
+- Try searching for "Oracle Fusion" or "BTSS"
+
+### Installation Failed
+
+If installation fails:
+1. Check VS Code output panel for errors
+2. Restart VS Code and try again
+3. Clear VS Code cache:
+   ```bash
+   # Windows
+   rmdir /s "%APPDATA%\Code\Cache"
+   
+   # macOS/Linux
+   rm -rf ~/.config/Code/Cache
+   ```
+
+### Extension Not Loading
+
+If the extension doesn't appear after installation:
+1. Reload VS Code window (`Ctrl+R` or `Cmd+R`)
+2. Check extension is enabled in Extensions view
+3. Look for errors in Help → Toggle Developer Tools
+
+### Behind Corporate Proxy
+
+Configure proxy settings if behind a firewall:
+
+```json
+{
+  "http.proxy": "http://proxy.company.com:8080",
+  "http.proxyStrictSSL": false
+}
+```
+
+## Uninstalling
+
+To remove the extension:
+
+1. Open Extensions view (`Ctrl+Shift+X`)
+2. Find Koala Data Explorer
+3. Click the gear icon → **Uninstall**
+4. Reload VS Code
+
+<Warning>
+  Uninstalling removes the extension but preserves your connections and settings. To completely remove all data, manually delete the extension's storage folder.
+</Warning>
+
+## License Activation
+
+After installation, the extension runs in Free mode by default. To unlock all features:
+
+1. Open the SQL Query Editor
+2. Click the **Manage License** button (key icon)
+3. Choose to start a trial or enter a license key
+4. Follow the activation prompts
+
+<Info>
+  See [Licensing Guide](/koala/licensing/activating-license) for detailed license management instructions
+</Info>
+
+## Next Steps
+
+Now that you have Koala Data Explorer installed:
+
+<CardGroup cols={2}>
+  <Card title="First Connection" icon="plug" href="/koala/installation/first-connection">
+    Set up your first Oracle Fusion connection
+  </Card>
+  <Card title="Configuration" icon="gear" href="/koala/config/extension-settings">
+    Configure extension settings
+  </Card>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Start querying your data
+  </Card>
+  <Card title="User Guide" icon="book" href="/koala/editor/executing-queries">
+    Learn all features
+  </Card>
+</CardGroup>

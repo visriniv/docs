@@ -1,0 +1,211 @@
+---
+title: "Excel Export"
+description: "Export query results to Excel format with professional formatting"
+---
+
+## Overview
+
+Koala Data Explorer's Excel export feature creates professional .xlsx files from your query results. This feature is available in the paid version and provides formatted spreadsheets ready for business use.
+
+<Note>
+  Excel export (.xlsx) is available in the paid version of Koala Data Explorer.
+</Note>
+
+## Excel Export Features
+
+### Professional Formatting
+
+Excel exports include:
+
+- **Formatted headers**: Bold column headers
+- **Data types**: Numbers, dates, and text properly formatted
+- **Auto-sized columns**: Column widths adjusted to content
+- **Professional appearance**: Clean, business-ready formatting
+
+### Data Type Handling
+
+Koala automatically formats data types in Excel:
+
+- **Numbers**: Right-aligned with appropriate decimal places
+- **Dates**: Proper Excel date format
+- **Text**: Left-aligned with proper spacing
+- **Null values**: Displayed as empty cells
+
+## How to Export to Excel
+
+### Quick Export
+
+1. Execute your query to get results
+2. Click the "Export" button in the results toolbar
+3. Select "Excel (.xlsx)" format
+4. Choose save location
+5. File is created with professional formatting
+
+### What's Included
+
+Each Excel export contains:
+
+- **Data sheet**: Your query results with formatting
+- **Column headers**: Descriptive column names
+- **Proper data types**: Numbers, dates, text formatted correctly
+- **Professional styling**: Clean, readable format
+
+## Excel File Features
+
+### Formatting
+
+- **Headers**: Bold formatting for easy identification
+- **Data alignment**: Numbers right-aligned, text left-aligned
+- **Column sizing**: Automatic width adjustment
+- **Clean appearance**: Professional business format
+
+### Compatibility
+
+Excel files work with:
+
+- **Microsoft Excel**: All modern versions
+- **Google Sheets**: Import and edit online
+- **LibreOffice Calc**: Open source alternative
+- **Apple Numbers**: Mac spreadsheet application
+
+## Use Cases
+
+### Business Reporting
+
+Perfect for:
+- **Financial reports**: Formatted numbers and dates
+- **Data analysis**: Ready for Excel pivot tables and charts
+- **Presentations**: Professional appearance for meetings
+- **Sharing data**: Universal Excel format
+
+### Data Analysis
+
+Excel files enable:
+- **Further analysis**: Use Excel's built-in tools
+- **Pivot tables**: Create summaries and aggregations
+- **Charts**: Visualize your data
+- **Formulas**: Add calculations and analysis
+
+## File Size Considerations
+
+### Large Datasets
+
+For large result sets:
+- **Excel export limit**: 10,000 rows maximum (disabled above this)
+- **Excel native limit**: Excel supports up to 1,048,576 rows per sheet
+- **File size**: Larger datasets create bigger files
+- **Performance**: Very large files may open slowly
+- **Alternative**: Use CSV for datasets over 10,000 rows
+
+### Row Limitations
+
+Excel export limitations:
+- **Maximum for Excel**: 10,000 rows (Excel export disabled above this limit)
+- **Free version**: Limited to 50 rows
+- **Paid version**: Up to 10,000 rows for Excel export
+- **Above 10K rows**: Use CSV export instead
+
+### Optimization Tips
+
+For better performance:
+1. **Adjust row limits**: Configure `maxRows` setting for your needs
+2. **Use SQL limits**: Add `WHERE ROWNUM <= n` in queries
+3. **Select specific columns**: Avoid SELECT * for wide tables
+4. **Filter data**: Apply WHERE clauses to reduce data volume
+
+## Troubleshooting
+
+### Common Issues
+
+#### "Excel export not available"
+- Result set has more than 10,000 rows
+- Use CSV export instead for large datasets
+- Add `WHERE ROWNUM <= 10000` to query if you need Excel format
+
+#### "File too large"
+- Reduce the number of rows in your query
+- Select fewer columns
+- Use CSV format for very large datasets
+
+#### "Excel won't open file"
+- Ensure you have Excel or compatible software
+- Check file isn't corrupted
+- Try opening in Google Sheets or LibreOffice
+
+#### "Formatting looks wrong"
+- Verify data types in your query
+- Check for special characters in data
+- Ensure proper date formats in Oracle
+
+### Performance Issues
+
+If Excel export is slow:
+1. **Reduce data size**: Add ROWNUM limits to queries
+2. **Fewer columns**: Select only needed columns
+3. **Check available memory**: Close other applications
+4. **Try CSV first**: Test with smaller datasets
+
+## Best Practices
+
+### Query Optimization
+
+For best Excel exports:
+1. **Use column aliases**: `SELECT employee_id AS "Employee ID"`
+2. **Format dates**: Use TO_CHAR for specific date formats
+3. **Limit rows**: Add `WHERE ROWNUM <= 1000` for testing
+4. **Select specific columns**: Avoid `SELECT *`
+
+### File Management
+
+Organize your Excel exports:
+1. **Descriptive names**: Include date and query purpose
+2. **Consistent location**: Save to organized folder structure
+3. **Regular cleanup**: Remove old export files
+4. **Version control**: Track different versions if needed
+
+### Business Use
+
+Make exports business-ready:
+1. **Clear column names**: Use meaningful aliases
+2. **Appropriate data types**: Ensure proper formatting
+3. **Complete data**: Include all necessary columns
+4. **Document purpose**: Note what the data represents
+
+## Comparison with Other Formats
+
+### Excel vs CSV
+
+| Feature | Excel | CSV |
+|---------|-------|-----|
+| Formatting | ✅ Professional | ❌ Plain text |
+| Data types | ✅ Preserved | ❌ All text |
+| File size | Larger | Smaller |
+| Compatibility | Excel software needed | Universal |
+| Business use | ✅ Ready to present | Needs formatting |
+
+### When to Use Excel
+
+Choose Excel export when:
+- **Presenting to business users**: Professional appearance matters
+- **Further analysis needed**: Will use Excel features
+- **Moderate data size**: Under 100,000 rows typically
+- **Mixed data types**: Numbers, dates, text all present
+
+### When to Use CSV
+
+Choose CSV export when:
+- **Very large datasets**: Over 100,000 rows
+- **System integration**: Importing to other systems
+- **Universal compatibility**: No Excel software available
+- **Smaller file size**: Storage or transfer limitations
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Data Sources" icon="database" href="/koala/advanced/data-sources">
+    Explore available data sources
+  </Card>
+  <Card title="Query History" icon="history" href="/koala/advanced/sql-history">
+    Manage your query history
+  </Card>
+</CardGroup>

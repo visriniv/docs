@@ -1,0 +1,8 @@
+/* Target logo by source path - clean version without borders */
+img[src*="light.png"],
+img[src*="dark.png"],
+img[src*="/logo/"] {
+  height: 64px !important;
+  max-height: 64px !important;
+  width: auto !important;
+}

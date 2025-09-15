@@ -1,0 +1,262 @@
+---
+title: "Performance Monitor"
+description: "Monitor query execution performance and timing"
+---
+
+## Overview
+
+Koala Data Explorer includes performance monitoring features to help you track query execution times and optimize your SQL performance. This helps identify slow queries and improve overall database interaction efficiency.
+
+<Note>
+  Performance monitoring is available in the paid version of Koala Data Explorer.
+</Note>
+
+## Performance Tracking
+
+### Execution Timing
+
+Every query execution is automatically timed:
+
+- **Start time**: When query execution begins
+- **End time**: When results are received
+- **Total duration**: Complete execution time
+- **Network latency**: Time spent in network communication
+
+### Performance Display
+
+Performance information appears in:
+- **Results panel**: Execution time shown below results
+- **Status bar**: Quick timing information
+- **History entries**: Performance data saved with each query
+
+## Timing Information
+
+### What's Measured
+
+Performance monitoring tracks:
+
+- **Query execution**: Actual SQL processing time on Oracle server
+- **Data transfer**: Time to receive results over network
+- **Parsing time**: Time to process query results
+- **Total time**: End-to-end execution duration
+
+### Time Formats
+
+Timing displayed in appropriate units:
+- **Milliseconds**: For fast queries (< 1 second)
+- **Seconds**: For normal queries (1-60 seconds)
+- **Minutes**: For long-running queries (> 60 seconds)
+
+## Performance Indicators
+
+### Visual Feedback
+
+Performance feedback includes:
+- **Green indicators**: Fast queries (< 5 seconds)
+- **Yellow indicators**: Moderate queries (5-30 seconds)
+- **Red indicators**: Slow queries (> 30 seconds)
+- **Progress bars**: For long-running queries
+
+### Performance Warnings
+
+Automatic warnings for:
+- **Timeout approaching**: When query nears timeout limit
+- **Very slow queries**: Queries taking longer than expected
+- **Large result sets**: When returning many rows
+- **Network issues**: Slow network response times
+
+## Query Optimization
+
+### Performance Insights
+
+Koala provides basic optimization guidance:
+
+#### Common Issues
+- **Missing row limits**: Queries without ROWNUM or LIMIT
+- **SELECT ***: Selecting all columns unnecessarily
+- **Large result sets**: Queries returning many rows
+- **Complex joins**: Multiple table joins
+
+#### Optimization Suggestions
+- **Add row limits**: Use `WHERE ROWNUM <= 1000`
+- **Select specific columns**: Avoid `SELECT *`
+- **Use indexes**: Filter on indexed columns
+- **Reduce data volume**: Apply WHERE clauses
+
+### Performance Best Practices
+
+Improve query performance:
+
+1. **Limit result sets**: Always use row limits for exploration
+2. **Specific columns**: Select only needed columns
+3. **Efficient filters**: Use indexed columns in WHERE clauses
+4. **Avoid functions**: Don't use functions on indexed columns
+
+## Performance History
+
+### Historical Tracking
+
+Performance data is maintained in:
+- **Query history**: Each execution includes timing
+- **Performance trends**: Track improvements/degradation over time
+- **Comparison data**: Compare similar queries
+
+### Performance Analysis
+
+Review performance patterns:
+- **Query comparison**: Compare different versions of same query
+- **Time trends**: See if queries are getting slower
+- **Optimization results**: Measure improvement after changes
+
+## Monitoring Features
+
+### Real-time Monitoring
+
+During query execution:
+- **Progress indicators**: Visual feedback for long queries
+- **Elapsed time**: Running timer
+- **Cancel option**: Stop slow queries if needed
+- **Estimated completion**: Time estimates for large queries
+
+### Performance Alerts
+
+Automatic notifications for:
+- **Slow query detection**: Queries exceeding normal times
+- **Timeout warnings**: Approaching configured timeout
+- **Performance degradation**: Queries slower than usual
+- **Resource usage**: High memory or CPU usage
+
+## Configuration
+
+### Performance Settings
+
+Configure monitoring through VS Code settings:
+
+```json
+{
+  "koalaDataExplorer.performance.trackTiming": true,
+  "koalaDataExplorer.performance.slowQueryThreshold": 30000,
+  "koalaDataExplorer.performance.showWarnings": true,
+  "koalaDataExplorer.timeout": 120000
+}
+```
+
+### Threshold Settings
+
+Customize performance thresholds:
+- **Fast query**: Under 5 seconds
+- **Normal query**: 5-30 seconds  
+- **Slow query**: Over 30 seconds
+- **Timeout limit**: Maximum execution time
+
+## Performance Tips
+
+### Database-Side Optimization
+
+Improve Oracle Fusion performance:
+
+1. **Use appropriate indexes**: Ensure filtered columns are indexed
+2. **Optimize joins**: Use efficient join strategies
+3. **Partition awareness**: Use partition elimination
+4. **Statistics currency**: Ensure optimizer statistics are current
+
+### Client-Side Optimization
+
+Improve Koala performance:
+
+1. **Reduce row limits**: Don't fetch unnecessary data
+2. **Column selection**: Select only needed columns
+3. **Connection efficiency**: Use stable network connections
+4. **Result processing**: Limit result set size
+
+## Troubleshooting Performance
+
+### Slow Queries
+
+If queries are running slowly:
+
+1. **Check execution plan**: Look for full table scans
+2. **Review filters**: Ensure WHERE clauses use indexes
+3. **Reduce scope**: Add more restrictive conditions
+4. **Network check**: Verify connection quality
+
+### Network Issues
+
+For network-related slowness:
+
+1. **Connection stability**: Check VPN or network connectivity
+2. **Latency testing**: Test connection to Oracle Fusion
+3. **Bandwidth**: Ensure adequate network bandwidth
+4. **Timeout settings**: Adjust timeout values if needed
+
+### Memory Issues
+
+For memory-related performance:
+
+1. **Result size**: Limit rows returned
+2. **Column count**: Reduce number of columns
+3. **Data types**: Large text fields can impact performance
+4. **VS Code memory**: Monitor VS Code memory usage
+
+## Performance Reporting
+
+### Basic Metrics
+
+Standard performance information:
+- **Average execution time**: For repeated queries
+- **Fastest/slowest**: Performance ranges
+- **Success rate**: Percentage of successful executions
+- **Common patterns**: Frequently executed query types
+
+### Performance Comparison
+
+Compare query performance:
+- **Before/after optimization**: Measure improvements
+- **Different approaches**: Compare alternative queries
+- **Historical trends**: Track performance over time
+- **Connection differences**: Compare performance across environments
+
+## Integration with Other Features
+
+### History Integration
+
+Performance data in history:
+- **Query history includes timing**: All executions tracked
+- **Performance search**: Find slow queries in history
+- **Optimization tracking**: Compare query versions
+
+### Export Integration
+
+Performance data in exports:
+- **Metadata inclusion**: Export timing information
+- **Performance reports**: Generate performance summaries
+- **Analysis data**: Export for further analysis
+
+## Limitations
+
+### Current Limitations
+
+Performance monitoring:
+- **Basic timing**: Execution time measurement
+- **Simple thresholds**: Basic fast/slow categorization
+- **Manual optimization**: User-driven performance improvements
+- **Client-side focus**: Limited server-side analysis
+
+### Future Enhancements
+
+Planned improvements:
+- **Detailed execution plans**: Query plan analysis
+- **Performance recommendations**: Automated suggestions
+- **Historical analysis**: Long-term performance trends
+- **Comparative analysis**: Benchmark against similar queries
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Multiple Tabs" icon="tabs" href="/koala/advanced/multiple-tabs">
+    Work with multiple query tabs
+  </Card>
+  <Card title="Writing Queries" icon="code" href="/koala/editor/writing-queries">
+    Learn query optimization techniques
+  </Card>
+</CardGroup>

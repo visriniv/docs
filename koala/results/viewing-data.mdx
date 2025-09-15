@@ -1,0 +1,400 @@
+---
+title: "Viewing Data"
+description: "Navigate and explore query results in Koala Data Explorer"
+---
+
+## Overview
+
+Koala Data Explorer provides a powerful results viewer that helps you explore, analyze, and understand your Oracle Fusion Cloud data. This guide covers all features available for viewing and interacting with query results.
+
+## Results Panel
+
+### Layout
+
+The results panel appears below the query editor and includes:
+
+- **Data Grid**: Tabular display of results
+- **Status Bar**: Row count, execution time, and messages
+- **Toolbar**: Actions for export, refresh, and settings
+- **Column Headers**: Sortable column names with data types
+
+### Panel Controls
+
+#### Resize Panel
+- Drag the divider between editor and results
+- Double-click to auto-resize
+- Use `Ctrl+R` to focus on results panel
+
+#### Toggle Visibility
+- Hide/show results with `Ctrl+Shift+R`
+- Pin results to keep visible
+- Minimize to status bar only
+
+## Data Grid Features
+
+### Column Display
+
+Each column shows:
+
+- **Column Name**: Original database column name
+- **Data Type**: Oracle data type (VARCHAR2, NUMBER, DATE, etc.)
+- **Null Indicator**: Shows if column allows NULL values
+- **Sort Direction**: Arrow indicating sort order
+
+### Row Display
+
+Each row includes:
+
+- **Row Number**: Sequential number starting from 1
+- **Data Values**: Formatted according to data type
+- **NULL Values**: Displayed as "(null)" in italic gray
+- **Row Selection**: Click row number to select entire row
+
+### Cell Features
+
+#### Data Types
+
+Different data types are formatted distinctly:
+
+```
+VARCHAR2/CHAR     : Left-aligned text
+NUMBER           : Right-aligned numbers with appropriate decimals
+DATE/TIMESTAMP   : Formatted date/time strings
+CLOB/BLOB        : Shows data type with size indicator
+NULL             : (null) in gray italics
+```
+
+#### Cell Selection
+- Click any cell to select
+- Drag to select multiple cells
+- Use keyboard arrows to navigate
+- `Ctrl+A` selects all data
+
+#### Cell Content
+- Long text shows first 100 characters
+- Hover for full content tooltip
+- Double-click to open in detailed view
+- Right-click for context menu
+
+## Navigation
+
+### Keyboard Navigation
+
+| Key | Action |
+|-----|--------|
+| `Arrow Keys` | Move between cells |
+| `Home/End` | First/last column in row |
+| `Ctrl+Home/End` | First/last cell in grid |
+| `Page Up/Down` | Scroll one page |
+| `Ctrl+Page Up/Down` | First/last page |
+| `Tab` | Next cell (wraps to next row) |
+| `Shift+Tab` | Previous cell |
+
+### Mouse Navigation
+
+- **Click**: Select cell
+- **Double-click**: Open detailed view
+- **Scroll wheel**: Vertical scrolling
+- **Shift+scroll**: Horizontal scrolling
+- **Right-click**: Context menu
+
+### Large Result Sets
+
+For results with many rows:
+
+- **Virtual scrolling**: Only visible rows are rendered
+- **Status indicator**: Shows "Showing rows 1-100 of 5,000"
+- **Load more**: Button to fetch additional rows (paid version)
+- **Jump to row**: `Ctrl+G` to go to specific row number
+
+## Data Formatting
+
+### Automatic Formatting
+
+Koala automatically formats data based on type:
+
+#### Numbers
+- Integers: No decimal places
+- Decimals: Appropriate decimal places
+- Currency: With currency symbols (when detected)
+- Large numbers: Optional thousands separators
+
+#### Dates
+- Default Oracle format: 'DD-MON-YYYY'
+- Timestamps: Include time component
+- Time zones: Displayed when present
+- Relative dates: "3 days ago" (optional)
+
+#### Text
+- Preserves original spacing
+- Shows invisible characters option
+- Word wrapping for long text
+- Encoding detection for special characters
+
+### Custom Formatting
+
+Configure display preferences:
+
+```json
+{
+  "koala.results.dateFormat": "YYYY-MM-DD",
+  "koala.results.numberFormat": "#,##0.00",
+  "koala.results.nullDisplay": "<NULL>",
+  "koala.results.maxCellWidth": 200
+}
+```
+
+## Column Operations
+
+### Resizing Columns
+
+- **Drag border**: Manual resize
+- **Double-click border**: Auto-fit to content
+- **Right-click header**: Resize options menu
+- **Ctrl+0**: Reset all columns to default width
+
+### Reordering Columns
+
+- Drag column header to new position
+- Right-click → "Move Left/Right"
+- Reset to original order with "Reset Column Order"
+
+### Column Visibility
+
+Hide/show columns:
+
+1. Right-click column header
+2. Select "Hide Column"
+3. Use "Column Visibility" to show hidden columns
+4. Or use column selector in toolbar
+
+## Row Operations
+
+### Row Selection
+
+- **Single row**: Click row number
+- **Multiple rows**: `Ctrl+click` row numbers
+- **Range selection**: `Shift+click` row numbers
+- **All rows**: `Ctrl+A`
+
+### Row Details
+
+View detailed row information:
+
+1. Select row
+2. Press `Enter` or double-click
+3. Opens detailed view dialog
+4. Shows each column with full content
+
+### Row Context Menu
+
+Right-click row for options:
+
+- Copy row
+- Copy row as SQL INSERT
+- View row details
+- Filter by row values
+- Export selected rows
+
+## Data Types and Display
+
+### Text Data
+
+#### Short Text (VARCHAR2, CHAR)
+- Displayed inline in cells
+- Truncated if longer than cell width
+- Full content in tooltip
+
+#### Long Text (CLOB)
+- Shows data type indicator
+- Content size in KB/MB
+- Click to view in text editor
+- Search and highlight capabilities
+
+### Numeric Data
+
+#### Integers
+- Right-aligned
+- No decimal places
+- Optional thousands separators
+
+#### Decimals
+- Right-aligned
+- Configurable decimal places
+- Scientific notation for very large/small numbers
+
+#### Currency
+- Formatted with currency symbols
+- Respect locale settings
+- Configurable currency display
+
+### Date and Time
+
+#### DATE
+- Oracle standard format
+- Configurable display format
+- Date picker for filtering
+
+#### TIMESTAMP
+- Includes time component
+- Millisecond precision
+- Time zone information
+
+### Binary Data
+
+#### BLOB
+- Shows size indicator
+- Download option
+- Preview for common formats (images, etc.)
+
+#### RAW
+- Hexadecimal display
+- Copy as hex string
+- Size information
+
+## Special Value Handling
+
+### NULL Values
+
+NULL values are displayed:
+- As "(null)" in gray italics by default
+- Configurable display text
+- Distinguished from empty strings
+- Sortable (typically appear first or last)
+
+### Empty Strings
+
+Empty strings vs NULL:
+- Empty: Shows as empty cell
+- NULL: Shows as "(null)"
+- Both clearly distinguished
+- Different behavior in filters
+
+### Large Text
+
+For very long text fields:
+
+- Truncated display with "..." indicator
+- Full content in tooltip
+- Click to open in editor
+- Word wrap option
+- Find in text capability
+
+## Performance Features
+
+### Lazy Loading
+
+Results load efficiently:
+
+- Initial page loads quickly
+- Additional rows loaded on demand
+- Virtual scrolling for smooth performance
+- Progress indicator for large queries
+
+### Caching
+
+Result caching improves experience:
+
+- Recently viewed results cached
+- Quick navigation between pages
+- Cache size configurable
+- Clear cache option available
+
+### Memory Management
+
+Efficient memory usage:
+
+- Only visible rows in memory
+- Large results don't overwhelm system
+- Automatic cleanup of old results
+- Memory usage indicator
+
+## Accessibility
+
+### Screen Reader Support
+
+- Column headers announced
+- Cell content read clearly
+- Navigation announces position
+- Data type information included
+
+### Keyboard Access
+
+All features accessible via keyboard:
+
+- Full navigation without mouse
+- Context menus via keyboard
+- All actions have shortcuts
+- Focus indicators clearly visible
+
+### High Contrast
+
+Support for high contrast themes:
+
+- Clear cell boundaries
+- High contrast colors
+- Readable fonts
+- Proper contrast ratios
+
+## Best Practices
+
+### Viewing Large Results
+
+1. Use LIMIT clauses in queries
+2. Sort by indexed columns first
+3. Consider using filters
+4. Export to files for analysis
+
+### Performance
+
+1. Limit column width for better performance
+2. Hide unused columns
+3. Use virtual scrolling settings
+4. Clear old results regularly
+
+### Data Analysis
+
+1. Use sorting to find patterns
+2. Apply filters to focus on subsets
+3. Copy specific cells/rows as needed
+4. Export filtered results for further analysis
+
+## Troubleshooting
+
+### Slow Result Display
+
+If results load slowly:
+
+1. Check query performance
+2. Reduce number of columns selected
+3. Add appropriate LIMIT clause
+4. Check network connectivity
+
+### Display Issues
+
+For formatting problems:
+
+1. Check data type handling
+2. Verify character encoding
+3. Adjust column widths
+4. Reset formatting to defaults
+
+### Memory Issues
+
+If experiencing memory problems:
+
+1. Clear result cache
+2. Reduce visible row limit
+3. Close unused result tabs
+4. Restart VS Code if needed
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Sorting & Filtering" icon="filter" href="/koala/results/sorting-filtering">
+    Learn to sort and filter results
+  </Card>
+  <Card title="Exporting Data" icon="download" href="/koala/results/exporting-data">
+    Export results to various formats
+  </Card>
+</CardGroup>

@@ -1,0 +1,333 @@
+---
+title: "Extension Settings"
+description: "Configure Koala Data Explorer to match your workflow"
+---
+
+## Accessing Settings
+
+### Via VS Code Settings
+
+1. Open VS Code Settings:
+   - Windows/Linux: `Ctrl+,`
+   - Mac: `Cmd+,`
+2. Search for "Koala"
+3. Modify settings as needed
+
+### Via Settings JSON
+
+1. Open Command Palette (`Ctrl+Shift+P`)
+2. Type: "Preferences: Open Settings (JSON)"
+3. Add Koala settings
+
+## Core Settings
+
+### Query Execution
+
+```json
+{
+  // Request timeout in milliseconds (default: 120000 = 2 minutes)
+  "koalaDataExplorer.timeout": 120000,
+  
+  // Maximum rows to return (default: 1000)
+  // Note: Locked to 50 in free mode
+  "koalaDataExplorer.maxRows": 1000,
+  
+  // Auto-refresh data sources on connection
+  "koalaDataExplorer.autoRefreshDataSources": true
+}
+```
+
+### Timeout Configuration
+
+Adjust timeout for different scenarios:
+
+```json
+{
+  // Quick queries (30 seconds)
+  "koalaDataExplorer.timeout": 30000,
+  
+  // Standard queries (2 minutes)
+  "koalaDataExplorer.timeout": 120000,
+  
+  // Complex queries (5 minutes)
+  "koalaDataExplorer.timeout": 300000,
+  
+  // Very long queries (10 minutes)
+  "koalaDataExplorer.timeout": 600000
+}
+```
+
+<Warning>
+  Longer timeouts may cause VS Code to become unresponsive. Use scheduled reports for very long-running queries.
+</Warning>
+
+## Logging Settings
+
+### Enable Logging
+
+```json
+{
+  // Enable debug logging
+  "koalaDataExplorer.logging.enabled": true,
+  
+  // Set logging level
+  "koalaDataExplorer.logging.level": "INFO",
+  
+  // Maximum log entries to keep
+  "koalaDataExplorer.logging.maxLogs": 1000
+}
+```
+
+### Logging Levels
+
+| Level | Description | Use Case |
+|-------|-------------|----------|
+| `ERROR` | Only errors | Production use |
+| `WARN` | Warnings and errors | Normal use |
+| `INFO` | General information | Default |
+| `DEBUG` | Detailed debugging | Troubleshooting |
+
+### View Logs
+
+1. Open Command Palette
+2. Type: "Koala: View Logs"
+3. Review log entries in the panel
+
+## Scheduled Report Settings
+
+For large dataset processing:
+
+```json
+{
+  // Maximum wait time for scheduled reports (15 minutes)
+  "koalaDataExplorer.scheduleReport.maxPollTime": 900000,
+  
+  // Download chunk size in KB (50MB)
+  "koalaDataExplorer.scheduleReport.chunkSizeKB": 50000,
+  
+  // Enable for large datasets
+  "koalaDataExplorer.scheduleReport.enableForLargeDatasets": true
+}
+```
+
+## SQL History Settings
+
+```json
+{
+  // Maximum SQL history entries (default: 500)
+  // Note: Limited to 50 in free mode
+  "koalaDataExplorer.sqlHistory.maxEntries": 500
+}
+```
+
+## Performance Settings
+
+### Memory Management
+
+For large result sets:
+
+```json
+{
+  // Limit rows for better performance
+  "koalaDataExplorer.maxRows": 500,
+  
+  // Disable auto-refresh for slow connections
+  "koalaDataExplorer.autoRefreshDataSources": false
+}
+```
+
+### Network Optimization
+
+```json
+{
+  // Shorter timeout for fast networks
+  "koalaDataExplorer.timeout": 60000,
+  
+  // Smaller chunks for slow connections
+  "koalaDataExplorer.scheduleReport.chunkSizeKB": 10000
+}
+```
+
+## Development Settings
+
+### Testing and QA
+
+```json
+{
+  // Force free mode for testing
+  "koalaDataExplorer.license.forceFreeMode": true,
+  
+  // Enable verbose logging
+  "koalaDataExplorer.logging.enabled": true,
+  "koalaDataExplorer.logging.level": "DEBUG"
+}
+```
+
+## Workspace vs User Settings
+
+### User Settings (Global)
+
+Applied to all VS Code projects:
+```json
+// ~/.config/Code/User/settings.json
+{
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.logging.enabled": false
+}
+```
+
+### Workspace Settings (Project)
+
+Applied only to current project:
+```json
+// .vscode/settings.json
+{
+  "koalaDataExplorer.maxRows": 5000,
+  "koalaDataExplorer.autoRefreshDataSources": false
+}
+```
+
+<Note>
+  Workspace settings override user settings for the current project.
+</Note>
+
+## Environment-Specific Configuration
+
+### Development Environment
+
+```json
+{
+  "koalaDataExplorer.timeout": 300000,
+  "koalaDataExplorer.maxRows": 10000,
+  "koalaDataExplorer.logging.enabled": true,
+  "koalaDataExplorer.logging.level": "DEBUG"
+}
+```
+
+### Production Environment
+
+```json
+{
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.maxRows": 1000,
+  "koalaDataExplorer.logging.enabled": false,
+  "koalaDataExplorer.autoRefreshDataSources": true
+}
+```
+
+## Proxy Configuration
+
+For corporate networks:
+
+```json
+{
+  // Proxy server URL
+  "http.proxy": "http://proxy.company.com:8080",
+  
+  // Disable SSL verification (development only)
+  "http.proxyStrictSSL": false,
+  
+  // Proxy authentication
+  "http.proxyAuthorization": null
+}
+```
+
+## Reset to Defaults
+
+### Reset All Settings
+
+1. Open Command Palette
+2. Type: "Preferences: Open Settings (JSON)"
+3. Remove all `koalaDataExplorer.*` entries
+4. Reload VS Code
+
+### Default Values
+
+```json
+{
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.maxRows": 1000,
+  "koalaDataExplorer.autoRefreshDataSources": true,
+  "koalaDataExplorer.logging.enabled": false,
+  "koalaDataExplorer.logging.level": "INFO",
+  "koalaDataExplorer.logging.maxLogs": 1000,
+  "koalaDataExplorer.scheduleReport.maxPollTime": 900000,
+  "koalaDataExplorer.scheduleReport.chunkSizeKB": 50000,
+  "koalaDataExplorer.scheduleReport.enableForLargeDatasets": true,
+  "koalaDataExplorer.sqlHistory.maxEntries": 500,
+  "koalaDataExplorer.license.forceFreeMode": false
+}
+```
+
+## Troubleshooting Settings
+
+### Settings Not Applied
+
+1. Check for syntax errors in settings.json
+2. Reload VS Code window (`Ctrl+R`)
+3. Verify setting names are correct
+4. Check workspace vs user settings
+
+### Performance Issues
+
+If extension is slow:
+```json
+{
+  "koalaDataExplorer.maxRows": 100,
+  "koalaDataExplorer.autoRefreshDataSources": false,
+  "koalaDataExplorer.logging.enabled": false
+}
+```
+
+### Connection Problems
+
+For connection issues:
+```json
+{
+  "koalaDataExplorer.timeout": 180000,
+  "http.proxyStrictSSL": false,
+  "koalaDataExplorer.logging.enabled": true,
+  "koalaDataExplorer.logging.level": "DEBUG"
+}
+```
+
+## Settings Priority
+
+Settings are applied in this order (highest priority first):
+
+1. Workspace settings (`.vscode/settings.json`)
+2. User settings (`~/.config/Code/User/settings.json`)
+3. Default settings (extension defaults)
+
+## Export/Import Settings
+
+### Export Settings
+
+```bash
+# Copy settings to share with team
+cp ~/.config/Code/User/settings.json ./koala-settings-backup.json
+```
+
+### Import Settings
+
+```bash
+# Import settings from backup
+cp ./koala-settings-backup.json ~/.config/Code/User/settings.json
+```
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Timeout Settings" icon="clock" href="/koala/config/timeout-settings">
+    Configure timeouts for your network
+  </Card>
+  <Card title="Logging" icon="file-lines" href="/koala/config/logging">
+    Set up logging for debugging
+  </Card>
+  <Card title="First Connection" icon="plug" href="/koala/installation/first-connection">
+    Configure your first connection
+  </Card>
+  <Card title="Troubleshooting" icon="wrench" href="/koala/troubleshooting/performance-issues">
+    Resolve configuration issues
+  </Card>
+</CardGroup>
