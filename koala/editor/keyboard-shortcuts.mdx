@@ -1,282 +1,90 @@
 ---
 title: "Keyboard Shortcuts"
-description: "Complete list of keyboard shortcuts for efficient query development"
+description: "Essential keyboard shortcuts for efficient query development"
 ---
 
 ## Overview
 
-Master keyboard shortcuts to significantly boost your productivity with Koala Data Explorer. All shortcuts are customizable through VS Code's keyboard shortcut editor.
+Koala Data Explorer includes essential keyboard shortcuts to improve your productivity when writing and executing SQL queries. The shortcuts work within the VS Code environment alongside standard VS Code shortcuts.
 
 ## Essential Shortcuts
+
+The following shortcuts are implemented and available in Koala Data Explorer:
 
 ### Query Execution
 
 | Action | Windows/Linux | Mac | Description |
 |--------|--------------|-----|-------------|
-| Execute Query | `Ctrl+Enter` | `Cmd+Enter` | Run entire query or current statement |
-| Execute Selection | `Ctrl+Shift+Enter` | `Cmd+Shift+Enter` | Run only selected SQL text |
-| Execute at Cursor | `Alt+Enter` | `Option+Enter` | Run statement at cursor position |
-| Cancel Execution | `Ctrl+Alt+C` | `Cmd+Option+C` | Stop running query |
-| Explain Plan | `Ctrl+E` | `Cmd+E` | Show execution plan (Paid) |
+| Execute Query | `Ctrl+Enter` | `Cmd+Enter` | Run entire query or selected text |
+| Save Query | `Ctrl+S` | `Cmd+S` | Save current query to file |
+
+### Editor Features
+
+| Action | Windows/Linux | Mac | Description |
+|--------|--------------|-----|-------------|
+| Find | `Ctrl+F` | `Cmd+F` | Find text in query |
+| Replace | `Ctrl+H` | `Cmd+H` | Find and replace text |
+| Comment/Uncomment | `Ctrl+/` | `Cmd+/` | Toggle line comment |
+| Trigger IntelliSense | `Ctrl+Space` | `Cmd+Space` | Show autocomplete suggestions (Paid) |
+
+### Results Management
+
+| Action | Windows/Linux | Mac | Description |
+|--------|--------------|-----|-------------|
+| Select All Results | `Ctrl+A` | `Cmd+A` | Select all rows in results |
+| Copy | `Ctrl+C` | `Cmd+C` | Copy selected results |
+| Clear Selection | `Escape` | `Escape` | Clear result selection |
 
 ### Editor Navigation
 
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Go to Line | `Ctrl+G` | `Cmd+G` | Jump to specific line number |
-| Go to Symbol | `Ctrl+Shift+O` | `Cmd+Shift+O` | Navigate to table/column |
-| Next Statement | `Ctrl+]` | `Cmd+]` | Move to next SQL statement |
-| Previous Statement | `Ctrl+[` | `Cmd+[` | Move to previous SQL statement |
-| Toggle Comment | `Ctrl+/` | `Cmd+/` | Comment/uncomment selected lines |
+| Action | Shortcut | Description |
+|--------|----------|-------------|
+| Move Line Up/Down | `Alt+↑/↓` | Move current line up or down |
+| Duplicate Line | `Shift+Alt+↓` | Duplicate current line below |
+
+## Standard VS Code Shortcuts
+
+Koala Data Explorer works within VS Code, so all standard VS Code shortcuts also apply:
+
+### File Operations
+- **New File**: `Ctrl+N` / `Cmd+N`
+- **Open File**: `Ctrl+O` / `Cmd+O`
+- **Save**: `Ctrl+S` / `Cmd+S`
+- **Save As**: `Ctrl+Shift+S` / `Cmd+Shift+S`
 
 ### Text Editing
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Format SQL | `Shift+Alt+F` | `Shift+Option+F` | Auto-format SQL code |
-| Uppercase | `Ctrl+Shift+U` | `Cmd+Shift+U` | Convert selection to uppercase |
-| Lowercase | `Ctrl+Shift+L` | `Cmd+Shift+L` | Convert selection to lowercase |
-| Duplicate Line | `Shift+Alt+Down` | `Shift+Option+Down` | Duplicate current line |
-| Delete Line | `Ctrl+Shift+K` | `Cmd+Shift+K` | Delete current line |
-| Move Line Up | `Alt+Up` | `Option+Up` | Move line up |
-| Move Line Down | `Alt+Down` | `Option+Down` | Move line down |
-
-## Connection Management
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Open Connections | `Ctrl+K, C` | `Cmd+K, C` | Open connection manager |
-| Quick Switch | `Ctrl+K, Q` | `Cmd+K, Q` | Quick connection switch (Paid) |
-| New Connection | `Ctrl+K, N` | `Cmd+K, N` | Add new connection |
-| Refresh Connection | `Ctrl+K, R` | `Cmd+K, R` | Refresh current connection |
-| Disconnect | `Ctrl+K, D` | `Cmd+K, D` | Close current connection |
-
-## Results Management
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Focus Results | `Ctrl+R` | `Cmd+R` | Focus on results panel |
-| Export Results | `Ctrl+Shift+E` | `Cmd+Shift+E` | Export current results |
-| Clear Results | `Ctrl+Shift+C` | `Cmd+Shift+C` | Clear results panel |
-| Copy Results | `Ctrl+Alt+C` | `Cmd+Option+C` | Copy results to clipboard |
-| Filter Results | `Ctrl+F` | `Cmd+F` | Open filter in results |
-
-## Tab Management (Paid)
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| New Tab | `Ctrl+T` | `Cmd+T` | Create new query tab |
-| Close Tab | `Ctrl+W` | `Cmd+W` | Close current tab |
-| Next Tab | `Ctrl+Tab` | `Cmd+Tab` | Switch to next tab |
-| Previous Tab | `Ctrl+Shift+Tab` | `Cmd+Shift+Tab` | Switch to previous tab |
-| Tab 1-9 | `Ctrl+1-9` | `Cmd+1-9` | Jump to specific tab |
-| Reopen Closed | `Ctrl+Shift+T` | `Cmd+Shift+T` | Reopen closed tab |
-
-## IntelliSense & Autocomplete (Paid)
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Trigger Suggest | `Ctrl+Space` | `Cmd+Space` | Show suggestions |
-| Accept Suggestion | `Tab` or `Enter` | `Tab` or `Enter` | Accept selected suggestion |
-| Next Suggestion | `Down Arrow` | `Down Arrow` | Navigate suggestions down |
-| Previous Suggestion | `Up Arrow` | `Up Arrow` | Navigate suggestions up |
-| Show Parameters | `Ctrl+Shift+Space` | `Cmd+Shift+Space` | Show function parameters |
-
-## Query History
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Open History | `Ctrl+H` | `Cmd+H` | Show query history |
-| Search History | `Ctrl+Shift+H` | `Cmd+Shift+H` | Search in history (Paid) |
-| Previous Query | `Alt+Left` | `Option+Left` | Load previous query |
-| Next Query | `Alt+Right` | `Option+Right` | Load next query |
-| Clear History | `Ctrl+Alt+H` | `Cmd+Option+H` | Clear query history |
-
-## Schema Explorer (Paid)
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Toggle Explorer | `Ctrl+Shift+D` | `Cmd+Shift+D` | Show/hide schema explorer |
-| Search Schema | `Ctrl+P` | `Cmd+P` | Quick schema search |
-| Refresh Schema | `F5` | `F5` | Refresh schema information |
-| Expand All | `Ctrl+Shift+]` | `Cmd+Shift+]` | Expand all nodes |
-| Collapse All | `Ctrl+Shift+[` | `Cmd+Shift+[` | Collapse all nodes |
-
-## Advanced Features
-
-### Snippets
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Insert Snippet | `Ctrl+K, S` | `Cmd+K, S` | Show snippet list |
-| Next Placeholder | `Tab` | `Tab` | Jump to next placeholder |
-| Previous Placeholder | `Shift+Tab` | `Shift+Tab` | Jump to previous placeholder |
-
-### Bookmarks (Paid)
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Toggle Bookmark | `Ctrl+Alt+K` | `Cmd+Option+K` | Add/remove bookmark |
-| Next Bookmark | `Ctrl+Alt+N` | `Cmd+Option+N` | Go to next bookmark |
-| Previous Bookmark | `Ctrl+Alt+P` | `Cmd+Option+P` | Go to previous bookmark |
-| Clear Bookmarks | `Ctrl+Alt+L` | `Cmd+Option+L` | Clear all bookmarks |
-
-### Multi-Cursor Editing
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Add Cursor | `Alt+Click` | `Option+Click` | Add cursor at click position |
-| Add Cursor Above | `Ctrl+Alt+Up` | `Cmd+Option+Up` | Add cursor above |
-| Add Cursor Below | `Ctrl+Alt+Down` | `Cmd+Option+Down` | Add cursor below |
-| Select Next Match | `Ctrl+D` | `Cmd+D` | Select next occurrence |
-| Select All Matches | `Ctrl+Shift+L` | `Cmd+Shift+L` | Select all occurrences |
+- **Undo**: `Ctrl+Z` / `Cmd+Z`
+- **Redo**: `Ctrl+Y` / `Cmd+Y`
+- **Cut**: `Ctrl+X` / `Cmd+X`
+- **Copy**: `Ctrl+C` / `Cmd+C`
+- **Paste**: `Ctrl+V` / `Cmd+V`
+- **Select All**: `Ctrl+A` / `Cmd+A`
 
 ## Customizing Shortcuts
 
-### Access Keyboard Shortcuts
+You can customize any shortcuts through VS Code's keyboard shortcuts settings:
 
-1. Open Command Palette: `Ctrl+Shift+P` (Windows/Linux) or `Cmd+Shift+P` (Mac)
+1. Open Command Palette: `Ctrl+Shift+P` / `Cmd+Shift+P`
 2. Type "Preferences: Open Keyboard Shortcuts"
-3. Search for "Koala" to find all extension shortcuts
-
-### Modify Shortcuts
-
-1. Click on any shortcut to edit
-2. Press desired key combination
-3. Press Enter to save
-
-### Create Custom Shortcuts
-
-Add custom shortcuts in `keybindings.json`:
-
-```json
-[
-  {
-    "key": "ctrl+shift+q",
-    "command": "koala.executeQuery",
-    "when": "editorTextFocus && editorLangId == sql"
-  },
-  {
-    "key": "ctrl+shift+s",
-    "command": "koala.saveResults",
-    "when": "koala.resultsVisible"
-  }
-]
-```
-
-## Context-Specific Shortcuts
-
-### When in SQL Editor
-
-These shortcuts only work when focused on SQL editor:
-
-- Format SQL: `Shift+Alt+F`
-- Run Query: `Ctrl+Enter`
-- Comment Line: `Ctrl+/`
-
-### When in Results Panel
-
-These shortcuts only work when focused on results:
-
-- Copy Cell: `Ctrl+C`
-- Export: `Ctrl+S`
-- Filter: `Ctrl+F`
-
-### When in Schema Explorer
-
-These shortcuts only work in schema explorer:
-
-- Expand Node: `Right Arrow`
-- Collapse Node: `Left Arrow`
-- Generate SELECT: `Ctrl+G`
+3. Search for specific commands to modify
 
 ## Productivity Tips
 
-### Essential Combinations
+### Essential Shortcuts for Koala
 
-Master these for maximum efficiency:
+Focus on these key shortcuts for maximum productivity:
 
-1. `Ctrl+Enter` → Execute query
-2. `Ctrl+Space` → Trigger autocomplete
-3. `Ctrl+/` → Comment/uncomment
-4. `Shift+Alt+F` → Format SQL
-5. `Ctrl+K, C` → Switch connections
+1. **`Ctrl+Enter` / `Cmd+Enter`** - Execute queries (most important)
+2. **`Ctrl+S` / `Cmd+S`** - Save your work frequently
+3. **`Ctrl+/` / `Cmd+/`** - Comment/uncomment SQL lines
+4. **`Ctrl+F` / `Cmd+F`** - Find text in large queries
+5. **`Escape`** - Clear result selections
 
-### Workflow Shortcuts
+### Workflow Tips
 
-Common workflow patterns:
-
-1. **Quick Query**: `Ctrl+T` → Type SQL → `Ctrl+Enter`
-2. **Export Results**: Execute → `Ctrl+R` → `Ctrl+Shift+E`
-3. **History Recall**: `Ctrl+H` → Select → `Enter`
-4. **Multi-Statement**: Select → `Ctrl+Shift+Enter`
-
-## Conflict Resolution
-
-### VS Code Conflicts
-
-Some shortcuts may conflict with VS Code defaults. To resolve:
-
-1. Identify conflict in Keyboard Shortcuts
-2. Decide which command takes priority
-3. Reassign one of the shortcuts
-4. Test both commands work
-
-### Common Conflicts
-
-- `Ctrl+K`: VS Code uses for many commands
-- `Ctrl+Space`: May conflict with system shortcuts
-- `F5`: Conflicts with VS Code debug
-
-## Platform Differences
-
-### Windows vs Mac
-
-Key mapping differences:
-
-- `Ctrl` → `Cmd`
-- `Alt` → `Option`
-- `Enter` → `Return`
-- `Backspace` → `Delete`
-
-### Linux Considerations
-
-Some shortcuts may conflict with window manager:
-
-- `Alt+Click`: Often used for window dragging
-- `Ctrl+Alt+Arrow`: Virtual desktop switching
-- Configure in system settings if needed
-
-## Accessibility
-
-### Screen Reader Support
-
-All functions accessible via:
-
-- Command Palette
-- Menu navigation
-- Keyboard shortcuts
-
-### High Contrast Mode
-
-Shortcuts remain the same in high contrast themes.
-
-## Cheat Sheet
-
-Download or print this quick reference:
-
-### Most Used (Top 10)
-
-1. `Ctrl+Enter` - Execute Query
-2. `Ctrl+Space` - Autocomplete
-3. `Ctrl+/` - Comment
-4. `Ctrl+F` - Find
-5. `Ctrl+H` - History
-6. `Ctrl+K, C` - Connections
-7. `Ctrl+T` - New Tab
-8. `Shift+Alt+F` - Format
-9. `Ctrl+S` - Save
-10. `Ctrl+Z` - Undo
+- **Partial Execution**: Select SQL text and press `Ctrl+Enter` / `Cmd+Enter` to run only the selection
+- **Line Management**: Use `Alt+↑/↓` to move lines up/down when organizing queries
+- **Duplicate Lines**: Use `Shift+Alt+↓` to quickly duplicate useful query patterns
 
 ## Next Steps
 
