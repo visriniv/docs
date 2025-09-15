@@ -1,125 +1,154 @@
 ---
-title: "OAuth PKCE & SSO Authentication"
-description: "Enterprise authentication with OAuth 2.0 PKCE and Single Sign-On"
+title: "OAuth PKCE Authentication"
+description: "Enterprise authentication with OAuth 2.0 PKCE for Oracle Fusion Cloud"
 ---
 
 ## Overview
 
-OAuth 2.0 PKCE and SSO authentication provide enterprise-grade authentication for connecting to Oracle Fusion Cloud. This feature is available in the paid version of Koala Data Explorer and integrates seamlessly with your organization's identity provider.
+OAuth 2.0 PKCE authentication provides enterprise-grade security for connecting to Oracle Fusion Cloud. This feature integrates with your organization's existing Single Sign-On (SSO) through Oracle Identity and Access Management (IAM).
 
 <Note>
-  OAuth/SSO authentication requires a paid license. See [Free vs Paid Features](/koala/licensing/free-vs-paid) for more information.
+  OAuth PKCE authentication requires a paid license. See [Free vs Paid Features](/koala/licensing/free-vs-paid) for more information.
 </Note>
 
-## Benefits of OAuth/SSO
+## Benefits of OAuth PKCE
 
 ### Enhanced Security
-- No password storage required
-- Token-based authentication
+- No password storage in VS Code
+- Token-based authentication with PKCE
 - Automatic token refresh
-- Supports multi-factor authentication
+- Leverages existing enterprise SSO and MFA
 
 ### Enterprise Integration
-- Single Sign-On with corporate identity providers
-- Centralized access management
-- Compliance with security policies
-- Audit trail capabilities
+- Uses your existing Oracle Identity Domain
+- Centralized access management through Oracle IAM
+- Compliance with corporate security policies
+- Full audit trail in Oracle systems
 
 ### User Experience
-- One-click authentication
-- No manual password management
+- Single sign-on with enterprise credentials
+- No password management required
 - Seamless re-authentication
-- Session persistence
+- Session persistence across VS Code restarts
 
-## Supported Providers
+## Authentication Flow
 
-Koala Data Explorer supports OAuth 2.0 PKCE authentication with:
+Koala Data Explorer implements OAuth 2.0 PKCE authentication specifically with:
 
-- Oracle Identity Cloud Service (IDCS)
-- Oracle Access Manager (OAM)
-- Azure Active Directory (via Oracle integration)
-- Other OAuth 2.0 PKCE compliant providers
+- **Oracle Identity Domains** (part of Oracle Cloud Infrastructure)
+- **Oracle Fusion Cloud Applications** resource access
+- **PKCE (Proof Key for Code Exchange)** for enhanced security
 
-## Setting Up OAuth Authentication
+## Setting Up OAuth PKCE Authentication
 
-### Prerequisites
+OAuth PKCE setup requires coordination between your Oracle administrator and end users. The process has two phases:
 
-1. Paid license for Koala Data Explorer
-2. OAuth client credentials from your Oracle Fusion administrator
-3. Redirect URI configuration in Oracle Fusion
+### Phase 1: Administrator Setup (One-Time)
 
-### Step 1: Obtain OAuth Credentials
+Your Oracle administrator must first configure OAuth in Oracle Identity and Access Management (IAM).
 
-Contact your Oracle Fusion administrator to:
+#### Prerequisites for Administrators
 
-1. Register Koala Data Explorer as an OAuth client
-2. Obtain the following credentials:
-   - Client ID
-   - Client Secret (if applicable)
-   - Authorization URL
-   - Token URL
-   - Scope (typically `offline_access`)
+- Access to Oracle Cloud console
+- Administrator privileges in the Fusion Identity Domain
+- Same identity domain used by your Oracle Fusion instance
 
-### Step 2: Configure Connection
+#### Admin Configuration Steps
 
-1. Open Connection Manager (`Ctrl+Shift+P` → "Koala: Manage Connections")
-2. Click "Add Connection"
-3. Select "OAuth 2.0 PKCE" as authentication type
+**Step 1: Access Oracle IAM Console**
+1. Log into Oracle Cloud console
+2. Navigate to **Identity & Security** → **Identity Domains**
+3. Select your Fusion Identity Domain
+4. Go to **Applications**
 
-### Step 3: Enter OAuth Details
+**Step 2: Create OAuth Application**
+1. Click **Add Application**
+2. Select **Mobile Application** (creates a public PKCE client)
+3. Click **Launch Workflow**
 
-Configure the following fields:
+**Step 3: Configure Application Details**
 
-- **Connection Name**: Descriptive name for the connection
-- **Host URL**: Oracle Fusion Cloud instance URL
-- **Client ID**: OAuth client identifier
-- **Client Secret**: OAuth client secret (if required)
-- **Authorization URL**: OAuth authorization endpoint
-- **Token URL**: OAuth token endpoint
-- **Scope**: OAuth scope (default: `offline_access`)
-- **Redirect URI**: `vscode://btss.koala-data-explorer/oauth-callback`
+*Basic Information:*
+- **Name**: `Koala Data Explorer OAuth Client`
+- **Description**: `VS Code extension for Oracle Fusion data access`
 
-### Step 4: Authenticate
+*Client Configuration:*
+- **Client Type**: Public (automatically set)
+- **Grant Types**: Select "Authorization Code"
+- **PKCE**: Enabled (automatic for mobile apps)
+- **Redirect URI**: Add exactly:
+  ```
+  vscode://btss-corp.koala-data-explorer/oauth/callback
+  ```
+  <Warning>This URI must match exactly - no trailing slashes or variations</Warning>
 
-1. Click "Authenticate"
-2. Your browser will open to the Oracle login page
-3. Enter your corporate credentials
-4. Complete any MFA requirements
-5. Authorize Koala Data Explorer
-6. Return to VS Code when prompted
+*Resource and Scope Configuration:*
+- **Add Resource**: Select "Oracle Applications Cloud (Fusion)"
+- **Scopes**: System auto-generates required scope like:
+  ```
+  urn:opc:resource:fa:instanceid=12345urn:opc:resource:consumer::all
+  ```
+- **Bypass Consent**: Enable (recommended for internal use)
+- **Trust Scope**: Enable for all selected scopes
 
-### Step 5: Verify Connection
+**Step 4: Collect Configuration Values**
 
-The connection status will show as "Authenticated" with token expiry information.
+Document these values for end users:
+- **Client ID**: Found in General → Client ID
+- **Authorization Endpoint**: `https://your-idcs-instance.identity.oraclecloud.com/oauth2/v1/authorize`
+- **Token Endpoint**: `https://your-idcs-instance.identity.oraclecloud.com/oauth2/v1/token`
+- **Scope**: The auto-generated resource identifier from Step 3
 
-## SSO Configuration
+### Phase 2: End User Setup
 
-### SAML-Based SSO
+Once administrators complete Phase 1, end users can configure OAuth connections:
 
-For organizations using SAML 2.0:
+#### Step 1: Add OAuth Connection
 
-1. Configure SAML assertion consumer service
-2. Set up identity provider metadata
-3. Map SAML attributes to Oracle Fusion roles
-4. Test SSO flow end-to-end
+1. Open Koala Data Explorer in VS Code
+2. Press `Ctrl+Shift+P` → "Koala: Manage Connections"
+3. Click **Add Connection**
+4. Select **OAuth PKCE** as authentication type
 
-### Azure AD Integration
+#### Step 2: Enter Configuration Details
 
-For Azure AD SSO via Oracle:
+Use the values provided by your administrator:
 
-```json
-{
-  "authType": "oauth",
-  "provider": "azure",
-  "tenantId": "your-tenant-id",
-  "clientId": "your-client-id",
-  "redirectUri": "vscode://btss.koala-data-explorer/oauth-callback"
-}
-```
+- **Connection Name**: Descriptive name (e.g., "Production OAuth")
+- **Oracle Fusion URL**: Your Fusion instance URL
+- **Client ID**: From administrator
+- **Authorization Endpoint**: From administrator
+- **Token Endpoint**: From administrator
+- **Scope**: From administrator
+
+#### Step 3: Authenticate
+
+1. Click **Save** to save the connection
+2. Select the connection and click **Connect**
+3. Your browser opens for SSO authentication
+4. Log in with your enterprise credentials
+5. Complete any MFA requirements
+6. VS Code receives the authentication token
+7. Connection is established
+
+#### Step 4: BIP Catalog Deployment
+
+<Warning>
+OAuth connections cannot automatically deploy the required BIP catalog.
+</Warning>
+
+After successful authentication:
+1. Click **Deploy to BIP** button in the query editor
+2. Select **Download Catalog** option
+3. Save the `Koala.catalog` file
+4. Send this file to your Oracle administrator
+5. Request deployment to `/Custom/Koala/` in the BIP catalog
 
 ## Token Management
 
-### Automatic Refresh
+OAuth PKCE authentication uses secure token-based access with automatic refresh capabilities.
+
+### Automatic Token Refresh
 
 Koala Data Explorer automatically:
 - Monitors token expiration
@@ -127,102 +156,67 @@ Koala Data Explorer automatically:
 - Handles refresh failures gracefully
 - Prompts for re-authentication when needed
 
-### Manual Refresh
+### Token Security
 
-To manually refresh tokens:
+- Tokens stored in VS Code's secure credential storage
+- Encrypted at rest and in transit
+- Never logged or exposed in diagnostics
+- Automatically cleared when connection is removed
 
-1. Open Connection Manager
-2. Select the connection
-3. Click "Refresh Token"
+## Troubleshooting OAuth PKCE
 
-## Security Features
+### Common Issues
 
-### Token Storage
+**"Client authentication failed"**
+- Verify application is configured as Mobile/Public client in Oracle IAM
+- Ensure PKCE is enabled in grant types
+- Check Client ID matches exactly
 
-- Tokens stored in VS Code's secure storage
-- Encrypted at rest
-- Isolated per workspace
-- Never logged or exposed
+**"Invalid redirect URI"**
+- Verify redirect URI matches exactly: `vscode://btss-corp.koala-data-explorer/oauth/callback`
+- Check for typos or extra characters
+- Ensure no trailing slashes
 
-### Session Management
+**"Invalid scope"**
+- Verify scope string from Oracle administrator
+- Check that Fusion resource is properly configured in Oracle IAM
+- Ensure identity domain matches Fusion instance
 
-- Configurable session timeout
-- Automatic logout on idle
-- Clear session on VS Code close (optional)
-- Multi-session support
+**Browser doesn't open for authentication**
+- Check that default browser is set in your system
+- Try copying the authorization URL manually to browser
+- Verify network firewall settings allow browser communication
 
-## Troubleshooting OAuth/SSO
-
-### Authorization Failed
-
-If authorization fails:
-
-1. Verify client ID and secret are correct
-2. Check redirect URI matches configuration
-3. Ensure user has appropriate Oracle Fusion permissions
-4. Verify OAuth scope includes required permissions
-
-### Token Refresh Issues
-
-If token refresh fails:
-
-1. Check network connectivity
-2. Verify refresh token hasn't expired
-3. Ensure client credentials are still valid
-4. Re-authenticate if necessary
-
-### SSO Loop
-
-If you experience SSO redirect loops:
-
-1. Clear browser cookies
-2. Check SAML assertion validity
-3. Verify identity provider configuration
-4. Contact your IT administrator
-
-### Session Timeout
-
-To adjust session timeout:
-
-1. Open VS Code settings
-2. Search for "Koala: Session Timeout"
-3. Set desired timeout in minutes
-4. Restart VS Code for changes to take effect
+**Authentication successful but connection fails**
+- Verify token endpoints are correct
+- Check Oracle Fusion URL is accessible
+- Ensure user has proper Fusion access rights and roles
 
 ## Best Practices
 
-### Security
+### For Administrators
 
-- Use OAuth/SSO for all production environments
-- Enable MFA in your identity provider
-- Regularly review access logs
-- Rotate client secrets periodically
+- Use descriptive names for OAuth applications in Oracle IAM
+- Document configuration values for end users
+- Regularly review OAuth application permissions
+- Monitor authentication logs in Oracle IAM console
+- Keep identity domain aligned with Fusion instance
 
-### Performance
+### For End Users
 
-- Configure appropriate token lifetime
-- Use refresh tokens for long sessions
-- Cache authentication state
-- Minimize re-authentication prompts
+- Use OAuth PKCE for production environments
+- Leverage existing enterprise SSO and MFA policies
+- Test connections after Oracle system maintenance
+- Remove unused connections to maintain security
+- Contact administrators for configuration issues
 
-## Compliance
+### Security Considerations
 
-OAuth/SSO authentication helps meet:
-
-- SOC 2 requirements
-- GDPR compliance
-- HIPAA standards (when configured properly)
-- Corporate security policies
-
-## Migration from Basic Auth
-
-To migrate existing connections:
-
-1. Export connection settings (without passwords)
-2. Create new OAuth connection
-3. Test queries work correctly
-4. Delete old basic auth connection
-5. Update any saved queries
+- OAuth PKCE provides enhanced security over Basic authentication
+- No passwords stored in VS Code
+- Centralized access control through Oracle IAM
+- Full audit trail in Oracle systems
+- Automatic compliance with corporate identity policies
 
 ## Next Steps
 
