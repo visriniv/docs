@@ -47,6 +47,7 @@
           {
             "group": "Query Editor",
             "pages": [
+              "koala/editor/interface-guide",
               "koala/editor/writing-queries",
               "koala/editor/executing-queries",
               "koala/editor/keyboard-shortcuts",

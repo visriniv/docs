@@ -15,248 +15,81 @@ Koala Data Explorer supports multiple query tabs, allowing you to work on severa
 
 ### Creating New Tabs
 
-Create additional query tabs:
-
-1. **Keyboard shortcut**: Press `Ctrl+T` (Windows/Linux) or `Cmd+T` (Mac)
-2. **Menu option**: Use "New Tab" from the Koala menu
-3. **Button**: Click the "+" button in the tab bar
-4. **Context menu**: Right-click in tab area and select "New Tab"
-
-Each new tab provides a fresh query editor with its own:
+Create additional query tabs by clicking the **+** button in the tab bar. Each new tab provides a fresh query editor with its own:
 - SQL editor space
-- Execution context
+- Independent connection (can connect to different databases)
 - Results area
-- Query history
+- Execution context
 
 ### Tab Navigation
 
-Switch between tabs easily:
-
-- **Click tabs**: Click on any tab to switch to it
-- **Keyboard shortcuts**: 
-  - `Ctrl+Tab`: Next tab
-  - `Ctrl+Shift+Tab`: Previous tab
-  - `Ctrl+1-9`: Jump to specific tab by number
-- **Mouse wheel**: Scroll over tab bar to navigate
+Switch between tabs by:
+- **Click tabs**: Click on any tab name to switch to it
+- **Tab indicators**: Visual cues show tab status
 
 ### Tab Management
 
 Manage your open tabs:
 
-- **Close tabs**: Click the "×" on any tab or press `Ctrl+W`
-- **Reorder tabs**: Drag tabs to rearrange them
-- **Pin tabs**: Keep important tabs open (planned feature)
-- **Tab titles**: Tabs show query content preview or custom names
+- **Close tabs**: Click the "×" on any tab 
+- **Tab titles**: Tabs show query content preview or file names
+- **Unsaved changes**: Indicated by a dot (●) in tab title
 
 ## Tab Features
 
 ### Independent Contexts
 
 Each tab maintains its own:
-
-- **Query content**: Separate SQL editor
-- **Execution state**: Independent query running
-- **Results display**: Separate results panel
-- **Undo/redo history**: Per-tab editing history
-- **Cursor position**: Tab-specific editor state
-
-### Tab Titles
-
-Tab titles automatically update based on:
-- **Query content**: First line of SQL or table names
-- **File names**: If query is saved to file
-- **Custom names**: User-defined tab names (planned)
-- **Status indicators**: Modified, running, or error states
+- **Query content**: Separate SQL editor with independent content
+- **Connection**: Each tab can connect to different databases or use different connections
+- **Results display**: Separate results panel showing results only for that tab's queries
+- **File association**: Tabs can be linked to saved .sql files
 
 ### Tab States
 
 Visual indicators show tab status:
 - **Clean tabs**: No unsaved changes
-- **Modified tabs**: Asterisk (*) for unsaved changes
-- **Running tabs**: Spinner when query is executing
-- **Error tabs**: Warning icon for queries with errors
+- **Modified tabs**: Dot (●) indicator for unsaved changes
+- **File path**: Tab title shows file path when query is saved
 
 ## Productivity Features
 
-### Parallel Development
+Multiple tabs enable efficient workflow:
 
-Multiple tabs enable:
-
-1. **Compare queries**: Different approaches side-by-side
-2. **Reference data**: Keep lookup queries open
-3. **Iterative development**: Test variations of same query
-4. **Multi-table exploration**: Explore different tables simultaneously
-
-### Workflow Organization
-
-Organize work across tabs:
-
-- **Main development**: Primary query in main tab
-- **Reference queries**: Supporting data in other tabs
-- **Testing**: Experimental queries in separate tabs
-- **Documentation**: Query examples and templates
-
-### Tab-Specific Results
-
-Each tab has independent results:
-- **Separate results panels**: Each tab shows its own query results
-- **Independent exports**: Export results from any tab
-- **Result history**: Results preserved when switching tabs
-- **Sorting and filtering**: Per-tab result manipulation
-
-## Tab Limitations
-
-### Performance Considerations
-
-With multiple tabs:
-- **Memory usage**: Each tab uses memory for editor and results
-- **Connection sharing**: All tabs share same database connection
-- **Resource limits**: Too many tabs may impact performance
-- **Result caching**: Large results in multiple tabs use more memory
-
-### Recommended Limits
-
-For optimal performance:
-- **5-10 tabs**: Recommended maximum for most use cases
-- **Close unused tabs**: Regular cleanup of old tabs
-- **Clear large results**: Remove large result sets when done
-- **Monitor memory**: Watch VS Code memory usage
-
-## Tab Keyboard Shortcuts
-
-### Navigation Shortcuts
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| New Tab | `Ctrl+T` | `Cmd+T` | Create new query tab |
-| Close Tab | `Ctrl+W` | `Cmd+W` | Close current tab |
-| Next Tab | `Ctrl+Tab` | `Cmd+Tab` | Switch to next tab |
-| Previous Tab | `Ctrl+Shift+Tab` | `Cmd+Shift+Tab` | Switch to previous tab |
-| Tab 1-9 | `Ctrl+1-9` | `Cmd+1-9` | Jump to specific tab |
-
-### Tab Management
-
-| Action | Windows/Linux | Mac | Description |
-|--------|--------------|-----|-------------|
-| Reopen Closed | `Ctrl+Shift+T` | `Cmd+Shift+T` | Reopen last closed tab |
-| Close All | `Ctrl+Shift+W` | `Cmd+Shift+W` | Close all tabs |
-| Save Tab | `Ctrl+S` | `Cmd+S` | Save current tab content |
+1. **Compare results**: Run different queries and compare results side-by-side
+2. **Reference data**: Keep lookup queries open in separate tabs
+3. **Multi-environment work**: Connect different tabs to different Oracle Fusion environments
+4. **Organized development**: Separate complex analysis into multiple focused queries
 
 ## Best Practices
 
-### Tab Organization
+### Effective Tab Usage
 
-Organize tabs effectively:
+1. **Organize by purpose**: Use different tabs for different types of queries
+2. **Save frequently**: Use `Ctrl+S` / `Cmd+S` to save your work in each tab
+3. **Close when finished**: Click the × to close tabs you no longer need
+4. **Use descriptive content**: Start queries with meaningful SQL comments so tab titles are clear
 
-1. **Logical grouping**: Related queries in adjacent tabs
-2. **Clear naming**: Use descriptive SQL content
-3. **Regular cleanup**: Close completed or unnecessary tabs
-4. **Primary tab**: Keep main work in first tab
+### Multi-Environment Workflow
 
-### Development Workflow
+- **Production queries**: Keep production environment queries in one tab
+- **Development testing**: Use separate tabs for development environment
+- **Reference queries**: Maintain lookup or reference queries in dedicated tabs
+- **Comparison analysis**: Use multiple tabs to compare different approaches to the same problem
 
-Effective multi-tab workflow:
+## File Management with Tabs
 
-1. **Main query**: Primary development in tab 1
-2. **Reference data**: Supporting queries in tabs 2-3
-3. **Testing**: Experimental variations in additional tabs
-4. **Documentation**: Examples and templates in final tabs
+### Saving Tab Content
 
-### Performance Management
+- **Save individual tabs**: Each tab can be saved as a separate .sql file
+- **File associations**: When saved, the tab title shows the file path
+- **Drag and drop**: Open existing .sql files by dragging them into the editor (creates new tabs)
 
-Maintain good performance:
+### Tab Indicators
 
-1. **Limit open tabs**: Close tabs when finished
-2. **Clear large results**: Remove big result sets
-3. **Save important queries**: Persist work to files
-4. **Monitor resources**: Watch memory usage
-
-## Tab Settings
-
-### Configuration Options
-
-Configure tab behavior through VS Code settings:
-
-```json
-{
-  "koalaDataExplorer.tabs.maxTabs": 10,
-  "koalaDataExplorer.tabs.autoClose": false,
-  "koalaDataExplorer.tabs.showModified": true,
-  "koalaDataExplorer.tabs.confirmClose": true
-}
-```
-
-### Tab Preferences
-
-Customize tab experience:
-- **Maximum tabs**: Limit number of open tabs
-- **Auto-close**: Automatically close unused tabs
-- **Modified indicators**: Show unsaved changes
-- **Close confirmation**: Confirm before closing modified tabs
-
-## Troubleshooting
-
-### Tab Issues
-
-Common tab problems:
-
-#### "Too many tabs open"
-- Close unused tabs
-- Save important queries to files
-- Restart VS Code if needed
-
-#### "Tab not responding"
-- Check if query is still running
-- Cancel long-running queries
-- Close and recreate problematic tab
-
-#### "Performance slow with tabs"
-- Reduce number of open tabs
-- Clear large result sets
-- Check VS Code memory usage
-
-### Memory Management
-
-Optimize tab memory usage:
-
-1. **Regular cleanup**: Close old tabs
-2. **Result management**: Clear large results
-3. **Query optimization**: Use row limits
-4. **Restart when needed**: Restart VS Code periodically
-
-## Integration Features
-
-### Tab Synchronization
-
-Tabs work together:
-- **Shared connection**: All tabs use same database connection
-- **Shared history**: Query history across all tabs
-- **Shared settings**: Extension settings apply to all tabs
-
-### Export from Tabs
-
-Export capabilities:
-- **Per-tab exports**: Export results from any tab
-- **Multi-tab exports**: Export from multiple tabs (planned)
-- **Tab documentation**: Include tab organization in exports
-
-## Future Enhancements
-
-### Planned Features
-
-Upcoming tab improvements:
-- **Custom tab names**: User-defined tab titles
-- **Tab groups**: Organize related tabs
-- **Tab persistence**: Remember tabs across sessions
-- **Tab sharing**: Share tab collections with team
-
-### Advanced Features
-
-Future considerations:
-- **Split view**: View multiple tabs simultaneously
-- **Tab synchronization**: Sync tabs across instances
-- **Tab templates**: Pre-configured tab layouts
-- **Tab collaboration**: Share tabs with team members
+- **Dot (●)**: Indicates unsaved changes in the tab
+- **File path**: Shows in tab title when query is saved to file
+- **Query preview**: Shows first line of SQL content when not saved to file
 
 ## Next Steps
 

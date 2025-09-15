@@ -1,0 +1,240 @@
+---
+title: "Interface Guide"
+description: "Complete guide to Koala Data Explorer's user interface elements and buttons"
+---
+
+## Overview
+
+This guide covers all the interface elements, buttons, and UI components in Koala Data Explorer to help you navigate and use the extension effectively.
+
+## Main Interface Elements
+
+### Query Tab Bar
+
+Located at the top of the query editor:
+
+- **Tab Names**: Show query content preview or file paths
+- **+ Button**: Create new tabs (paid feature only)
+- **× Button**: Close individual tabs
+- **● Indicator**: Shows unsaved changes in tab
+
+### Connection Controls
+
+Located in each query tab:
+
+- **Connection Dropdown**: Select from saved connections
+- **Connect Button**: Establish connection to selected database
+- **Disconnect Button**: Close current database connection
+- **Connection Status**: Shows current connection state
+
+### Query Editor Area
+
+The main SQL editing area with:
+
+- **Syntax Highlighting**: Automatic SQL color coding
+- **Line Numbers**: Shows line numbers for reference
+- **IntelliSense**: Auto-completion suggestions (paid feature)
+
+### Action Buttons
+
+#### Primary Actions
+- **Execute Button**: Run the current SQL query
+- **Export Button**: Export query results to various formats
+- **Save Button**: Save current query to file (via `Ctrl+S` / `Cmd+S`)
+
+#### Connection Management
+- **Manage Connections Button**: Opens connection management interface
+- **Add Connection Button**: Create new database connections
+- **Test Connection Button**: Verify connection settings
+- **Save Button**: Save connection configuration
+
+#### Data Management
+- **Deploy to BIP Button**: Deploy or download BIP catalog for Oracle Fusion
+- **Refresh Button**: Refresh data sources panel (paid feature)
+
+## Connection Management Interface
+
+### Adding Connections
+
+When clicking **Manage Connections** → **Add Connection**:
+
+1. **Authentication Type Selection**:
+   - Basic Authentication (free)
+   - OAuth PKCE (paid)
+
+2. **Connection Form Fields**:
+   - **Connection Name**: Friendly identifier
+   - **Host URL**: Oracle Fusion instance URL
+   - **Username/Password**: For Basic Authentication
+   - **OAuth Settings**: Client ID, endpoints for OAuth PKCE
+
+3. **Action Buttons**:
+   - **Test Connection**: Verify settings before saving
+   - **Save**: Store connection configuration
+   - **Cancel**: Discard changes
+
+### Managing Existing Connections
+
+- **Connection List**: Shows all saved connections
+- **Edit Button**: Modify existing connection settings
+- **Delete Button**: Remove connections
+- **Set as Default**: Mark preferred connection
+
+## Query Execution Interface
+
+### Execution Controls
+
+- **Execute Button**: Primary execution control
+- **Keyboard Shortcut**: `Ctrl+Enter` / `Cmd+Enter` for execution
+- **Partial Execution**: Select text and execute only selection
+
+### Execution Status
+
+- **Progress Indicator**: Shows when query is running
+- **Execution Time**: Displays query duration after completion
+- **Row Count**: Shows number of rows returned
+- **Error Messages**: Displays any execution errors
+
+## Results Interface
+
+### Results Grid
+
+- **Column Headers**: Click to sort ascending/descending
+- **Row Selection**: Click row numbers to select
+- **Cell Content**: View query results
+- **Scroll Bars**: Navigate large result sets
+
+### Results Controls
+
+- **Export Button**: Export visible results
+- **Copy Function**: `Ctrl+C` / `Cmd+C` to copy selected data
+- **Select All**: `Ctrl+A` / `Cmd+A` to select all results
+- **Clear Selection**: `Escape` to deselect
+
+### Export Options
+
+When clicking **Export Button**:
+
+1. **Format Selection**:
+   - CSV (free)
+   - JSON (free) 
+   - Excel (paid, with 10K row limit)
+   - XML (free)
+
+2. **Export Scope**:
+   - All results
+   - Selected rows only
+
+## Side Panels
+
+### Data Sources Panel (Paid Feature)
+
+- **Tree View**: Shows available tables and views
+- **Search Box**: Filter data sources by name
+- **Refresh Button**: Reload data source list
+- **Table/View Items**: Click to insert into query
+
+### History Panel
+
+- **Query List**: Shows recent executed queries
+- **Timestamps**: When queries were executed
+- **Search Filter**: Find specific historical queries
+- **Load Button**: Insert historical query into current tab
+
+## BIP Catalog Management
+
+### For Basic Authentication Users
+
+- **Auto-Deploy Prompt**: Appears when catalog is missing
+- **Deploy Button**: Automatically deploys required catalog
+- **Credential Prompt**: Enter credentials for deployment
+
+### For OAuth PKCE Users
+
+- **Deploy to BIP Button**: Manual catalog management
+- **Download Catalog Option**: Save `.catalog` file locally
+- **Upload Instructions**: Guidance for administrator deployment
+
+## Status Indicators
+
+### Connection Status
+
+- **Connected**: Green indicator with instance name
+- **Connecting**: Yellow with spinning indicator
+- **Disconnected**: Red or gray indicator
+- **Error**: Red with error message
+
+### Tab Status
+
+- **Clean**: No visual indicator
+- **Modified**: Dot (●) in tab title
+- **Saved File**: Shows file path in tab title
+- **New Query**: Shows query preview in tab title
+
+### Execution Status
+
+- **Ready**: No indicator
+- **Executing**: Progress spinner
+- **Completed**: Row count and timing
+- **Error**: Red error message
+
+## Settings and Configuration
+
+### Extension Settings
+
+Access through VS Code settings:
+
+- **Timeout Settings**: Query execution limits
+- **Row Limits**: Default maximum rows returned
+- **Auto-refresh**: Data sources refresh behavior
+- **Export Settings**: Default export formats
+
+### Keyboard Shortcuts
+
+Customize through VS Code keyboard shortcuts:
+
+- **Execute Query**: Default `Ctrl+Enter` / `Cmd+Enter`
+- **Save Query**: Default `Ctrl+S` / `Cmd+S`
+- **Find/Replace**: Standard VS Code shortcuts
+
+## Interface Tips
+
+### Efficiency Tips
+
+1. **Use keyboard shortcuts** for common actions
+2. **Right-click context menus** for additional options
+3. **Drag and drop** .sql files to open in new tabs
+4. **Double-click connections** to quick-connect
+
+### Visual Cues
+
+- **Hover effects**: Buttons highlight when hoverable
+- **Disabled states**: Grayed out when unavailable
+- **Loading states**: Spinners during operations
+- **Error states**: Red indicators for problems
+
+## Accessibility
+
+### Keyboard Navigation
+
+- **Tab key**: Navigate between interface elements
+- **Enter key**: Activate buttons and controls
+- **Arrow keys**: Navigate results grid
+- **Escape key**: Cancel operations or clear selections
+
+### Screen Reader Support
+
+- **ARIA labels**: All buttons have descriptive labels
+- **Status announcements**: Important state changes announced
+- **Keyboard shortcuts**: All functions accessible via keyboard
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Executing Queries" icon="play" href="/koala/editor/executing-queries">
+    Learn how to run SQL queries
+  </Card>
+  <Card title="Managing Connections" icon="server" href="/koala/connections/managing-connections">
+    Set up and manage database connections
+  </Card>
+</CardGroup>
