@@ -1,0 +1,375 @@
+---
+title: "Performance Issues"
+description: "Diagnose and resolve performance problems in Koala Data Explorer"
+---
+
+## Overview
+
+This guide helps you diagnose and resolve performance issues when using Koala Data Explorer with Oracle Fusion Cloud.
+
+## Slow Query Performance
+
+### Identifying Slow Queries
+
+**Symptoms:**
+- Queries take long time to execute
+- Timeout errors
+- VS Code becomes unresponsive during query execution
+
+**Diagnostic Steps:**
+1. **Check query execution time**: Monitor timing in results panel
+2. **Compare similar queries**: See if specific queries are slower
+3. **Test with row limits**: Add `WHERE ROWNUM <= 100` to test
+
+### Common Causes of Slow Queries
+
+#### Large Result Sets
+
+**Problem:** Returning too many rows
+```sql
+-- Slow: No row limit
+SELECT * FROM ap_invoices_all;
+
+-- Better: With reasonable limit
+SELECT * FROM ap_invoices_all WHERE ROWNUM <= 1000;
+```
+
+**Solutions:**
+1. **Add row limits**: Always use `ROWNUM` or `FETCH FIRST`
+2. **Filter data**: Use specific WHERE clauses
+3. **Select specific columns**: Avoid `SELECT *`
+
+#### Missing WHERE Clauses
+
+**Problem:** Full table scans on large tables
+```sql
+-- Slow: Full table scan
+SELECT * FROM per_all_people_f;
+
+-- Better: Filtered query
+SELECT * FROM per_all_people_f 
+WHERE effective_end_date = DATE '4712-12-31'
+AND ROWNUM <= 1000;
+```
+
+#### Inefficient Joins
+
+**Problem:** Joining large tables without proper conditions
+```sql
+-- Slow: Cartesian product
+SELECT e.*, d.*
+FROM per_all_people_f e, hr_all_organization_units d;
+
+-- Better: Proper join with conditions
+SELECT e.person_number, d.name
+FROM per_all_people_f e
+JOIN per_all_assignments_m a ON e.person_id = a.person_id
+JOIN hr_all_organization_units d ON a.organization_id = d.organization_id
+WHERE e.effective_end_date = DATE '4712-12-31'
+AND a.effective_end_date = DATE '4712-12-31'
+AND ROWNUM <= 1000;
+```
+
+## Network Performance Issues
+
+### Slow Connection to Oracle Fusion
+
+**Symptoms:**
+- Long delays before queries start executing
+- Intermittent timeouts
+- Slow authentication
+
+**Causes:**
+1. **Network latency**: Distance to Oracle Fusion servers
+2. **VPN overhead**: Corporate VPN adding latency
+3. **Bandwidth limitations**: Slow internet connection
+4. **Proxy servers**: Corporate proxies adding delays
+
+**Solutions:**
+1. **Test network speed**: Use network speed tests
+2. **Check VPN**: Try without VPN if possible
+3. **Use wired connection**: Ethernet instead of WiFi
+4. **Peak hours**: Avoid peak usage times
+
+### DNS Resolution Issues
+
+**Symptoms:**
+- Initial connection delays
+- Intermittent "host not found" errors
+
+**Solutions:**
+1. **Use IP addresses**: If DNS is slow, try IP address
+2. **DNS cache**: Clear DNS cache on your machine
+3. **Alternative DNS**: Try different DNS servers (8.8.8.8, 1.1.1.1)
+
+## VS Code Performance Issues
+
+### High Memory Usage
+
+**Symptoms:**
+- VS Code becomes slow or unresponsive
+- High memory usage in Task Manager
+- System becomes sluggish
+
+**Causes:**
+1. **Large result sets**: Too much data loaded in memory
+2. **Multiple query tabs**: Many tabs with results open
+3. **Query history**: Large query history accumulation
+
+**Solutions:**
+1. **Clear results**: Close result tabs when done
+2. **Limit query results**: Use smaller row limits
+3. **Restart VS Code**: Periodically restart to clear memory
+4. **Close unused tabs**: Keep only necessary tabs open
+
+### Slow UI Response
+
+**Symptoms:**
+- Typing lag in query editor
+- Slow scrolling through results
+- Delayed button clicks
+
+**Solutions:**
+1. **Reduce result set size**: Display fewer rows
+2. **Close large results**: Clear memory-intensive results
+3. **Disable extensions**: Temporarily disable other VS Code extensions
+4. **Check system resources**: Monitor CPU and memory usage
+
+## Oracle Fusion Performance
+
+### Database-Side Performance
+
+**Common Oracle Issues:**
+1. **Peak usage times**: High load during business hours
+2. **Maintenance windows**: Scheduled maintenance affecting performance
+3. **Resource contention**: Other users running heavy queries
+
+**Solutions:**
+1. **Off-peak usage**: Run queries during low-usage times
+2. **Check announcements**: Monitor Oracle Fusion maintenance schedules
+3. **Optimize queries**: Use efficient SQL patterns
+
+### Query Optimization Techniques
+
+#### Use Indexes Effectively
+
+```sql
+-- Good: Filter on indexed columns
+SELECT * FROM ap_invoices_all 
+WHERE invoice_date >= DATE '2024-01-01'
+AND ROWNUM <= 1000;
+
+-- Avoid: Functions on indexed columns
+SELECT * FROM ap_invoices_all 
+WHERE TO_CHAR(invoice_date, 'YYYY') = '2024';
+```
+
+#### Efficient Date Filtering
+
+```sql
+-- Efficient: Date range filtering
+SELECT * FROM transactions
+WHERE transaction_date BETWEEN DATE '2024-01-01' AND DATE '2024-12-31'
+AND ROWNUM <= 1000;
+
+-- Less efficient: Date functions
+SELECT * FROM transactions
+WHERE EXTRACT(YEAR FROM transaction_date) = 2024;
+```
+
+## Data Export Performance
+
+### Slow Export Operations
+
+**Symptoms:**
+- Export operations take very long
+- Export failures due to timeouts
+- Large file generation delays
+
+**Solutions:**
+
+#### For Large Datasets:
+1. **Use CSV instead of Excel**: CSV is faster for large data
+2. **Export in batches**: Break large exports into smaller chunks
+3. **Filter before export**: Reduce data size with WHERE clauses
+
+#### Excel Export Optimization:
+```sql
+-- For Excel export (10K row limit)
+SELECT specific_columns
+FROM your_table
+WHERE filter_conditions
+AND ROWNUM <= 10000;
+```
+
+#### CSV Export for Large Data:
+```sql
+-- For large CSV exports
+SELECT specific_columns
+FROM your_table
+WHERE filter_conditions
+AND ROWNUM <= 50000; -- Adjust based on needs
+```
+
+## Performance Monitoring
+
+### Built-in Performance Tracking
+
+**Available Metrics:**
+- Query execution time (displayed in results)
+- Row count returned
+- Connection response time
+
+**How to Use:**
+1. **Monitor timing**: Check execution time for each query
+2. **Compare performance**: Track changes over time
+3. **Identify patterns**: Note which queries are consistently slow
+
+### Performance Benchmarking
+
+**Simple Benchmarks:**
+```sql
+-- Test connection speed
+SELECT 1 FROM dual;
+
+-- Test simple table access
+SELECT COUNT(*) FROM hr_all_organization_units;
+
+-- Test filtered query
+SELECT COUNT(*) FROM per_all_people_f 
+WHERE effective_end_date = DATE '4712-12-31';
+```
+
+## System Resource Optimization
+
+### Computer Performance
+
+**Recommended Specifications:**
+- **RAM**: 8GB+ (16GB recommended)
+- **CPU**: Modern multi-core processor
+- **Storage**: SSD recommended for better performance
+- **Network**: Stable broadband connection
+
+**Optimization Tips:**
+1. **Close unnecessary applications**: Free up system resources
+2. **Regular restarts**: Clear memory and temporary files
+3. **Disk cleanup**: Ensure adequate free disk space
+4. **Update drivers**: Keep network and graphics drivers current
+
+### VS Code Optimization
+
+**Settings to Consider:**
+```json
+{
+  "koalaDataExplorer.maxRows": 1000,
+  "koalaDataExplorer.timeout": 120000,
+  "koalaDataExplorer.autoRefreshDataSources": false
+}
+```
+
+**Extension Management:**
+1. **Disable unused extensions**: Reduce VS Code overhead
+2. **Update regularly**: Keep Koala and VS Code updated
+3. **Reset settings**: Restore default settings if issues persist
+
+## Troubleshooting Workflow
+
+### Step-by-Step Performance Diagnosis
+
+1. **Identify the issue**:
+   - Slow queries?
+   - Slow connections?
+   - Slow UI?
+   - Slow exports?
+
+2. **Isolate the cause**:
+   - Test simple queries first
+   - Check network connectivity
+   - Monitor system resources
+   - Compare with known working queries
+
+3. **Apply targeted solutions**:
+   - Query optimization for slow queries
+   - Network troubleshooting for connection issues
+   - Resource management for UI issues
+
+4. **Verify improvement**:
+   - Test the same operations again
+   - Monitor performance over time
+   - Document what worked
+
+### Performance Testing Queries
+
+**Connection Test:**
+```sql
+SELECT SYSDATE FROM dual;
+```
+
+**Small Table Test:**
+```sql
+SELECT COUNT(*) FROM fnd_lookup_values WHERE ROWNUM <= 1;
+```
+
+**Filtered Query Test:**
+```sql
+SELECT * FROM hr_all_organization_units 
+WHERE organization_id < 1000 
+AND ROWNUM <= 100;
+```
+
+## Best Practices for Performance
+
+### Query Writing Best Practices
+
+1. **Always use row limits**: Protect against accidentally large results
+2. **Filter early and often**: Use WHERE clauses to reduce data
+3. **Select only needed columns**: Avoid SELECT *
+4. **Use appropriate date ranges**: Don't query all historical data
+5. **Test with small datasets first**: Verify query logic before scaling up
+
+### Usage Patterns
+
+1. **Plan your queries**: Think about what data you need before writing SQL
+2. **Reuse successful patterns**: Save and reuse well-performing queries
+3. **Monitor your usage**: Be aware of peak times and system load
+4. **Batch similar work**: Group related queries together
+5. **Clean up regularly**: Close unused tabs and clear old results
+
+### Environment Considerations
+
+1. **Development vs Production**: Performance may vary between environments
+2. **Time zones**: Consider Oracle Fusion server time zone for peak usage
+3. **Geographic location**: Distance from Oracle servers affects latency
+4. **Corporate networks**: Internal networks may have different performance characteristics
+
+## Getting Performance Help
+
+### Information to Collect
+
+Before contacting support about performance issues:
+
+1. **Query details**: The specific query experiencing issues
+2. **Timing information**: How long queries take vs. expected time
+3. **System information**: Your computer specs and network type
+4. **Environment details**: Which Oracle Fusion environment
+5. **Reproducibility**: Whether issue is consistent or intermittent
+
+### Performance Logs
+
+Enable performance logging:
+1. Open VS Code settings
+2. Search for "Koala performance"
+3. Enable performance monitoring
+4. Reproduce the issue
+5. Collect timing information
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Query Optimization" icon="gauge" href="/koala/editor/writing-queries">
+    Learn to write efficient SQL queries
+  </Card>
+  <Card title="Connection Issues" icon="wifi" href="/koala/troubleshooting/connection-issues">
+    Resolve connection and network problems
+  </Card>
+</CardGroup>

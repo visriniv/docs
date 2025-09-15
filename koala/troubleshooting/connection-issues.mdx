@@ -1,0 +1,232 @@
+---
+title: "Connection Issues"
+description: "Troubleshoot Oracle Fusion Cloud connection problems"
+---
+
+## Overview
+
+This guide helps you resolve common connection issues when connecting Koala Data Explorer to Oracle Fusion Cloud.
+
+## Common Connection Problems
+
+### "Authentication Failed"
+
+#### Basic Authentication Issues
+
+**Symptoms:**
+- Login fails with correct username/password
+- "Invalid credentials" error message
+
+**Solutions:**
+1. **Verify credentials**: Double-check username and password
+2. **Check account status**: Ensure account is not locked or expired
+3. **Test in browser**: Try logging into Oracle Fusion web interface
+4. **Contact administrator**: Verify account has appropriate permissions
+
+#### OAuth PKCE Issues
+
+**Symptoms:**
+- OAuth flow fails during authentication
+- Browser doesn't redirect back to VS Code
+
+**Solutions:**
+1. **Check client configuration**: Verify OAuth client ID and settings
+2. **Clear browser cache**: Remove cached OAuth tokens
+3. **Verify redirect URL**: Ensure `vscode://btss.koala-data-explorer/oauth-callback` is configured
+4. **Network restrictions**: Check if corporate firewall blocks OAuth flows
+
+### "Connection Timeout"
+
+**Symptoms:**
+- Connection takes too long and fails
+- Timeout error messages
+
+**Solutions:**
+1. **Check network connectivity**: Verify internet connection
+2. **VPN issues**: Ensure VPN is connected if required
+3. **Firewall settings**: Verify HTTPS traffic is allowed
+4. **Increase timeout**: Adjust timeout settings in extension preferences
+5. **Try different network**: Test on different network connection
+
+### "Host Not Found" / "Invalid URL"
+
+**Symptoms:**
+- Cannot resolve Oracle Fusion hostname
+- "Host not found" error
+
+**Solutions:**
+1. **Verify URL format**: Ensure URL starts with `https://`
+2. **Check instance URL**: Confirm correct Oracle Fusion instance URL
+3. **DNS issues**: Try accessing URL in browser first
+4. **Corporate network**: May need to use internal URLs on corporate networks
+
+## Network-Related Issues
+
+### Proxy Settings
+
+If your organization uses a proxy:
+
+1. **VS Code proxy settings**: Configure in VS Code settings
+2. **System proxy**: Ensure system proxy is configured correctly
+3. **Authentication**: Proxy may require separate authentication
+4. **Bypass list**: Add Oracle Fusion domains to proxy bypass
+
+### SSL/TLS Issues
+
+**Symptoms:**
+- SSL certificate errors
+- "Insecure connection" warnings
+
+**Solutions:**
+1. **Certificate verification**: Ensure valid SSL certificates
+2. **Corporate certificates**: Install corporate root certificates
+3. **TLS version**: Verify TLS 1.2+ is supported
+4. **Contact IT**: May need corporate certificate configuration
+
+## Permission Issues
+
+### Database Access
+
+**Symptoms:**
+- Connection succeeds but queries fail
+- "Insufficient privileges" errors
+
+**Solutions:**
+1. **Verify SELECT permissions**: Ensure user has SELECT rights on required tables
+2. **Schema access**: Check access to specific schemas
+3. **Role assignments**: Verify proper Oracle Fusion roles are assigned
+4. **Data security**: Check if row-level security policies apply
+
+### Application Access
+
+**Symptoms:**
+- Cannot access specific Oracle Fusion modules
+- Limited data visibility
+
+**Solutions:**
+1. **Module licenses**: Verify licenses for required modules
+2. **User provisioning**: Ensure user is provisioned for specific applications
+3. **Security roles**: Check Oracle Fusion security role assignments
+4. **Data access sets**: Verify appropriate data access sets are assigned
+
+## Environment-Specific Issues
+
+### Development vs Production
+
+**Common differences:**
+- Different authentication methods
+- Network restrictions
+- Data access permissions
+- URL formats
+
+**Solutions:**
+1. **Environment-specific connections**: Create separate connections for each environment
+2. **Check documentation**: Verify environment-specific connection details
+3. **Contact administrators**: Different environments may have different requirements
+
+### Multi-tenant Environments
+
+**Issues:**
+- Wrong tenant/pod connections
+- Cross-tenant data access restrictions
+
+**Solutions:**
+1. **Verify tenant URL**: Ensure connecting to correct tenant
+2. **Tenant-specific authentication**: May require different credentials per tenant
+3. **Data isolation**: Understand tenant data boundaries
+
+## Performance Issues
+
+### Slow Connections
+
+**Symptoms:**
+- Connection takes long time to establish
+- Queries run slowly
+
+**Solutions:**
+1. **Network latency**: Check ping times to Oracle Fusion
+2. **Geographic location**: Connection speed varies by location
+3. **Peak usage times**: Avoid peak usage periods
+4. **Query optimization**: Use efficient queries with appropriate limits
+
+### Connection Drops
+
+**Symptoms:**
+- Frequent disconnections
+- Need to reconnect often
+
+**Solutions:**
+1. **Network stability**: Check for network interruptions
+2. **Idle timeouts**: Oracle may disconnect idle sessions
+3. **Firewall timeouts**: Corporate firewalls may drop long connections
+4. **Keep-alive settings**: Configure connection keep-alive if available
+
+## Diagnostic Steps
+
+### Basic Diagnostics
+
+1. **Test in browser**: Try accessing Oracle Fusion in web browser
+2. **Network connectivity**: Ping Oracle Fusion hostname
+3. **Port accessibility**: Verify HTTPS (443) port is accessible
+4. **DNS resolution**: Verify hostname resolves correctly
+
+### Advanced Diagnostics
+
+1. **Network traces**: Use network monitoring tools
+2. **SSL handshake**: Verify SSL negotiation succeeds
+3. **Authentication flow**: Debug OAuth or SAML flows
+4. **Log analysis**: Check VS Code and extension logs
+
+## Getting Help
+
+### Before Contacting Support
+
+Gather this information:
+1. **Error messages**: Copy exact error text
+2. **Connection details**: URL, authentication type (without passwords)
+3. **Network environment**: Corporate network, VPN status
+4. **Timing**: When issue started, frequency
+5. **Screenshots**: Visual error messages
+
+### Log Collection
+
+Enable detailed logging:
+1. Open VS Code settings
+2. Search for "Koala logging"
+3. Enable debug logging
+4. Reproduce the issue
+5. Collect logs from VS Code Output panel
+
+### Contact Information
+
+- **Email Support**: support@btsscorp.com
+- **Include**: Error details, environment info, logs
+- **Response Time**: 1-2 business days
+
+## Prevention Tips
+
+### Best Practices
+
+1. **Save working configurations**: Export connection settings that work
+2. **Test regularly**: Verify connections work before important tasks
+3. **Keep credentials current**: Update passwords before expiration
+4. **Monitor announcements**: Watch for Oracle Fusion maintenance windows
+5. **Backup plans**: Have alternative access methods available
+
+### Regular Maintenance
+
+1. **Update extension**: Keep Koala Data Explorer updated
+2. **Refresh tokens**: Refresh OAuth tokens periodically
+3. **Test connections**: Verify connections work after system updates
+4. **Review permissions**: Ensure access rights remain current
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Query Errors" icon="exclamation-triangle" href="/koala/troubleshooting/query-errors">
+    Troubleshoot SQL query execution issues
+  </Card>
+  <Card title="Performance Issues" icon="gauge" href="/koala/troubleshooting/performance-issues">
+    Resolve performance and speed problems
+  </Card>
+</CardGroup>

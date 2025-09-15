@@ -1,0 +1,345 @@
+---
+title: "Query Errors"
+description: "Troubleshoot SQL query execution errors and issues"
+---
+
+## Overview
+
+This guide helps you resolve common SQL query errors when using Koala Data Explorer with Oracle Fusion Cloud.
+
+## Common Oracle Errors
+
+### ORA-00942: Table or View Does Not Exist
+
+**Symptoms:**
+- Query fails with "table or view does not exist"
+- Table shows in Data Sources but query fails
+
+**Causes:**
+1. **Schema qualification**: Table exists in different schema
+2. **Permissions**: No SELECT permission on table
+3. **Typos**: Misspelled table or column names
+4. **Case sensitivity**: Oracle is case-sensitive with quoted identifiers
+
+**Solutions:**
+1. **Use schema prefix**: `SCHEMA_NAME.TABLE_NAME`
+2. **Check permissions**: Verify SELECT access with DBA
+3. **Verify spelling**: Double-check table and column names
+4. **Use Data Sources**: Drag table names from explorer to avoid typos
+
+### ORA-00936: Missing Expression
+
+**Symptoms:**
+- "Missing expression" error
+- SQL syntax appears correct
+
+**Common Causes:**
+1. **Missing SELECT columns**: Empty SELECT clause
+2. **Trailing commas**: Extra comma after last column
+3. **Missing FROM clause**: SELECT without FROM
+4. **Reserved words**: Using Oracle reserved words as identifiers
+
+**Solutions:**
+```sql
+-- Bad: Trailing comma
+SELECT employee_id, first_name, FROM employees;
+
+-- Good: No trailing comma  
+SELECT employee_id, first_name FROM employees;
+
+-- Bad: Missing expression
+SELECT FROM employees;
+
+-- Good: Specify columns
+SELECT * FROM employees;
+```
+
+### ORA-01017: Invalid Username/Password
+
+**Symptoms:**
+- Authentication fails during query execution
+- Previously working queries now fail
+
+**Solutions:**
+1. **Refresh connection**: Reconnect to Oracle Fusion
+2. **Update credentials**: Password may have expired
+3. **Check session**: Session may have timed out
+4. **Re-authenticate**: Use connection manager to re-authenticate
+
+### ORA-00904: Invalid Identifier
+
+**Symptoms:**
+- Column name not recognized
+- "Invalid identifier" error
+
+**Causes:**
+1. **Column doesn't exist**: Column name is incorrect
+2. **Case sensitivity**: Quoted identifiers are case-sensitive
+3. **Reserved words**: Using Oracle reserved words
+4. **Special characters**: Invalid characters in names
+
+**Solutions:**
+1. **Verify column names**: Check in Data Sources explorer
+2. **Use proper quoting**: `"Column Name"` for case-sensitive names
+3. **Avoid reserved words**: Use different names or quote them
+4. **Check spelling**: Ensure correct column spelling
+
+## Query Syntax Issues
+
+### JOIN Problems
+
+**Common JOIN errors:**
+
+```sql
+-- Bad: Missing JOIN condition
+SELECT e.first_name, d.department_name
+FROM employees e
+JOIN departments d;
+
+-- Good: Proper JOIN condition
+SELECT e.first_name, d.department_name  
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;
+
+-- Bad: Ambiguous column reference
+SELECT employee_id, department_id
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;
+
+-- Good: Qualified column names
+SELECT e.employee_id, e.department_id
+FROM employees e
+JOIN departments d ON e.department_id = d.department_id;
+```
+
+### Date Format Issues
+
+**Common date problems:**
+
+```sql
+-- Bad: Incorrect date format
+SELECT * FROM employees WHERE hire_date > '2023-01-01';
+
+-- Good: Proper Oracle date format
+SELECT * FROM employees WHERE hire_date > DATE '2023-01-01';
+
+-- Alternative: TO_DATE function
+SELECT * FROM employees WHERE hire_date > TO_DATE('2023-01-01', 'YYYY-MM-DD');
+```
+
+### NULL Handling
+
+**NULL comparison issues:**
+
+```sql
+-- Bad: Won't find NULL values
+SELECT * FROM employees WHERE manager_id = NULL;
+
+-- Good: Proper NULL check
+SELECT * FROM employees WHERE manager_id IS NULL;
+
+-- Bad: NULL in calculations
+SELECT salary + commission FROM employees;
+
+-- Good: Handle NULLs
+SELECT salary + NVL(commission, 0) FROM employees;
+```
+
+## Performance-Related Errors
+
+### Query Timeout
+
+**Symptoms:**
+- Query runs for long time then fails
+- Timeout error messages
+
+**Solutions:**
+1. **Add row limits**: Use `WHERE ROWNUM <= 1000`
+2. **Optimize WHERE clauses**: Filter data more effectively
+3. **Check indexes**: Ensure filtered columns are indexed
+4. **Increase timeout**: Adjust timeout in extension settings
+
+**Example optimization:**
+```sql
+-- Slow: No row limit
+SELECT * FROM large_table WHERE status = 'ACTIVE';
+
+-- Better: With row limit
+SELECT * FROM large_table 
+WHERE status = 'ACTIVE' 
+AND ROWNUM <= 1000;
+
+-- Best: Most selective filter first
+SELECT * FROM large_table 
+WHERE creation_date >= SYSDATE - 7
+AND status = 'ACTIVE'
+AND ROWNUM <= 1000;
+```
+
+### Memory Issues
+
+**Symptoms:**
+- Out of memory errors
+- VS Code becomes unresponsive
+
+**Solutions:**
+1. **Reduce result size**: Select fewer columns
+2. **Add row limits**: Limit rows returned
+3. **Avoid SELECT ***: Select only needed columns
+4. **Process in batches**: Break large queries into smaller parts
+
+## Data Type Issues
+
+### Number Format Errors
+
+**Common problems:**
+```sql
+-- Bad: Incorrect number format
+SELECT * FROM products WHERE price = '19.99';
+
+-- Good: Proper number comparison
+SELECT * FROM products WHERE price = 19.99;
+
+-- String to number conversion
+SELECT * FROM products WHERE TO_NUMBER(price_text) > 100;
+```
+
+### Character Set Issues
+
+**Symptoms:**
+- Special characters display incorrectly
+- Encoding errors
+
+**Solutions:**
+1. **Check database encoding**: Verify Oracle character set
+2. **Use proper functions**: CONVERT or TRANSLATE functions
+3. **Escape special characters**: Use proper escaping for special chars
+
+## Bind Variable Errors
+
+### Parameter Issues
+
+**Common problems:**
+1. **Undefined parameters**: Using `:param` without defining value
+2. **Type mismatches**: Parameter type doesn't match column type
+3. **Missing parameters**: Not providing all required parameters
+
+**Solutions:**
+```sql
+-- Ensure parameter types match
+SELECT * FROM employees WHERE employee_id = :emp_id; -- emp_id should be number
+
+-- Handle optional parameters
+SELECT * FROM employees 
+WHERE (:dept_id IS NULL OR department_id = :dept_id);
+```
+
+## Row Limit Errors
+
+### Export Limitations
+
+**Symptoms:**
+- "Too many rows" errors
+- Excel export not available
+
+**Solutions:**
+1. **Add ROWNUM limits**: `WHERE ROWNUM <= 10000` for Excel compatibility
+2. **Use CSV for large datasets**: CSV supports more rows than Excel export
+3. **Filter data**: Use more restrictive WHERE clauses
+4. **Process in batches**: Split large results into multiple queries
+
+## Debugging Strategies
+
+### Systematic Approach
+
+1. **Start simple**: Begin with basic SELECT * FROM table
+2. **Add complexity gradually**: Add WHERE, JOIN, ORDER BY one at a time
+3. **Test components**: Test each part of complex queries separately
+4. **Use EXPLAIN PLAN**: Check query execution plan
+
+### Common Debugging Techniques
+
+```sql
+-- Test table access
+SELECT COUNT(*) FROM table_name;
+
+-- Verify column names
+SELECT * FROM table_name WHERE ROWNUM <= 1;
+
+-- Test JOIN conditions
+SELECT COUNT(*) FROM table1 t1
+JOIN table2 t2 ON t1.id = t2.id;
+
+-- Check data types
+SELECT column_name, data_type FROM user_tab_columns 
+WHERE table_name = 'YOUR_TABLE';
+```
+
+## Error Message Reference
+
+### Understanding Oracle Error Messages
+
+Oracle error messages follow this pattern:
+- **ORA-#####**: Oracle error number
+- **Description**: Brief error description
+- **Cause**: What caused the error
+- **Action**: Suggested resolution
+
+### Most Common Errors
+
+| Error Code | Description | Common Cause |
+|------------|-------------|--------------|
+| ORA-00942 | Table or view does not exist | Missing permissions or wrong schema |
+| ORA-00904 | Invalid identifier | Wrong column name |
+| ORA-00936 | Missing expression | Syntax error in SELECT |
+| ORA-01017 | Invalid username/password | Authentication expired |
+| ORA-00001 | Unique constraint violated | Duplicate key values |
+| ORA-01400 | Cannot insert NULL | Required field is NULL |
+
+## Getting Help
+
+### Before Reporting Query Errors
+
+Collect this information:
+1. **Complete error message**: Copy full Oracle error text
+2. **SQL query**: The exact query that failed
+3. **Table structure**: Column names and types
+4. **Sample data**: Example of data you're querying
+5. **Expected result**: What you expected to happen
+
+### Query Optimization Help
+
+For performance issues:
+1. **Execution plan**: Use EXPLAIN PLAN if available
+2. **Row counts**: Table sizes and expected result size
+3. **Index information**: Available indexes on tables
+4. **Timing**: How long query takes to fail
+
+## Best Practices
+
+### Writing Robust Queries
+
+1. **Always use row limits**: Protect against large result sets
+2. **Qualify column names**: Use table aliases for clarity
+3. **Handle NULLs explicitly**: Use IS NULL, IS NOT NULL, NVL
+4. **Test incrementally**: Build complex queries step by step
+5. **Use bind variables**: For dynamic values
+
+### Error Prevention
+
+1. **Use Data Sources explorer**: Drag table/column names to avoid typos
+2. **Start with simple queries**: Test basic connectivity first
+3. **Understand your data**: Know table structures and relationships
+4. **Save working queries**: Keep copies of successful queries
+5. **Document complex logic**: Add comments to complex queries
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Performance Issues" icon="gauge" href="/koala/troubleshooting/performance-issues">
+    Resolve query performance problems
+  </Card>
+  <Card title="Connection Issues" icon="wifi" href="/koala/troubleshooting/connection-issues">
+    Fix connection and authentication problems
+  </Card>
+</CardGroup>
