@@ -13,7 +13,7 @@ Koala Data Explorer offers both free and paid modes to suit different needs.
 |---------|-----------|-----------|
 | **Query Tabs** | 1 | Unlimited |
 | **Max Rows** | 50 (locked) | Unlimited |
-| **Authentication** | Basic only | Basic, OAuth, SSO |
+| **Authentication** | Basic only | Basic, OAuth PKCE, Windows SSO |
 | **Data Sources Explorer** | ❌ | ✅ |
 | **Excel Export** | ❌ | ✅ |
 | **IntelliSense** | ❌ | ✅ |
@@ -60,7 +60,7 @@ Free mode has these restrictions:
 
 ❌ **No Advanced Auth**
 - Basic authentication only
-- No OAuth or SSO support
+- No OAuth PKCE or Windows SSO support
 
 ❌ **No Premium Features**
 - No data sources explorer
@@ -81,10 +81,10 @@ Free mode has these restrictions:
 ### Advanced Authentication
 
 🔐 **Enterprise Security**
-- **OAuth 2.0 PKCE**: Secure token-based authentication
-- **SSO Integration**: Single Sign-On with IDCS
+- **OAuth 2.0 PKCE**: Secure token-based authentication with Oracle IAM
+- **Windows SSO**: Native Windows Single Sign-On using WebView2
 - **Session Management**: Persistent secure sessions
-- **Multi-factor Authentication**: When configured in IDCS
+- **Multi-factor Authentication**: Supported through enterprise SSO
 
 ### Data Exploration
 

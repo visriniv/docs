@@ -41,6 +41,7 @@
             "pages": [
               "koala/connections/basic-auth",
               "koala/connections/oauth-sso",
+              "koala/connections/windows-sso",
               "koala/connections/managing-connections"
             ]
           },

@@ -8,6 +8,7 @@ Koala Data Explorer is a VS Code extension that provides:
 
 - Professional SQL editor with syntax highlighting
 - Direct connection to Oracle Fusion Cloud
+- Multiple authentication methods (Basic, OAuth PKCE, Windows SSO)
 - Export capabilities (CSV, JSON, Excel)
 - Query performance monitoring
 - Multiple environment management

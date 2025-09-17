@@ -161,6 +161,61 @@ If your organization uses a proxy:
 3. **Firewall timeouts**: Corporate firewalls may drop long connections
 4. **Keep-alive settings**: Configure connection keep-alive if available
 
+## Windows SSO Issues (Windows Only)
+
+### Prerequisites Problems
+
+**".NET Runtime missing"**
+- Accept the download prompt when shown by the extension
+- Manually install .NET 8 Runtime from Microsoft if automatic download fails
+- Restart VS Code after .NET installation
+
+**"WebView2 not found"**
+- Install Microsoft Edge WebView2 runtime from Microsoft
+- Restart VS Code after WebView2 installation
+- Verify Windows version is 10 (1909+) or Windows 11
+
+### Helper Download Issues
+
+**"Helper download failed"**
+- Check internet connection and retry
+- Verify corporate firewall allows downloads from Microsoft
+- Contact IT support if downloads are consistently blocked
+- Try connecting again after ensuring network stability
+
+**"Architecture mismatch"**
+- Extension automatically detects x64/ARM64 architecture
+- If issues persist, restart VS Code and try again
+- Contact support if architecture detection fails
+
+### Authentication Problems
+
+**"SSO dialog won't open"**
+- Restart VS Code completely
+- Verify WebView2 runtime is properly installed
+- Check antivirus software isn't blocking the helper application
+- Ensure Windows user has permission to run applications
+
+**"Authentication timeout"**
+- Check with Oracle administrator about SSO configuration
+- Verify network connectivity to Oracle Fusion is stable
+- Try authentication again after a few minutes
+- Confirm SSO is working in regular Edge browser
+
+**"Helper busy" error**
+- Wait 10-15 seconds and try connecting again
+- Restart VS Code if the issue persists
+- Check Task Manager for stuck "Koala.SSO.Helper.exe" processes
+- End stuck processes manually if found
+
+### Performance Issues
+
+**"Helper process slow to start"**
+- First-time download of helper (~25MB) takes time
+- Subsequent connections should be faster
+- Check available disk space and network speed
+- Consider using different authentication method if consistently slow
+
 ## Diagnostic Steps
 
 ### Basic Diagnostics
