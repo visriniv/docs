@@ -1,63 +1,36 @@
 ---
-title: "Windows SSO Authentication"
-description: "Native Windows Single Sign-On using WebView2 for seamless Oracle Fusion Cloud integration"
+title: "SSO Authentication (Windows)"
+description: "Simple Single Sign-On integration with Oracle Fusion Cloud SSO"
 ---
 
 ## Overview
 
-Windows SSO provides native Single Sign-On authentication for Oracle Fusion Cloud using Microsoft Edge WebView2 technology. This Windows-only feature offers seamless integration with your enterprise SSO setup without requiring complex OAuth configuration.
+Koala Data Explorer supports connecting to Oracle Fusion Cloud using your organization's existing SAML-based SSO. This is different from OAuth PKCE authentication - it works directly with Oracle Fusion's built-in SSO without requiring additional setup.
 
 <Note>
-  Windows SSO authentication requires a paid license and is available only on Windows 10/11. See [Free vs Paid Features](/koala/licensing/free-vs-paid) for more information.
+  SSO authentication requires a paid license and is currently available only on Windows. See [Free vs Paid Features](/koala/licensing/free-vs-paid) for more information.
 </Note>
 
-## Benefits of Windows SSO
+## Why Use SSO?
 
-### Seamless Authentication
-- **Native Windows integration**: Uses WebView2 for true browser authentication
-- **Zero configuration**: No OAuth client setup required
-- **Enterprise SSO support**: Works with any SSO configured in Oracle Fusion
-- **Multi-factor authentication**: Supports MFA when configured
+### Simple Setup
+- **No OAuth configuration required**: Works with your existing Oracle Fusion SSO
+- **No administrator setup**: Uses SSO already configured in Oracle Fusion
+- **One-click authentication**: Just enter your Oracle URL and connect
 
-### Enhanced User Experience
-- **One-click connection**: Simple connection setup
-- **Automatic authentication**: Leverages existing Windows login sessions
-- **Native dialogs**: Familiar Windows authentication experience
-- **Session persistence**: Maintains authentication across VS Code sessions
+### Enterprise Integration
+- **Uses your existing SSO**: Works with whatever SSO method your organization uses
+- **Multi-factor authentication**: Supports MFA when configured in your SSO
+- **Familiar experience**: Same login process you use for Oracle Fusion web portal
 
-### Enterprise Compatibility
-- **Windows 10/11 support**: Modern Windows platform requirement
-- **.NET 8 runtime**: Automatic download and installation when needed
-- **Architecture support**: Supports both x64 and ARM64 Windows systems
-- **WebView2 runtime**: Uses Microsoft Edge WebView2 for compatibility
+## Requirements
 
-## Technical Requirements
+- **Windows 10/11**: Currently Windows-only
+- **Runtime dependencies**: Extension automatically downloads required components when needed
 
-### System Prerequisites
+## Setting Up SSO
 
-- **Operating System**: Windows 10 (version 1909+) or Windows 11
-- **.NET 8 Runtime**: Automatically downloaded if missing (~25MB one-time download)
-- **WebView2 Runtime**: Microsoft Edge WebView2 (usually pre-installed on modern Windows)
-- **Oracle Fusion**: Enterprise SSO must be configured in your Oracle Fusion instance
-
-### Architecture Support
-
-- **x64 (Intel/AMD)**: Full support for 64-bit Intel/AMD processors
-- **ARM64**: Native support for ARM64 Windows devices (Surface Pro X, etc.)
-- **Automatic detection**: Extension automatically downloads correct architecture
-
-## Setting Up Windows SSO
-
-### Step 1: Verify Prerequisites
-
-Before setting up Windows SSO:
-
-1. **Confirm Windows version**: Windows 10 (1909+) or Windows 11
-2. **Check WebView2**: Usually pre-installed, but extension will validate
-3. **Verify Oracle SSO**: Ensure your Oracle Fusion instance has SSO configured
-4. **Network access**: Confirm access to Oracle Fusion Cloud
-
-### Step 2: Create Windows SSO Connection
+### Step 1: Create SSO Connection
 
 1. **Open Connection Manager**: Click "Manage Connections" in the query editor
 2. **Add new connection**: Click "Add Connection"
@@ -65,179 +38,58 @@ Before setting up Windows SSO:
 4. **Enter connection details**:
    - **Connection Name**: Descriptive name (e.g., "Production SSO")
    - **Host URL**: Your Oracle Fusion Cloud instance URL
-5. **Save connection**: Click "Save" to store the configuration
+5. **Save connection**: Click "Save"
 
-### Step 3: First-Time Setup
+### Step 2: Connect
 
-When connecting for the first time:
+1. **Select your SSO connection** from the dropdown
+2. **Click Connect**: The extension handles the rest
+3. **Complete SSO login**: Use your normal Oracle Fusion login process
+4. **Start querying**: You're connected and ready to query data
 
-1. **Automatic download**: Extension downloads SSO helper (~25MB) if needed
-2. **Architecture detection**: Automatically selects x64 or ARM64 version
-3. **.NET runtime check**: Prompts to download .NET 8 if missing
-4. **Helper installation**: One-time setup process
+<Note>
+  On first use, the extension may download required components (this happens automatically).
+</Note>
 
-### Step 4: Authenticate
+## How It Works
 
-1. **Select connection**: Choose your Windows SSO connection from dropdown
-2. **Click Connect**: Initiate the SSO authentication process
-3. **Native authentication**: Windows dialog opens for SSO login
-4. **Complete authentication**: Follow your organization's SSO process
-5. **Automatic completion**: Returns to VS Code when authentication succeeds
+SSO authentication connects you to Oracle Fusion using the same login process you use in your web browser. The extension opens a secure login window where you complete your organization's SSO process.
 
-## Authentication Flow
+## BIP Catalog Setup
 
-### How Windows SSO Works
+Like OAuth PKCE connections, SSO connections require manual BIP catalog deployment:
 
-1. **Platform validation**: Confirms Windows platform and WebView2 availability
-2. **Helper launch**: Starts native WebView2 helper application
-3. **CSRF token retrieval**: Gets Anti-CSRF token from Oracle Fusion
-4. **WebView2 navigation**: Opens native browser control for Oracle login
-5. **SSO authentication**: User completes organization's SSO process
-6. **Token extraction**: Retrieves access token via Oracle's Token Relay
-7. **Secure storage**: Stores token securely in VS Code credential storage
+1. **Click "Deploy to BIP"** in the query editor after connecting
+2. **Download the catalog file** 
+3. **Send to your Oracle administrator** for deployment to `/Custom/Koala/`
 
-### WebView2 Technology
-
-- **Native browser**: Uses actual Microsoft Edge browser engine
-- **Full compatibility**: Supports all web technologies and SSO methods
-- **Security**: Inherits all Edge security features and updates
-- **Performance**: Native performance without iframe limitations
-
-## BIP Catalog Management
-
-<Warning>
-Windows SSO connections cannot automatically deploy the required BIP catalog.
-</Warning>
-
-After successful authentication:
-
-1. **Deploy to BIP button**: Click the button in the query editor
-2. **Download catalog option**: Select "Download Catalog"
-3. **Save Koala.catalog file**: Save the file to your system
-4. **Contact administrator**: Send the file to your Oracle administrator
-5. **Request deployment**: Ask for deployment to `/Custom/Koala/` in the BIP catalog
-
-## Troubleshooting Windows SSO
+## Troubleshooting
 
 ### Common Issues
 
-**".NET Runtime missing"**
-- **Solution**: Accept the download prompt when shown
-- **Manual installation**: Download .NET 8 Runtime from Microsoft
-- **Verification**: Extension will validate installation
-
-**"Helper download failed"**
-- **Check internet connection**: Ensure stable internet access
-- **Retry connection**: Try connecting again after a few moments
-- **Firewall settings**: Verify firewall allows downloads
-- **Corporate network**: May need IT assistance for downloads
+**"Runtime components missing"**
+- Accept the download prompt when shown
+- Restart VS Code after installation
 
 **"SSO dialog won't open"**
-- **Restart VS Code**: Close and reopen VS Code completely
-- **Check WebView2**: Verify WebView2 runtime is installed
-- **User permissions**: Ensure user has permission to run applications
-- **Antivirus software**: Temporarily disable if blocking helper
+- Restart VS Code
+- Check with IT if antivirus software is blocking the connection
 
 **"Authentication timeout"**
-- **Check SSO configuration**: Verify SSO is properly configured in Oracle
-- **Network connectivity**: Ensure stable connection to Oracle Fusion
-- **Try again**: Some SSO systems require multiple attempts
-- **Contact administrator**: Verify SSO setup with Oracle admin
+- Verify SSO is working in your regular browser
+- Contact your Oracle administrator if SSO login fails
 
-**"Helper busy" error**
-- **Wait and retry**: Helper may be processing previous request
-- **Restart VS Code**: Close VS Code and restart if persists
-- **Process cleanup**: Check Task Manager for stuck helper processes
+## When to Use SSO vs OAuth PKCE
 
-### Advanced Troubleshooting
+### Use SSO When:
+- Your team uses Windows computers
+- You want the simplest setup (no OAuth configuration needed)
+- Your Oracle Fusion already has SSO configured
 
-**Helper process issues**
-- **Task Manager**: Check for stuck "Koala.SSO.Helper.exe" processes
-- **Manual cleanup**: End stuck processes if found
-- **Restart VS Code**: Full restart after cleanup
-
-**WebView2 problems**
-- **Update WebView2**: Install latest WebView2 runtime from Microsoft
-- **Repair installation**: Use Windows Apps & Features to repair WebView2
-- **Reinstall**: Uninstall and reinstall WebView2 if necessary
-
-**Oracle Fusion SSO issues**
-- **Test in browser**: Verify SSO works in regular Edge browser
-- **Check configuration**: Confirm SSO is enabled for your user account
-- **Administrator help**: Contact Oracle administrator for SSO debugging
-
-## Performance and Security
-
-### Performance Characteristics
-
-- **Fast authentication**: Native WebView2 provides optimal performance
-- **Minimal overhead**: Helper process only runs during authentication
-- **Memory efficient**: Helper automatically closes after authentication
-- **Network optimized**: Direct communication with Oracle Fusion
-
-### Security Features
-
-- **Native security**: Inherits all WebView2/Edge security features
-- **Secure token storage**: Tokens stored in VS Code's secure credential storage
-- **Process isolation**: Helper runs in separate process for security
-- **No credential exposure**: Credentials never stored or logged by extension
-
-### Privacy Considerations
-
-- **Local processing**: All authentication happens locally on your machine
-- **No external services**: Direct communication with Oracle Fusion only
-- **Minimal logging**: Debug logs contain no sensitive information
-- **Clean up**: Helper automatically removes temporary files
-
-## Comparison with Other Authentication Methods
-
-### Windows SSO vs OAuth PKCE
-
-| Feature | Windows SSO | OAuth PKCE |
-|---------|-------------|------------|
-| **Platform Support** | Windows only | Cross-platform |
-| **Setup Complexity** | Minimal | Requires OAuth configuration |
-| **User Experience** | Native Windows dialogs | Browser-based |
-| **SSO Integration** | Any SSO method | SAML/OAuth providers only |
-| **Administrator Setup** | None required | OAuth client registration needed |
-
-### When to Use Windows SSO
-
-**Choose Windows SSO when**:
-- Your team uses Windows exclusively
-- You want minimal configuration overhead
-- Your Oracle SSO setup is complex or proprietary
-- You prefer native Windows authentication experience
-- OAuth client registration is not feasible
-
-**Choose OAuth PKCE when**:
-- You need cross-platform support (Mac/Linux)
-- Your organization has standardized OAuth flows
-- You have existing OAuth infrastructure
-- You need centralized authentication management
-
-## Best Practices
-
-### Setup Recommendations
-
-1. **Test environment first**: Verify SSO works in test environment before production
-2. **Coordinate with IT**: Ensure IT team is aware of helper download requirements
-3. **Document connections**: Keep clear naming for different environments
-4. **Regular updates**: Keep Windows and WebView2 updated for security
-
-### Usage Guidelines
-
-1. **One connection per environment**: Create separate connections for Dev/Test/Prod
-2. **Regular re-authentication**: Some SSO systems require periodic re-authentication
-3. **Clean disconnection**: Always disconnect when finished to free resources
-4. **Monitor sessions**: Be aware of SSO session timeouts
-
-### Security Best Practices
-
-1. **Keep systems updated**: Regularly update Windows, .NET, and WebView2
-2. **Use secure networks**: Avoid public WiFi for SSO authentication
-3. **Log out properly**: Complete SSO logout process when finished
-4. **Monitor access**: Review Oracle access logs regularly
+### Use OAuth PKCE When:
+- You need cross-platform support (Mac/Linux users)
+- Your organization requires OAuth-based authentication
+- You need centralized OAuth management
 
 ## Next Steps
 
