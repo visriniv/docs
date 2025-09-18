@@ -1,0 +1,189 @@
+---
+title: "Logging & Diagnostics"
+description: "Enable diagnostic logging for troubleshooting and support"
+---
+
+## Overview
+
+When you encounter issues with Koala Data Explorer, enabling diagnostic logs helps identify problems and collect information for support. The extension includes a built-in log viewer for easy troubleshooting.
+
+<Warning>
+  Logging may impact performance and should be disabled when not troubleshooting.
+</Warning>
+
+## Quick Start - Log Viewer
+
+**🎯 Easiest Method:**
+
+1. **Enable logging** in VS Code settings (see below)
+2. **Open Koala Data Explorer**
+3. **Click the "Show Debug Logs" button** 📊 in the top toolbar
+4. **Reproduce the problem** while watching the logs
+
+The built-in log viewer provides:
+- Real-time updates as events happen
+- Professional interface with timestamps
+- Export to file for support tickets
+- Clear logs to focus on current issues
+
+## When to Enable Logging
+
+Enable logging when experiencing:
+
+- **Connection Issues**: Authentication failures, timeouts
+- **Query Problems**: Execution errors, syntax issues
+- **Data Issues**: Missing data sources, export problems
+- **Performance Issues**: Slow queries, freezing
+- **General Issues**: Extension crashes, unexpected behavior
+
+## How to Enable Logging
+
+### Step 1: Enable in Settings
+
+1. **Open VS Code Settings**:
+   - Press `Ctrl+,` (Windows/Linux) or `Cmd+,` (Mac)
+   - Or go to **File** → **Preferences** → **Settings**
+
+2. **Search for "Koala Data Explorer Logging"**
+
+3. **Configure settings**:
+   - ✅ Check **"Koala Data Explorer: Logging: Enabled"**
+   - 📊 Set **"Koala Data Explorer: Logging: Level"** to **"DEBUG"**
+
+### Step 2: Use Log Viewer
+
+1. **Open Koala Data Explorer**
+2. **Click "Show Debug Logs" button** 📊 in toolbar
+3. **Log viewer panel opens** showing real-time information
+4. **Reproduce the issue** while monitoring logs
+
+## What to Look For
+
+### Connection Issues
+
+Look for entries containing:
+- `[CONNECTION_MANAGER] Connection failed`
+- `[AUTH] Authentication error`
+- HTTP error codes: `401`, `403`, `500`
+- Network timeout messages
+
+### Query Execution Problems
+
+Look for entries containing:
+- `[QUERY_EXECUTION] Query failed`
+- `[BIP_SERVICE] SOAP error`
+- SQL syntax error messages
+- Permission denied errors
+
+### Error Indicators
+
+- **ERROR level** entries (red text)
+- **WARN level** entries (yellow text)
+- Stack traces showing detailed error information
+- HTTP status codes indicating problems
+
+## Log Levels
+
+- **ERROR**: Critical problems preventing functionality
+- **WARN**: Issues that might cause problems but don't stop operation
+- **INFO**: General information about extension operations
+- **DEBUG**: Detailed diagnostic information (recommended for troubleshooting)
+
+## Collecting Logs for Support
+
+### Using the Log Viewer
+
+1. **Enable logging** and reproduce the problem
+2. **In the log viewer panel**:
+   - Click **"Export Logs"** to save to file
+   - Or select and copy relevant log entries
+3. **Attach exported file** to support email
+
+### Support Information
+
+When contacting [support](https://btsscorp.freshdesk.com/support/tickets/new), include:
+
+- **What you were trying to do** (step-by-step)
+- **What happened** (exact error message or behavior)
+- **When it started** (after update, always happening, etc.)
+- **Connection type** (Basic Auth, OAuth PKCE, Windows SSO)
+- **Environment** (Oracle Fusion instance details if known)
+- **Exported log file** from the log viewer
+
+## Advanced Log Access
+
+### Extension Host Logs
+
+For power users who need direct access:
+
+1. Press `Ctrl+Shift+P` / `Cmd+Shift+P`
+2. Type "Developer: Show Logs"
+3. Select **"Extension Host"**
+4. Look for entries starting with `[KOALA]`
+
+### Browser Console (UI Issues)
+
+For webview-related problems:
+
+1. With Koala open, press `F12`
+2. Go to **Console** tab
+3. Set filter to **Verbose**
+4. Look for `[UI]`, `[STATE]`, `[BACKEND_MSG]` entries
+
+## Common Error Messages
+
+| Error Message | Meaning | Solution |
+|---------------|---------|----------|
+| "BIP catalog not found" | Required Oracle setup missing | Click "Deploy to BIP" button |
+| "Authentication failed" | Invalid credentials | Check username/password in connection |
+| "Connection timeout" | Network or server issue | Check VPN, firewall, try again later |
+| "Invalid SQL syntax" | Query syntax error | Review SQL in editor |
+| "Permission denied" | No data access | Contact Oracle admin for permissions |
+| "Token expired" | OAuth token needs refresh | Disconnect and reconnect |
+| "Row limit exceeded" | Too much data returned | Add ROWNUM or WHERE limits |
+
+## Performance Considerations
+
+### Disable When Finished
+
+**Remember to disable logging** after troubleshooting:
+
+1. Go to **VS Code Settings**
+2. Search for **"Koala Data Explorer Logging"**
+3. **Uncheck** "Koala Data Explorer: Logging: Enabled"
+4. This improves performance and reduces resource usage
+
+### Impact on Extension
+
+- **Debug logging**: Detailed information, higher performance impact
+- **Info logging**: General information, moderate impact
+- **Error logging**: Only critical issues, minimal impact
+- **Disabled**: Best performance for daily use
+
+## Getting Help
+
+### Self-Service Steps
+
+1. **Use the log viewer** - easiest way to see what's happening
+2. **Check common error messages** table above
+3. **Try basic troubleshooting** (restart VS Code, check connection)
+
+### Contact Support
+
+If you need help:
+
+1. **Export logs** using built-in export feature
+2. **Submit ticket** at [support portal](https://btsscorp.freshdesk.com/support/tickets/new)
+3. **Include logs** and detailed problem description
+4. **Response time**: Typically 1-2 business days
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Extension Settings" icon="cog" href="/koala/config/extension-settings">
+    Configure other extension settings
+  </Card>
+  <Card title="Connection Issues" icon="wifi" href="/koala/troubleshooting/connection-issues">
+    Troubleshoot connection problems
+  </Card>
+</CardGroup>
