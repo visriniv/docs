@@ -28,6 +28,7 @@
             "pages": [
               "koala/installation/vscode-marketplace",
               "koala/installation/manual-install",
+              "koala/installation/pre-release",
               "koala/installation/first-connection"
             ]
           }

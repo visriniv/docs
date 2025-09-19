@@ -1,0 +1,262 @@
+---
+title: "Pre-Release Versions"
+description: "Install and test pre-release versions of Koala Data Explorer"
+---
+
+## Overview
+
+Koala Data Explorer offers pre-release versions through VS Code's pre-release extension system. These versions include the latest features and improvements before they're released to the general public.
+
+<Note>
+  Pre-release versions may contain experimental features and could be less stable than production releases. They're perfect for testing new functionality and providing feedback.
+</Note>
+
+## Benefits of Pre-Release
+
+### Early Access
+- **Latest features**: Get new functionality weeks before general release
+- **Bug fixes**: Access fixes for reported issues immediately
+- **Performance improvements**: Experience optimizations as they're developed
+- **Beta features**: Test experimental capabilities and provide input
+
+### Community Impact
+- **Shape development**: Your feedback directly influences the final release
+- **Report issues early**: Help identify problems before they affect all users
+- **Feature requests**: Suggest improvements while features are still in development
+- **Priority support**: Pre-release feedback often gets faster response times
+
+## How to Install Pre-Release
+
+### Method 1: VS Code Marketplace (Recommended)
+
+1. **Open VS Code**
+2. **Go to Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+3. **Search for "Koala Data Explorer"**
+4. **Click on the extension** to open its details page
+5. **Look for "Switch to Pre-Release Version"** button
+6. **Click the button** to install the pre-release version
+7. **Restart VS Code** when prompted
+
+### Method 2: Command Palette
+
+1. **Open Command Palette** (`Ctrl+Shift+P` / `Cmd+Shift+P`)
+2. **Type "Extensions: Install from VSIX"** (if you have a pre-release VSIX file)
+3. **Select the pre-release VSIX file**
+4. **Install and restart VS Code**
+
+### Method 3: Settings Configuration
+
+You can configure VS Code to prefer pre-release versions:
+
+1. **Open VS Code Settings** (`Ctrl+,` / `Cmd+,`)
+2. **Search for "extensions.autoCheckUpdates"**
+3. **Enable automatic updates**
+4. **Search for "Koala" in installed extensions**
+5. **Switch to pre-release channel**
+
+## Identifying Pre-Release Versions
+
+### Version Numbers
+Pre-release versions use different versioning:
+- **Production**: `1.2.3`
+- **Pre-release**: `1.2.4-beta.1`, `1.3.0-rc.2`, `1.2.3-alpha.5`
+
+### Extension Details
+- **Version indicator**: Shows "Pre-Release" badge in Extensions view
+- **Release notes**: Includes pre-release changelog
+- **Update frequency**: More frequent updates than production versions
+
+### In the Extension
+- **About dialog**: Shows pre-release version number
+- **Debug information**: Includes pre-release build details
+- **Feature flags**: May show experimental features not in production
+
+## What to Expect
+
+### New Features
+Pre-release versions may include:
+- **Enhanced authentication methods**
+- **Improved query editor capabilities**
+- **New export formats and options**
+- **Performance optimizations**
+- **UI/UX improvements**
+- **Additional Oracle Fusion integrations**
+
+### Potential Issues
+Pre-release versions might have:
+- **Minor bugs** in new features
+- **Performance variations** during optimization
+- **UI inconsistencies** while features are being polished
+- **Compatibility issues** with specific environments
+- **Feature changes** based on feedback
+
+### Stability
+- **Core functionality**: Connection and querying remain stable
+- **Data safety**: Read-only access ensures no data risk
+- **Backup recommendations**: Keep production version available if needed
+
+## Providing Feedback
+
+### What Feedback is Valuable
+
+**Bug Reports**:
+- Steps to reproduce the issue
+- Expected vs actual behavior
+- Screenshots or error messages
+- System information (Windows/Mac/Linux, VS Code version)
+
+**Feature Feedback**:
+- How you use the new feature
+- What works well
+- What could be improved
+- Suggestions for enhancements
+
+**Performance Feedback**:
+- Faster or slower than previous versions
+- Memory usage observations
+- Specific scenarios where performance differs
+
+### How to Provide Feedback
+
+#### 1. Support Portal (Recommended)
+- **Submit ticket**: [Pre-Release Feedback](https://btsscorp.freshdesk.com/support/tickets/new)
+- **Select category**: Pre-Release Testing
+- **Include version**: Exact pre-release version number
+- **Attach logs**: Use built-in log export feature
+
+#### 2. Email Feedback
+- **Email**: support@btsscorp.com
+- **Subject**: "Pre-Release Feedback - [Version] - [Brief Description]"
+- **Include**: Detailed feedback with version information
+
+#### 3. Feature Requests
+- **Enhancement suggestions**: New features or improvements
+- **Use case descriptions**: How features would help your workflow
+- **Priority feedback**: Which features matter most to you
+
+### Feedback Template
+
+When reporting issues or providing feedback:
+
+```
+Pre-Release Version: [e.g., 1.3.0-beta.2]
+VS Code Version: [e.g., 1.85.0]
+Operating System: [Windows 11 / macOS 14 / Ubuntu 22.04]
+Connection Type: [Basic Auth / OAuth PKCE / Windows SSO]
+
+Issue/Feedback:
+[Detailed description]
+
+Steps to Reproduce:
+1. [First step]
+2. [Second step]
+3. [Result]
+
+Expected Behavior:
+[What should happen]
+
+Actual Behavior:
+[What actually happened]
+
+Additional Notes:
+[Any other relevant information]
+```
+
+## Managing Pre-Release Versions
+
+### Switching Back to Production
+
+If you need to return to the stable version:
+
+1. **Open Extensions view** (`Ctrl+Shift+X` / `Cmd+Shift+X`)
+2. **Find Koala Data Explorer**
+3. **Click "Switch to Release Version"** button
+4. **Restart VS Code**
+
+### Keeping Both Versions
+
+You can maintain both versions:
+- **VS Code**: Use pre-release version
+- **VS Code Insiders**: Use production version
+- **Different profiles**: Use VS Code profiles for different versions
+
+### Update Management
+
+Pre-release versions update more frequently:
+- **Automatic updates**: Enabled by default for pre-release
+- **Update notifications**: More frequent than production
+- **Manual updates**: Check Extensions view regularly
+
+## Pre-Release Program Benefits
+
+### For Individual Users
+- **Early access** to new features
+- **Influence development** through feedback
+- **Faster bug fixes** for issues you encounter
+- **Recognition** as a valued community member
+
+### For Organizations
+- **Test compatibility** before production deployment
+- **Evaluate new features** for team adoption
+- **Provide enterprise feedback** on business-critical features
+- **Early validation** of workflow improvements
+
+## Best Practices
+
+### Installation
+1. **Backup important queries** before switching to pre-release
+2. **Test in non-critical environment** first
+3. **Keep production version** available as backup
+4. **Document any custom configurations** for easy restoration
+
+### Usage
+1. **Test new features thoroughly** in your environment
+2. **Compare performance** with previous versions
+3. **Report issues promptly** while you remember details
+4. **Try edge cases** that might reveal problems
+
+### Feedback
+1. **Be specific** in bug reports and suggestions
+2. **Include context** about your use case
+3. **Test suggested fixes** when provided
+4. **Follow up** on reported issues
+
+## FAQ
+
+### Q: Are pre-release versions safe to use?
+A: Yes, they maintain the same read-only access and security standards. However, they may have minor bugs in new features.
+
+### Q: Can I use pre-release versions in production?
+A: While possible, we recommend testing thoroughly first. Production environments should typically use stable releases.
+
+### Q: How often are pre-release versions updated?
+A: Updates can occur weekly or bi-weekly, depending on development activity and feedback.
+
+### Q: Do pre-release versions require a separate license?
+A: No, your existing license works with both production and pre-release versions.
+
+### Q: What if I find a critical bug?
+A: Report it immediately through the [support portal](https://btsscorp.freshdesk.com/support/tickets/new) with "URGENT" in the subject line.
+
+## Getting Started
+
+Ready to join the pre-release program?
+
+1. **Install pre-release version** using VS Code marketplace
+2. **Test your typical workflows** to ensure compatibility
+3. **Explore new features** and functionality
+4. **Provide feedback** on your experience
+5. **Stay updated** with release notes and announcements
+
+Your feedback helps make Koala Data Explorer better for everyone!
+
+## Next Steps
+
+<CardGroup cols={2}>
+  <Card title="Manual Installation" icon="download" href="/koala/installation/manual-install">
+    Alternative installation methods
+  </Card>
+  <Card title="Getting Help" icon="support" href="https://btsscorp.freshdesk.com/support/tickets/new">
+    Submit feedback or report issues
+  </Card>
+</CardGroup>
