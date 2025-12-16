@@ -1,0 +1,26 @@
+---
+title: "SQL Validation"
+description: "Understand Koala's validation rules and fix common errors"
+---
+
+## Validation rules
+
+- **Read-only guard**: Only `SELECT` statements are allowed; DML/DDL is blocked.
+- **Injection protection**: Patterns resembling unsafe concatenation or execution are rejected.
+- **Bind variables**: Must use `:name` syntax; invalid placeholders are flagged.
+
+## Common false positives
+
+- Colons inside quoted strings (e.g., `'http://example.com:8080'`).
+- Commented-out DML statements in multi-statement scripts.
+- Bind variables inside complex string concatenations.
+
+## Fixes
+
+1. Ensure non-SELECT statements are removed or commented out.
+2. Escape or move colons that are part of literal strings.
+3. Keep bind variable names alphanumeric and consistent (`:startDate`).
+
+<Tip>
+  If validation blocks a legitimate query, simplify the statement and retry. Complex scripts are easier to validate when split across tabs.
+</Tip>

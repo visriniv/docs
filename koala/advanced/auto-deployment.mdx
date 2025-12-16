@@ -1,0 +1,53 @@
+---
+title: "Auto-Deployment"
+description: "Hash-based deployment of Koala artifacts to Oracle Fusion"
+---
+
+## Overview
+
+Koala automatically deploys required BIP catalog artifacts every time you connect. It compares local assets to what exists in Oracle Fusion using content hashes and deploys only when changes are detected.
+
+<Note>
+  Auto-deployment runs on first connection and on reconnects. No manual steps are required unless you choose to force a redeploy.
+</Note>
+
+## How it works
+
+- **Hash verification**: Local artifact hash is compared to the remote hash stored in Oracle Fusion.
+- **Local vs remote check**: When hashes differ, Koala redeploys the updated artifact set.
+- **Per-connection tracking**: Hashes are stored per connection in VS Code global state, along with the last deployed version.
+
+### SOAP calls used
+
+Koala uses standard BIP SOAP operations during deployment:
+
+- `downloadObject` (x2) to read existing artifacts and hashes
+- `uploadObject` to push the updated catalog payload
+
+### Deployment flow
+
+1. **First connection**: Koala calculates local hashes, downloads the remote version, and uploads if they differ.
+2. **Reconnect (hashes match)**: Hashes align, so no deployment is needed.
+3. **Reconnect (hashes differ)**: Koala uploads the updated package and stores the new hash.
+
+### Progress notifications
+
+- Toast notifications show deployment start, progress, and completion.
+- Status bar indicates when validation or upload is running.
+- Success and failure messages include the connection name for clarity.
+
+## Verification & control
+
+- **Force Redeploy**: Use the Force Redeploy Catalog button in Managing Connections to run deployment regardless of hash state.
+- **Hash status**: The connection details panel shows the last deployed hash and timestamp.
+- **Activity log**: Deployment events are recorded in the output channel for review.
+
+## Troubleshooting
+
+- **Hash mismatch errors**: Trigger a Force Redeploy to refresh remote artifacts.
+- **Missing artifacts**: Run Force Redeploy; Koala will re-upload the full package.
+- **Slow uploads**: Large catalog assets may take longer; watch the progress notification and keep VS Code open until completion.
+
+<Tip>
+  After a successful redeploy, run a quick query to confirm the connection and catalog access are healthy.
+</Tip>

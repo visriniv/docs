@@ -129,7 +129,7 @@ Monitor query execution:
 - **Spinner**: Query is running
 - **Progress Bar**: Shows fetch progress for large results
 - **Timer**: Displays elapsed time
-- **Cancel Button**: Stop long-running queries
+- **Cancel Button**: Stops the active tab's query without affecting others
 
 ### Status Messages
 
@@ -151,14 +151,21 @@ Stop a running query:
 
 ### What Happens on Cancel
 
-- Query execution stops on the server
+- Query execution stops on the server for the active tab only
 - Partial results may be returned
 - Connection remains active
 - Transaction is rolled back (if applicable)
+- Other tabs continue running their own queries
 
 <Warning>
   Some queries may continue running on the Oracle server even after cancellation. Check with your DBA if concerned about long-running queries.
 </Warning>
+
+## Tab isolation and background execution
+
+- Each tab has an isolated execution context; cancelling one tab does not interrupt others.
+- You can switch tabs while a query runs in the background; status and cancel remain available from the originating tab.
+- Switching connections within a tab will cancel any in-flight query for that tab.
 
 ## Execution History
 

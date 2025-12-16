@@ -48,6 +48,15 @@ Each connection stores:
 4. Test changes
 5. Save updates
 
+### Copy a connection
+
+Duplicate an existing configuration to speed up onboarding new environments:
+
+1. Open Connection Manager.
+2. Select the connection you want to copy.
+3. Click **Copy Connection**.
+4. Update the name and host, then save.
+
 ### Change Authentication Method
 
 To switch authentication types:
@@ -61,6 +70,16 @@ To switch authentication types:
 <Warning>
   Changing authentication type will clear existing credentials. Ensure you have new credentials ready.
 </Warning>
+
+## Hash verification and deployment
+
+- Koala stores a hash of deployed artifacts per connection and compares it on each connect.
+- The connection details pane shows the last deployed hash and timestamp.
+- **Force Redeploy Catalog** uploads the latest package even when hashes match.
+
+<Tip>
+  Use Force Redeploy after Oracle-side catalog changes or when you see "hash mismatch" errors.
+</Tip>
 
 ## Switching Connections
 

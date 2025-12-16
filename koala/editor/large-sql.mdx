@@ -1,0 +1,56 @@
+---
+title: "Large SQL Queries"
+description: "Execute large SQL statements with compression and chunking"
+---
+
+## Overview
+
+Koala handles large SQL statements by compressing and chunking requests so you can run complex queries without manual changes.
+
+## Query size tiers
+
+- **Small**: Under 24 KB (sent as-is)
+- **Medium**: 24–120 KB (gzip compression applied)
+- **Large**: 120 KB+ (smart chunking plus compression)
+
+<Note>
+  Size is calculated from the raw SQL text. Whitespace and comments count toward total size.
+</Note>
+
+## How large SQL is handled
+
+- **Gzip compression**: Automatically compresses SQL payloads before sending.
+- **Smart chunking**: Splits very large statements into SOAP-safe chunks while preserving statement boundaries.
+- **SOAP parameter optimization**: Uses efficient parameter encoding to reduce overhead.
+
+## Best practices
+
+1. Keep comments concise to reduce payload size.
+2. Use bind variables to avoid repeating literal values.
+3. Validate SQL formatting before execution to avoid chunk boundary errors.
+4. Prefer CTEs over deeply nested subqueries for readability.
+
+## Example: large SQL
+
+```sql
+WITH employee_data AS (
+  SELECT person_id,
+         department_name,
+         salary,
+         hire_date,
+         manager_id
+  FROM   fusion_employees
+  WHERE  hire_date > DATE '2015-01-01'
+)
+SELECT department_name,
+       COUNT(*)   AS headcount,
+       AVG(salary) AS avg_salary
+FROM   employee_data
+GROUP BY department_name
+ORDER BY headcount DESC;
+```
+
+<Tip>
+  If a query approaches 1 MB of text, consider breaking it into smaller, reusable CTEs across multiple tabs.
+</Tip>
+

@@ -1,0 +1,36 @@
+---
+title: "Performance Settings"
+description: "Tune Koala for faster query execution and efficient resource use"
+---
+
+## Overview
+
+Optimize execution speed, memory, and network efficiency with a few targeted settings.
+
+## Recommended settings
+
+```json
+{
+  "koalaDataExplorer.maxRows": 1000,
+  "koalaDataExplorer.timeout": 120000,
+  "koala.execution.fetchSize": 200,
+  "koala.execution.stopOnError": true
+}
+```
+
+- **Max Rows**: Applies a ROWNUM guard server-side to prevent runaway result sets.
+- **Timeout**: Stops long-running requests that exceed your SLA.
+- **Fetch size**: Balances memory and network calls when streaming results.
+
+## Benchmarks
+
+- Compression reduces large SQL payload size by ~60% on average.
+- Tab isolation keeps memory stable when multiple queries run concurrently.
+- Auto column width and virtual scrolling reduce render time for wide datasets.
+
+## Optimization tips
+
+- Prefer targeted column lists instead of `SELECT *`.
+- Apply WHERE filters early; ROWNUM limits are enforced even with filters present.
+- Use bind variables to improve plan reuse.
+

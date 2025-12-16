@@ -1,0 +1,29 @@
+---
+title: "Deployment Issues"
+description: "Resolve auto-deployment and hash verification problems"
+---
+
+## Symptoms
+
+- Repeated deployment prompts on connect
+- "Hash mismatch" or "artifact missing" errors
+- Catalog features unavailable after connection
+
+## Quick fixes
+
+1. Click **Force Redeploy Catalog** in Managing Connections.
+2. Reconnect and watch for the deployment progress notification.
+3. Verify hash status shows "up to date" in the connection details.
+
+## Common causes
+
+- Remote catalog differs from local package (hash mismatch).
+- Required artifacts were removed on the Oracle side.
+- Previous upload was interrupted by network loss.
+
+## Still seeing issues?
+
+- Check network stability during uploads.
+- Confirm you have rights to deploy BIP artifacts.
+- Capture the output log and share with support for deeper analysis.
+

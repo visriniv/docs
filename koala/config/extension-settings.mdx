@@ -37,6 +37,12 @@ description: "Configure Koala Data Explorer to match your workflow"
 }
 ```
 
+<Note>
+  Max Rows applies a server-side `ROWNUM` restriction to every query, even when additional WHERE filters are present.
+</Note>
+
+**UI change**: The Max Rows control is now a dropdown with presets `10, 50, 100, 500, 1000, 2500, 5000` plus an **Unlimited** checkbox for larger result sets (paid). The free tier remains capped at 50 rows even when higher values are selected.
+
 ### Timeout Configuration
 
 Adjust timeout for different scenarios:
