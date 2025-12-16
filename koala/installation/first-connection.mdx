@@ -121,6 +121,18 @@ Back in the SQL Query Editor:
 3. Click the **Connect** button
 4. Wait for "Connected" status
 
+## Automatic deployment on first connection
+
+Koala verifies and deploys required BIP catalog artifacts automatically when you connect.
+
+- **Hash check**: Local artifacts are compared to the remote hash; mismatches trigger a redeploy.
+- **Progress notifications**: Watch for deployment start, upload, and completion toasts.
+- **Force redeploy**: Use the button in Managing Connections if you need to push a fresh copy manually.
+
+<Note>
+  Auto-deployment also runs on reconnect when the remote catalog hash changes.
+</Note>
+
 <Check>
   When connected successfully, you'll see:
   - Green "Connected" status

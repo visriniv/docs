@@ -35,6 +35,12 @@ Manage your open tabs:
 - **Tab titles**: Tabs show query content preview or file names
 - **Unsaved changes**: Indicated by a dot (●) in tab title
 
+### Tab isolation and switching
+
+- Each tab runs queries in its own execution context; cancelling one tab does not stop others.
+- You can switch tabs while a query runs in the background, then return to monitor progress or cancel.
+- Tabs remember their active connection and results independently.
+
 ## Tab Features
 
 ### Independent Contexts
@@ -44,6 +50,12 @@ Each tab maintains its own:
 - **Connection**: Each tab can connect to different databases or use different connections
 - **Results display**: Separate results panel showing results only for that tab's queries
 - **File association**: Tabs can be linked to saved .sql files
+
+### File explorer integration
+
+- Right-click a file-backed tab and choose **Reveal in Explorer** to open its folder.
+- Hover over a tab title to see the full file name and path.
+- Improved tab sizing keeps more of the file name visible when many tabs are open.
 
 ### Tab States
 

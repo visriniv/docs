@@ -7,6 +7,10 @@ description: "Export query results to CSV, JSON, and Excel formats"
 
 Koala Data Explorer allows you to export your query results to common file formats for further analysis, sharing, or reporting.
 
+<Tip>
+  Right-click anywhere in the results grid to open the export menu for one-click CSV, JSON, Excel, or **Export Selected** actions.
+</Tip>
+
 ## Available Export Formats
 
 ### Free Version
@@ -14,17 +18,21 @@ Koala Data Explorer allows you to export your query results to common file forma
 - **JSON**: JavaScript Object Notation
 
 ### Paid Version
-- **Excel (.xlsx)**: Excel workbook format (in addition to CSV and JSON)
+- **Excel (.xlsx)**: Excel workbook format with unlimited rows (subject only to Excel's native limits)
 
 ## How to Export
 
 ### Export Steps
 
 1. Execute your query to get results
-2. Click the "Export" button in the results toolbar
+2. Click the "Export" button in the results toolbar **or** right-click inside the grid and choose an export option
 3. Select your desired format (CSV, JSON, or Excel)
 4. Choose save location
 5. File is saved
+
+<Tip>
+  You can also right-click inside the grid to open the export context menu for quick CSV/JSON/Excel export.
+</Tip>
 
 ### Export Button Location
 
@@ -79,6 +87,13 @@ Example JSON output:
 - Proper data types
 - Ready for business use
 - See [Excel Export Guide](/koala/results/excel-export) for detailed information
+- Unlimited export size for paid users; Koala streams data until Excel's native sheet limit
+
+### Export selected rows
+
+- Highlight one or more rows and choose **Export Selected** from the context menu.
+- Useful for sharing filtered subsets without re-running the query.
+- Right-click → **Export** also shows CSV/JSON/Excel options scoped to your current selection.
 
 ## Export Options
 
@@ -93,7 +108,7 @@ When exporting, you can configure:
 
 Exports respect the configured row limits:
 - **Free version**: Maximum 50 rows
-- **Paid version**: Up to 10,000 rows for Excel, configurable for CSV/JSON
+- **Paid version**: Unlimited Excel exports; CSV/JSON follow your configured `maxRows` value if set
 
 ## Use Cases
 
@@ -146,9 +161,9 @@ Exports respect the configured row limits:
 - Try a different save location
 
 #### "Excel export not available"
-- Your result set has more than 10,000 rows
-- Excel export is disabled for datasets over 10K rows
-- Use CSV export instead for large datasets
+- Excel export requires the paid version; verify your license
+- Ensure the query finished and results are visible before exporting
+- If the button stays disabled, check workspace policies that may force CSV/JSON only
 
 #### "File too large"
 - Reduce row count in your query
@@ -158,9 +173,9 @@ Exports respect the configured row limits:
 ### Performance Tips
 
 For large exports:
-1. **Use row limits**: Add `WHERE ROWNUM <= 10000` for Excel compatibility
+1. **Use row limits**: Add `WHERE ROWNUM <= 50000` when you want faster Excel saves
 2. **Select specific columns**: Avoid unnecessary columns
-3. **Choose appropriate format**: CSV for data over 10K rows, Excel for smaller reports
+3. **Choose appropriate format**: Use CSV for automation or extremely large datasets; Excel for analysis and presentation
 
 ## File Compatibility
 

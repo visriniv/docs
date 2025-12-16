@@ -29,7 +29,8 @@
               "koala/installation/vscode-marketplace",
               "koala/installation/manual-install",
               "koala/installation/pre-release",
-              "koala/installation/first-connection"
+              "koala/installation/first-connection",
+              "koala/installation/activity-bar"
             ]
           }
         ]
@@ -52,6 +53,7 @@
               "koala/editor/interface-guide",
               "koala/editor/writing-queries",
               "koala/editor/executing-queries",
+              "koala/editor/large-sql",
               "koala/editor/keyboard-shortcuts",
               "koala/editor/bind-variables"
             ]
@@ -61,6 +63,7 @@
             "pages": [
               "koala/results/viewing-data",
               "koala/results/sorting-filtering",
+              "koala/results/in-grid-search",
               "koala/results/exporting-data",
               "koala/results/excel-export"
             ]
@@ -71,7 +74,8 @@
               "koala/advanced/data-sources",
               "koala/advanced/sql-history",
               "koala/advanced/performance-monitor",
-              "koala/advanced/multiple-tabs"
+              "koala/advanced/multiple-tabs",
+              "koala/advanced/auto-deployment"
             ]
           }
         ]
@@ -84,7 +88,8 @@
             "pages": [
               "koala/config/extension-settings",
               "koala/config/timeout-settings",
-              "koala/config/logging"
+              "koala/config/logging",
+              "koala/config/performance"
             ]
           },
           {
@@ -106,7 +111,9 @@
             "pages": [
               "koala/troubleshooting/connection-issues",
               "koala/troubleshooting/query-errors",
-              "koala/troubleshooting/performance-issues"
+              "koala/troubleshooting/performance-issues",
+              "koala/troubleshooting/deployment-issues",
+              "koala/troubleshooting/sql-validation"
             ]
           },
           {
