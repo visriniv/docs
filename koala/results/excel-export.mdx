@@ -8,7 +8,7 @@ description: "Export query results to Excel format with professional formatting"
 Koala Data Explorer's Excel export feature creates professional .xlsx files from your query results. This feature is available in the paid version and provides formatted spreadsheets ready for business use.
 
 <Note>
-  Excel export (.xlsx) is available in the paid version of Koala Data Explorer.
+  Excel export (.xlsx) is available in the paid version of Koala Data Explorer and supports unlimited rows up to Excel's native sheet capacity.
 </Note>
 
 ## Excel Export Features
@@ -91,19 +91,16 @@ Excel files enable:
 ### Large Datasets
 
 For large result sets:
-- **Excel export limit**: 10,000 rows maximum (disabled above this)
-- **Excel native limit**: Excel supports up to 1,048,576 rows per sheet
-- **File size**: Larger datasets create bigger files
-- **Performance**: Very large files may open slowly
-- **Alternative**: Use CSV for datasets over 10,000 rows
+- **Koala streaming**: Koala streams rows until Excel's native limit (1,048,576 rows per sheet).
+- **File size**: Larger datasets create bigger files; allow extra time for saving.
+- **Performance**: Very large files may open slowly in Excel; consider CSV if you only need raw data.
 
 ### Row Limitations
 
 Excel export limitations:
-- **Maximum for Excel**: 10,000 rows (Excel export disabled above this limit)
 - **Free version**: Limited to 50 rows
-- **Paid version**: Up to 10,000 rows for Excel export
-- **Above 10K rows**: Use CSV export instead
+- **Paid version**: Unlimited until Excel's sheet limit
+- **Configured Max Rows**: If you set `maxRows`, Koala honors it before export
 
 ### Optimization Tips
 
@@ -118,14 +115,14 @@ For better performance:
 ### Common Issues
 
 #### "Excel export not available"
-- Result set has more than 10,000 rows
-- Use CSV export instead for large datasets
-- Add `WHERE ROWNUM <= 10000` to query if you need Excel format
+- Check that you are on the paid version (Excel export is disabled in free mode)
+- Verify no workspace policy is forcing CSV/JSON only
+- If the button is disabled, confirm a result set exists and the query finished executing
 
 #### "File too large"
-- Reduce the number of rows in your query
-- Select fewer columns
-- Use CSV format for very large datasets
+- Reduce the number of rows in your query if Excel opens slowly
+- Select fewer columns to decrease file size
+- Use CSV format for extremely large datasets or automation
 
 #### "Excel won't open file"
 - Ensure you have Excel or compatible software

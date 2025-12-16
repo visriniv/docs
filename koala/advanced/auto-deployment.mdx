@@ -1,6 +1,6 @@
 ---
 title: "Auto-Deployment"
-description: "Hash-based deployment of Koala artifacts to Oracle Fusion"
+description: "Learn how Koala's hash-based deployment verifies and deploys BIP catalog artifacts to Oracle Fusion Cloud."
 ---
 
 ## Overview
@@ -16,6 +16,12 @@ Koala automatically deploys required BIP catalog artifacts every time you connec
 - **Hash verification**: Local artifact hash is compared to the remote hash stored in Oracle Fusion.
 - **Local vs remote check**: When hashes differ, Koala redeploys the updated artifact set.
 - **Per-connection tracking**: Hashes are stored per connection in VS Code global state, along with the last deployed version.
+
+### Tracking & storage
+
+- **Global state**: Koala records the last deployed hash, timestamp, and package version per connection in VS Code global state.
+- **Storage structure**: `{ connectionId, hash, deployedAt, version }` for each environment you connect.
+- **Version awareness**: If the local package version changes, Koala treats it as a mismatch and redeploys even when hashes match.
 
 ### SOAP calls used
 
@@ -47,6 +53,8 @@ Koala uses standard BIP SOAP operations during deployment:
 - **Hash mismatch errors**: Trigger a Force Redeploy to refresh remote artifacts.
 - **Missing artifacts**: Run Force Redeploy; Koala will re-upload the full package.
 - **Slow uploads**: Large catalog assets may take longer; watch the progress notification and keep VS Code open until completion.
+- **Verification failures**: If hash download fails, Koala retries with a fresh `downloadObject` call before prompting for redeploy.
+- **Audit trail**: Check the Output channel for the exact SOAP calls and hash values that were compared.
 
 <Tip>
   After a successful redeploy, run a quick query to confirm the connection and catalog access are healthy.
