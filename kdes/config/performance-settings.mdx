@@ -1,0 +1,24 @@
+---
+title: "Performance Settings"
+description: "Tune Koala Studio for large workloads"
+---
+
+## Result Cache
+
+- Configure how many result sets Koala keeps in memory before writing to disk.
+- Lower the value on low-RAM machines; raise it if you switch between recent queries frequently.
+
+## Grid Rendering
+
+- Toggle virtualization (on by default) to improve scrolling through large result sets.
+- Disable animations if you prefer instant row rendering.
+
+## Auto-Cleanup
+
+- Set how often Koala clears the `temp/` directory and stale tab results (default: 7 days).
+- Run **Clean now** to reclaim disk space immediately.
+
+## Hardware Acceleration
+
+- On Windows, you can disable GPU acceleration if you encounter driver issues.
+- Restart Koala after toggling this option for it to take effect.

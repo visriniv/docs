@@ -1,0 +1,33 @@
+---
+title: "Windows SSO"
+description: "Authenticate with your Windows credentials via WebView2"
+---
+
+## Overview
+
+On Windows, Koala Studio bundles the Koala SSO Helper (WebView2) to launch a native Oracle login window. Use this option when your organization enforces Integrated Windows Authentication or other SSO providers that rely on Windows credentials.
+
+## Prerequisites
+
+- Windows 10 or 11 with the Microsoft WebView2 runtime installed (bundled with Koala, but corporate devices may remove it—reinstall from Microsoft if needed).
+- Network access to the Oracle SSO endpoint.
+- Koala Studio version 1.0.0 or later.
+
+## Connecting with Windows SSO
+
+1. Go to **Connections** → **Add Connection** → **Windows SSO**.
+2. Fill in the basic connection details (name, server URL, optional description/schema).
+3. Click **Sign in with Windows**.
+4. A branded Windows login window appears. Complete the MFA/SSO prompts required by your org.
+5. When the window closes, Koala saves the resulting token securely and tests the connection automatically.
+
+## Token Renewals
+
+- Tokens expire per your IdP policy. Koala notifies you to reauthenticate when needed.
+- Switching Windows users on the same machine may invalidate the stored token, so sign in again if queries fail.
+
+## Troubleshooting
+
+- **SSO window never appears** – install/reinstall WebView2 and restart Koala Studio.
+- **Stuck loading screen** – ensure the Oracle SSO URL is reachable (VPN, proxy, firewall).
+- **“Token expired” errors** – re-open the connection, click **Sign in with Windows**, and finish the flow again.

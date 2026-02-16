@@ -1,0 +1,25 @@
+---
+title: "Writing Queries"
+description: "Compose SQL efficiently in Koala Studio"
+---
+
+## Editor Essentials
+
+- Monaco provides syntax highlighting for Oracle SQL, auto-indentation, bracket matching, and error underlining.
+- Use snippets and multi-caret editing (`Alt+Click` on Windows, `Option+Click` on macOS) to modify repeated clauses.
+- The minimap on the right helps you navigate large statements quickly; click it to jump to sections.
+
+## Templates & History
+
+- Click the history icon to insert any recently executed query into the current tab.
+- Save frequently used statements as “Saved Queries” via the right-rail menu; they sync across machines.
+
+## Organizing Scripts
+
+- Separate multiple statements with semicolons. Koala’s semicolon-scoped runner figures out which statement to run based on cursor position.
+- Add comments (`-- inline` or `/* block */`)—they’re ignored during execution and stored with history for context.
+
+## Formatting
+
+- Press `Alt+F` (Option+F on macOS) to format the current statement using Koala’s formatter.
+- Adjust formatting preferences (uppercase keywords, indentation style) under **Settings → Editor**.

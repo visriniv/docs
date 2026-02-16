@@ -1,0 +1,37 @@
+---
+title: "Bind Variables"
+description: "Use bind variables in Koala Studio queries"
+---
+
+## Why Use Bind Variables
+
+- Prevents SQL injection by separating parameters from the statement.
+- Speeds up repeated executions because Oracle can reuse execution plans.
+
+## Syntax
+
+Use `:variableName` inside your SQL, e.g.:
+
+```sql
+SELECT *
+FROM gl_balances
+WHERE ledger_id = :ledger
+  AND period_name = :period;
+```
+
+## Running with Prompts
+
+1. Execute the query. Koala detects the bind variables and opens a prompt dialog.
+2. Enter values for each variable. Koala remembers recent values per tab.
+3. Click **Run** to execute with those values.
+
+## Managing Bind Definitions
+
+- Use the **Bind Variables** panel in the right rail to prefill defaults.
+- Toggle “Remember values” if you want Koala to reuse them the next time.
+- Clear stored values via the panel menu if you switch contexts.
+
+## Tips
+
+- Keep variable names descriptive (`:start_period` vs `:p1`).
+- Combine with Saved Queries so teammates can run the same template and simply fill in the prompts.

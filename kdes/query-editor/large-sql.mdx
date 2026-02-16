@@ -1,0 +1,26 @@
+---
+title: "Large SQL Queries"
+description: "Handle big scripts and result sets with confidence"
+---
+
+## Editing Large Scripts
+
+- Koala streams editor state to disk so massive scripts don’t block the UI.
+- Use the tab history panel to split long scripts into separate tabs—duplicate the tab and delete unused sections.
+- Enable the “Show minimap” option to navigate quickly.
+
+## Running Heavy Statements
+
+- Split statements with semicolons and run them one at a time to avoid hitting Oracle limits.
+- Keep an eye on the elapsed time indicator; click **Stop** if it exceeds your org’s timeout policy.
+
+## Result Management
+
+- Results are paginated in 1,000-row chunks stored under `tabs/results/<tabId>/`.
+- Use the pagination controls to fetch additional pages only when needed, reducing memory use.
+- Exporting to CSV/XLSX streams data to disk, so you can export millions of rows without freezing the UI (disk space permitting).
+
+## Tips
+
+- Close unused tabs to free memory—Koala persists their contents, so you can reopen them later.
+- For scheduled jobs, save the SQL to a `.sql` file via the editor’s **Save As** option and store it in version control.

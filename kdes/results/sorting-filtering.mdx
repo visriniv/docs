@@ -1,0 +1,23 @@
+---
+title: "Sorting & Filtering"
+description: "Interact with result grids without rerunning queries"
+---
+
+## Sorting
+
+- Click a column header to sort ascending; click again for descending; a third click clears sorting.
+- Multi-sort by holding `Shift` and clicking additional columns.
+- Sorting happens client-side, so there’s no extra round-trip to Oracle.
+
+## Filtering
+
+- Use the inline filter row (toggle via the funnel icon) to type conditions for each column.
+- Text columns support contains/equals comparisons; numeric columns support equals/greater/less-than.
+- Clear filters with the **Reset Filters** button above the grid.
+
+## Column Search
+
+- Press `Ctrl/Cmd+F` while focused in the grid to search the current page.
+- For global search across pages, rerun the query with your desired `WHERE` clauses or use the in-grid filter row to narrow results.
+
+These tools let you refine data on the fly while keeping the original query results intact.

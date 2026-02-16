@@ -1,0 +1,29 @@
+---
+title: "Timeout Settings"
+description: "Control how long Koala waits for Oracle responses"
+---
+
+## Why Adjust Timeouts?
+
+Different environments have different SLAs. Some customers need aggressive cancellation to protect shared resources, while others need to allow long-running reports. Koala Studio lets you tune both app-side and Oracle request timeouts.
+
+## Query Timeout
+
+- Default: 5 minutes.
+- Change under **Settings → Query Execution**.
+- When the limit is reached, Koala cancels the request and shows a timeout error. Increase it if you routinely run heavy OTBI queries.
+
+## Export Timeout
+
+- Applies when exporting large result sets to CSV/XLSX.
+- Default matches the query timeout; extend it if you export millions of rows.
+
+## Idle Session Timeout
+
+- Configure how long inactive tabs keep connections alive before Koala releases them.
+- Lower values reduce load on Oracle but may require reconnecting when returning to a tab.
+
+## Tips
+
+- Coordinate with your Oracle administrators—app-side timeouts should be slightly below server-side ones so Koala handles the cancellation gracefully.
+- If you consistently hit timeouts, consider refining your SQL or leveraging filters before exporting entire datasets.

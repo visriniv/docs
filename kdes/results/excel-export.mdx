@@ -1,0 +1,26 @@
+---
+title: "Excel Export"
+description: "Generate native Excel files directly from Koala Studio"
+---
+
+## Why Excel Export?
+
+Some teams require perfectly formatted `.xlsx` files with headers, data types, and multiple sheets. Koala Studio uses the same exporter as the VS Code extension, so your downstream workflows stay consistent.
+
+## Steps
+
+1. Run your query.
+2. Click **Export** → **Excel (.xlsx)**.
+3. Choose whether to export the entire result set or just the current page.
+4. Pick a save location (defaults to Downloads) and confirm.
+
+## What’s Included
+
+- Column headers exactly as displayed in the grid.
+- Data types preserved (dates, numbers, text) when possible.
+- Pagination is transparent; Koala fetches all pages before writing the file.
+
+## Tips
+
+- For multi-sheet workbooks, export each query to a separate Excel file, then merge them in Excel.
+- If Excel flags the file as coming from the internet, right-click → **Properties** → **Unblock** before opening on Windows.

@@ -1,0 +1,38 @@
+---
+title: "Basic Authentication"
+description: "Sign in with Oracle username and password"
+---
+
+## Overview
+
+Basic authentication lets you connect to Oracle Fusion by entering the same username and password you use in the web UI. It’s available on every Koala Studio plan and works offline once the credentials are saved.
+
+## Prerequisites
+
+- Oracle Fusion Cloud account with report access
+- Username/password that are allowed to run OTBI or BI Publisher queries
+- Network access to your Oracle environment (VPN if required)
+
+## Step-by-Step
+
+1. Open Koala Studio and sign in with your Koala account.
+2. Click **Connections** in the left rail or use `Ctrl/Cmd+,`.
+3. Choose **Add Connection** → **Basic Authentication**.
+4. Fill in:
+   - **Name** – e.g., “Prod Financials”.
+   - **Server URL** – your Oracle Fusion host (https://xxxx.oraclecloud.com).
+   - **Username/Password** – saved securely and encrypted.
+   - Optional **Description/Default schema** to label the connection.
+5. Click **Test Connection**. If it succeeds, choose **Save**.
+
+The new connection now appears in every query tab’s dropdown so you can run SQL immediately.
+
+## Security Notes
+
+- Credentials are encrypted locally and in Supabase—Koala never stores them in plain text.
+- Password changes on Oracle require you to edit the connection and update the stored password.
+
+## Troubleshooting
+
+- **Invalid credentials** – confirm the account isn’t locked and that MFA isn’t required for API access.
+- **Connection timeout** – verify VPN/proxy settings or try again after switching networks.

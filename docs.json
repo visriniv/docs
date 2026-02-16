@@ -146,31 +146,61 @@
             ]
           },
           {
-            "group": "Contributor Setup",
+            "group": "User Guide - Connections",
             "pages": [
-              "kdes/installation/local-development",
-              "kdes/installation/packaging-distribution"
+              "kdes/connections/basic-auth",
+              "kdes/connections/oauth-pkce",
+              "kdes/connections/windows-sso",
+              "kdes/connections/managing-connections"
             ]
           },
           {
-            "group": "Authentication & Connections",
+            "group": "User Guide - Query Editor",
             "pages": [
-              "kdes/connections/authentication",
-              "kdes/connections/connection-sync"
+              "kdes/query-editor/interface-guide",
+              "kdes/query-editor/writing-queries",
+              "kdes/query-editor/executing-queries",
+              "kdes/query-editor/large-sql",
+              "kdes/query-editor/keyboard-shortcuts",
+              "kdes/query-editor/bind-variables"
             ]
           },
           {
-            "group": "SQL Experience",
+            "group": "User Guide - Working with Results",
             "pages": [
-              "kdes/editor/sql-workflow",
-              "kdes/editor/results-export"
+              "kdes/results/viewing-data",
+              "kdes/results/sorting-filtering",
+              "kdes/results/in-grid-search",
+              "kdes/results/exporting-data",
+              "kdes/results/excel-export"
             ]
           },
           {
-            "group": "Data & Lifecycle",
+            "group": "Advanced Features",
             "pages": [
-              "kdes/storage/file-storage",
-              "kdes/updates/releases"
+              "kdes/advanced/data-sources",
+              "kdes/advanced/sql-history",
+              "kdes/advanced/performance-monitor",
+              "kdes/advanced/multiple-tabs",
+              "kdes/advanced/auto-updates"
+            ]
+          },
+          {
+            "group": "Configuration",
+            "pages": [
+              "kdes/config/app-settings",
+              "kdes/config/timeout-settings",
+              "kdes/config/logging-diagnostics",
+              "kdes/config/performance-settings"
+            ]
+          },
+          {
+            "group": "Licensing",
+            "pages": [
+              "kdes/licensing/free-vs-paid",
+              "kdes/licensing/activating-license",
+              "kdes/licensing/managing-license",
+              "kdes/licensing/refund-policy"
             ]
           },
           {
@@ -178,12 +208,18 @@
             "pages": [
               "kdes/support/troubleshooting"
             ]
+          },
+          {
+            "group": "Contributor Setup",
+            "pages": [
+              "kdes/installation/local-development",
+              "kdes/installation/packaging-distribution"
+            ]
           }
         ]
       }
     ],
-    "global": {
-    }
+    "global": {}
   },
   "logo": {
     "light": "/logo/light.png",
@@ -208,15 +244,15 @@
   },
   "contextual": {
     "options": [
-     "copy",
-     "view",
-     "chatgpt",
-     "claude",
-     "perplexity",
-     "mcp",
-     "cursor",
-     "vscode"
-   ]
+      "copy",
+      "view",
+      "chatgpt",
+      "claude",
+      "perplexity",
+      "mcp",
+      "cursor",
+      "vscode"
+    ]
   },
   "footer": {
     "socials": {

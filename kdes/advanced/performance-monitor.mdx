@@ -1,0 +1,28 @@
+---
+title: "Performance Monitor"
+description: "Understand query timing and resource usage"
+---
+
+## What It Shows
+
+- Execution time for each statement.
+- Rows returned vs. rows scanned (when Oracle provides stats).
+- Client-side render time (how long the grid took to display data).
+
+## Using the Monitor
+
+- After running a query, open the **Performance** tab in the results pane.
+- Toggle **Show timeline** to see how long each phase (prepare, fetch, render) took.
+- Use the info to decide whether you need indexes, filters, or smaller result sets.
+
+## Alerts
+
+- Koala flags queries that run longer than your configured threshold (default 30 seconds) and suggests options:
+  - Cancel the query
+  - Export instead of rendering
+  - Refine filters
+
+## Tips
+
+- Combine with SQL History to compare performance over time.
+- Export the performance log (JSON) when filing support tickets so admins can analyze slow statements.

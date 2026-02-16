@@ -1,0 +1,37 @@
+---
+title: "OAuth PKCE Authentication"
+description: "Use OAuth 2.0 with Proof Key for Code Exchange"
+---
+
+## When to Use OAuth PKCE
+
+Choose OAuth PKCE when your organization requires modern OAuth flows with rotating tokens instead of static passwords. Koala Studio mirrors the KDEE experience, but the prompts open inside the native window instead of VS Code.
+
+## Prerequisites
+
+- OAuth client registered in Oracle Identity/IDCS with redirect URI pointing to Koala (`https://auth.koala.app/callback` or your tenant-specific URL).
+- Client ID, authorization endpoint, token endpoint, and scopes provided by your admin.
+- Koala Studio signed in with your Koala account.
+
+## Setup Steps
+
+1. Open **Connections** → **Add Connection** → **OAuth PKCE**.
+2. Provide the basics: **Name**, **Server URL**, and optional description/default schema.
+3. Enter the OAuth configuration:
+   - **Client ID**
+   - **Authorization URL**
+   - **Token URL**
+   - **Redirect URL** (pre-filled for Koala; override only if your org uses a custom callback)
+   - **Scope** (usually `https://fa.oraclecloud.com/OA_HTML/AppsLocalLogin.jsp` but follow your admin’s guidance)
+4. Click **Test Connection**. A secure popup guides you through the OAuth login.
+5. After consent, Koala stores the refresh token encrypted and keeps the access token refreshed automatically.
+
+## Token Handling
+
+- Access tokens are refreshed silently as long as your Koala session is active.
+- If your admin revokes consent, Koala prompts you to reauthenticate the next time you run a query.
+
+## Troubleshooting
+
+- **Blank popup** – ensure embedded browser access isn’t blocked by security software.
+- **Invalid redirect URI** – confirm the value registered for your client matches Koala’s callback URL.

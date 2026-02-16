@@ -1,0 +1,27 @@
+---
+title: "Logging & Diagnostics"
+description: "Collect logs to troubleshoot Koala Studio"
+---
+
+## Viewing Logs
+
+- Open Settings → **Logging & Diagnostics** or use the profile menu → **View Logs**.
+- Renderer logs include editor events, query status, and UI actions.
+- Main-process logs capture auto-updates, file-system operations, and SSO helper events.
+
+## Log Levels
+
+- **Normal** – default; logs warnings and errors.
+- **Verbose** – adds info-level messages useful when working with Support.
+- **Debug** – only enable when Support requests it; may include extra network details.
+
+## Exporting Logs
+
+1. Go to **Settings → Logging & Diagnostics**.
+2. Click **Export logs**.
+3. Choose a destination; Koala zips recent logs for easy sharing with BTSS Support.
+
+## Additional Diagnostics
+
+- Enable **Telemetry** (if your org allows it) to help BTSS monitor crash/update rates.
+- Toggle **Capture network traces** when troubleshooting SSO or Supabase connectivity; Koala stores the trace alongside logs and clears it after export.

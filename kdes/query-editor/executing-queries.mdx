@@ -1,0 +1,29 @@
+---
+title: "Executing Queries"
+description: "Run SQL safely and understand what executes"
+---
+
+## Run Commands
+
+- **Ctrl/Cmd+Enter** – runs the highlighted selection or the statement around your cursor.
+- **Shift+Enter** – runs the current statement but keeps focus in the editor.
+- **Run button** – executes the active statement; click the dropdown arrow for “Run All”.
+- **Stop button** – cancels long-running queries.
+
+## Semicolon-Scoped Execution
+
+Koala analyzes the SQL around your cursor:
+
+- If you highlight text, only the selection runs.
+- If there’s no selection, the statement between the nearest semicolons runs.
+- Empty lines count as boundaries, matching the VS Code extension’s behavior.
+
+## Safety Nets
+
+- Koala warns you before running statements flagged as destructive (e.g., `DELETE` without `WHERE`) if Safety Mode is on.
+- Large exports paginate automatically so you don’t freeze the UI.
+
+## Viewing Progress
+
+- The status bar shows “Running…” plus elapsed time.
+- Results appear in the lower pane with tabs for Grid, JSON, and Messages (including Oracle warnings).

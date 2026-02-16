@@ -1,0 +1,37 @@
+---
+title: "Managing Connections"
+description: "Organize, edit, export, and import your Koala Studio connections"
+---
+
+## Viewing Connections
+
+- Open the **Connections** drawer from the left rail or press `Ctrl/Cmd+,`.
+- Use the search bar to filter by name or server.
+- Icons indicate the auth type (Basic, OAuth PKCE, Windows SSO).
+
+## Editing or Duplicating
+
+1. Hover a connection and click **···**.
+2. Choose **Edit** to change names, servers, or credentials.
+3. Use **Duplicate** when you need the same settings but with a different schema or environment.
+
+## Reordering & Favorites
+
+- Drag connections up or down to reorder them—Koala remembers the order across sessions.
+- Click the star icon to pin frequently used connections to the top of dropdowns.
+
+## Export / Import (`.kdex`)
+
+- **Export**: click **···** → **Export connections**. Choose a passphrase to encrypt the `.kdex` file.
+- **Import**: click **Import**, select the `.kdex`, and provide the passphrase. Existing connections update if the IDs match; new ones are added automatically.
+- Use exports to share configurations between Koala Studio and the VS Code extension.
+
+## Deleting
+
+- Click **Delete** from the **···** menu. Koala asks for confirmation and removes both the metadata and any stored credentials.
+- Deleting a connection removes it from all tabs; open tabs prompt you to choose another connection.
+
+## Tips
+
+- Keep production and sandbox environments clearly labeled.
+- Periodically export your list as a backup—files are encrypted, so it’s safe to store them in password managers or secure drives.
