@@ -133,7 +133,8 @@
             "group": "Overview",
             "pages": [
               "kdes/introduction",
-              "kdes/differentiators"
+              "kdes/differentiators",
+              "kdes/kdee-reference"
             ]
           },
           {
