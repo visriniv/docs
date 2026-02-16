@@ -1,0 +1,27 @@
+---
+title: "Working with Results"
+description: "Copy, export, and CSV tooling inside KDES"
+---
+
+## Grid Interactions
+
+- Built on Material React Table with native copy helpers (`enableClickToCopy`).
+- Inline search, sorting, and pagination mirror KDEE behavior but with native window chrome.
+
+## Export Options
+
+- CSV and XLSX exports leverage the same pipelines as the extension.
+- Large result sets stream to disk in chunks (1000 rows per page) before packaging.
+
+## CSV Viewer
+
+- Dedicated CSV parsing components (Papa Parse) let users upload files, inspect data, and re-export without leaving the app.
+- Accessible from the profile dropdown; supports sorting, filtering, pagination, and copy/export actions.
+
+## Reference Material
+
+- `docs/query-results-table-copy-functionality.md`
+- `README.md` CSV parsing section
+- `docs/FILE_STORAGE_GUIDE.md` for where exported files live
+
+Document these workflows in Mintlify so users see parity with the VS Code experience plus the extra CSV tooling unique to the native app.

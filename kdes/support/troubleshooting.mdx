@@ -1,0 +1,23 @@
+---
+title: "Troubleshooting & Support"
+description: "Where to look when the native app misbehaves"
+---
+
+## Diagnostic Playbook
+
+- **Logs:** use `Ctrl+Shift+I` / `Cmd+Option+I` for renderer logs; check terminal output for main-process traces.
+- **SSO issues:** verify WebView2 runtime presence; run with `ELECTRON_ENABLE_LOGGING=1` to capture helper output.
+- **Storage corruption:** review `tabs/metadata/` and `tabs/session/session.json` as described in `docs/TROUBLESHOOTING_GUIDE.md`.
+
+## Common Issues
+
+- Connection/authentication failures – confirm Supabase session, re-import `.kdex` if metadata is stale.
+- Query performance – rely on infinite scroll storage strategies to keep memory stable; clean up old result directories if disk is full.
+- Update banner loops – ensure BTSS update endpoint hosts the latest manifests and installers per the Updates guide.
+
+## Getting Help
+
+- Internal teams: reference `Common.md`, `SETUP_AUTHENTICATION.md`, and `SECURITY_ASSESSMENT_REPORT.md` for compliance answers.
+- Customers: use the Mintlify Support links (Freshdesk) or escalate via account managers.
+
+Link this page anywhere the KDEE docs currently refer to support so users see that the native path is fully covered.

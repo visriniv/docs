@@ -1,0 +1,31 @@
+---
+title: "Updates & Releases"
+description: "Quarterly branch strategy and in-app update flow"
+---
+
+## Branch & Tag Model
+
+- Quarterly branches (`2025_A`, `2025_B`, etc.) feed into `master`.
+- At quarter end, merge into `master`, tag `vYYYY.Qx` (or semantic version), and trigger release workflows.
+
+## CI/CD
+
+- GitHub Actions workflow `.github/workflows/release.yml` builds signed installers for macOS + Windows upon tag push.
+- Secrets required: Supabase creds, Apple signing values, Windows signing settings.
+- Azure DevOps mirror runs `yarn make` on both platforms, signs artifacts, and publishes to BTSS hosting.
+
+## In-App Update Banner
+
+As documented in `docs/IN_APP_UPDATE_PLAN.md`:
+
+1. `autoUpdater.checkForUpdates()` runs on launch and every 4 hours.
+2. Renderer shows a slim banner: “New Koala Data Explorer update is ready.” with `Restart & Update` / `Later`.
+3. Downloads happen silently; errors swap the CTA to “Retry download” and link to manual installers.
+
+## Release Assets
+
+- Windows: `RELEASES` + `.nupkg`
+- macOS: `latest-mac.yml` + notarized `.zip`/`.dmg`
+- Linux (optional): `.AppImage` + update JSON
+
+Document these steps so Ops/Docs teams can keep Studio releases at parity with the VS Code extension.

@@ -1,0 +1,35 @@
+---
+title: "Data Storage & Privacy"
+description: "Where Koala Data Explorer Studio saves data on each OS"
+---
+
+## Storage Locations
+
+- **macOS:** `~/Library/Application Support/Koala Data Studio/`
+- **Windows:** `%APPDATA%/Koala Data Studio/`
+- **Linux:** `~/.config/Koala Data Studio/`
+
+## Directory Structure
+
+```
+Koala Data Studio/
+├─ tabs/
+│  ├─ metadata/ (tab state)
+│  ├─ results/<tabId>/page-*.json (paginated results)
+│  └─ session/session.json (active layout)
+├─ temp/ (autosave + exports)
+└─ auth/btss-sql-editor-auth-main.json (encrypted tokens)
+```
+
+## Cleanup & Maintenance
+
+- Startup jobs remove stale localStorage entries and temp files older than 7 days.
+- Result directories can be manually purged to reclaim disk space; metadata/session files should remain intact to preserve tabs.
+
+## Security Notes
+
+- Query results are plain JSON, so treat the directories as sensitive data.
+- Credentials stay encrypted (AES-256-GCM) and are never stored in plain text on disk.
+- Use OS permissions and disk encryption (FileVault/BitLocker) for additional protection.
+
+See `docs/FILE_STORAGE_GUIDE.md` for deeper troubleshooting steps.

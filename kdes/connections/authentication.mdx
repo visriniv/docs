@@ -1,0 +1,29 @@
+---
+title: "Authentication & Connections"
+description: "How KDES handles Supabase auth and Oracle credentials"
+---
+
+## Supabase Session Flow
+
+1. Renderer boots with `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`.
+2. Users sign in through Supabase UI (email magic link or SSO) to establish an app session.
+3. All connection metadata/tabs are scoped to the Supabase user ID.
+
+## Supported Connection Types
+
+- **Basic Auth:** username + password encrypted via AES-256-GCM before storage.
+- **SSO:** Windows helper (`Koala.SSO.Helper.exe`) launches a native WebView2 login flow to fetch JWT tokens.
+- **OAuth PKCE:** Full PKCE handshake with Oracle Fusion endpoints.
+
+## Secure Storage Practices
+
+- Credentials stored in Supabase tables with encrypted fields.
+- Local disk only keeps references/metadata; sensitive blobs remain encrypted.
+- IPC bridges expose minimal methods so renderer code never touches raw secrets.
+
+## Connection Management UI
+
+- Per-tab connection selectors mirror KDEE behavior.
+- Metadata (name, server URL, auth type, description) syncs with Supabase so users see the same list across machines.
+
+Refer to `docs/connection-sync-approaches.md` for schema-level details shared with the VS Code extension.

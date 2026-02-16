@@ -1,0 +1,35 @@
+---
+title: "Packaging & Distribution"
+description: "Build signed installers for Koala Data Explorer Studio"
+---
+
+## Local Packaging
+
+- `npm run package` – bundles renderer, main, and preload for smoke testing without producing installers.
+- `npm run make` – runs Electron Forge makers to output platform installers:
+  - macOS DMG in `out/`
+  - Windows Squirrel installer under `out/make/squirrel.windows/`
+  - Optional Linux `.deb`, `.rpm`, and `.AppImage`
+
+## Code Signing
+
+- macOS: supply Apple Developer ID credentials or app-specific password; notarized artifacts end up in `out/`.
+- Windows: configure Authenticode signing using a PFX (`WIN_CSC_LINK`) or certificate subject name.
+
+## In-App Updates
+
+Package generation should also emit:
+
+- Windows `RELEASES` + `.nupkg`
+- macOS `latest-mac.yml` + `.zip`/`.dmg`
+- Linux AppImage update manifests (optional)
+
+These feeds power the in-app update banner described in the Updates section.
+
+## Distribution Checklist
+
+1. Upload signed installers + manifests to the BTSS distribution endpoint (S3 or corporate site).
+2. Publish release notes JSON/Markdown for the “View release notes” CTA.
+3. Tag releases per the quarterly branch strategy (`vYYYY.Qx`).
+
+This mirrors KDEE’s release rigor while accounting for desktop-specific assets.

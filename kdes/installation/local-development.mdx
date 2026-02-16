@@ -1,0 +1,38 @@
+---
+title: "Local Development"
+description: "Run Koala Data Explorer Studio in dev mode"
+---
+
+## 1. Install Dependencies
+
+```bash
+npm install
+# or
+yarn
+```
+
+This pulls down Vite, Electron Forge, Supabase client libs, and the Oracle SOAP helpers shared with KDEE.
+
+## 2. Start the App
+
+```bash
+npm run dev
+```
+
+`npm run dev` launches:
+
+- Vite renderer dev server
+- Vite build/watchers for `main.ts` and `preload.ts`
+- Electron with hot reload wired to the Vite output
+
+## 3. Configure Env Files
+
+Populate `.env` with Supabase URL + anon key plus any optional feature flags (e.g., toggling the in-app update banner). CI uses `.env.production`.
+
+## 4. Debugging Tips
+
+- Renderer DevTools: `Ctrl+Shift+I` / `Cmd+Option+I`
+- Main process logs: view in terminal output
+- SSO helper tracing: run with `ELECTRON_ENABLE_LOGGING=1` to view native window events
+
+No VS Code host is required; everything runs inside the native Electron shell.

@@ -1,0 +1,21 @@
+---
+title: "KDEE vs. KDES"
+description: "How the native Studio differs from the VS Code extension"
+---
+
+## Side-by-Side Comparison
+
+| Area | KDEE (VS Code) | KDES (Native Desktop) |
+| --- | --- | --- |
+| Distribution | VS Code Marketplace extension | Electron Forge installers (DMG/EXE, optional Linux) |
+| Authentication | VS Code account context, SecretStorage | Supabase auth + native WebView2 helper for Oracle SSO |
+| Storage | VS Code `globalState` + SecretStorage | File system data lake (`tabs/`, `results/`, `session/`) backed by Supabase |
+| UI Surface | Webview inside VS Code | Full-screen React app with native menus and multi-window controls |
+| Connection Portability | VS Code sync or manual JSON | Encrypted `.kdex` export/import plus Supabase sync roadmap |
+| Updates | Marketplace auto-updates | In-app banner powered by `autoUpdater` + BTSS-hosted feeds |
+
+## How to Use This Table
+
+- Anchor it on the Studio landing page so readers understand why both surfaces exist.
+- Link back to these differences whenever Mintlify cross-references KDEE features that behave slightly differently on desktop.
+- Reinforce that KDES complements, rather than replaces, the extension—users can pick whichever workflow fits their policy constraints.

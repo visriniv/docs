@@ -1,0 +1,31 @@
+---
+title: "Prerequisites"
+description: "What you need before building or installing KDES"
+---
+
+## System Requirements
+
+- **Operating systems:** macOS (Intel/Apple Silicon), Windows 10+, experimental Linux (AppImage/Deb/RPM).
+- **Runtime for contributors:** Node.js 18+ with npm or yarn.
+- **Disk space:** ~2 GB free for dependencies plus build artifacts.
+
+## Environment Variables
+
+Create `.env` for local development and `.env.production` for CI/CD. Both must provide:
+
+```ini
+VITE_SUPABASE_URL=<project url>
+VITE_SUPABASE_ANON_KEY=<anon key>
+```
+
+Optional secrets required for packaging/signing:
+
+- macOS: `APPLE_API_KEY`, `APPLE_API_KEY_ID`, `APPLE_API_ISSUER`, `APPLE_TEAM_ID` or Apple ID + app-specific password.
+- Windows: `WIN_CSC_LINK` + `WIN_CSC_KEY_PASSWORD`, or `WIN_CERT_SUBJECT_NAME`, or raw `WIN_SIGN_PARAMS`.
+
+## Native Helper Dependencies
+
+- Windows SSO relies on the bundled `Koala.SSO.Helper.exe` (WebView2 runtime).
+- Electron Forge auto-unpacks native modules (bufferutil, utf-8-validate) using the `@electron-forge/plugin-auto-unpack-natives` plugin.
+
+Confirm these prerequisites before moving on to development or packaging steps.

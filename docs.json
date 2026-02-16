@@ -125,6 +125,54 @@
             ]
           }
         ]
+      },
+      {
+        "tab": "Koala Studio",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "kdes/introduction",
+              "kdes/differentiators"
+            ]
+          },
+          {
+            "group": "Installation",
+            "pages": [
+              "kdes/installation/prerequisites",
+              "kdes/installation/local-development",
+              "kdes/installation/packaging-distribution"
+            ]
+          },
+          {
+            "group": "Authentication & Connections",
+            "pages": [
+              "kdes/connections/authentication",
+              "kdes/connections/connection-sync"
+            ]
+          },
+          {
+            "group": "SQL Experience",
+            "pages": [
+              "kdes/editor/sql-workflow",
+              "kdes/editor/simple-mode",
+              "kdes/editor/results-export"
+            ]
+          },
+          {
+            "group": "Data & Lifecycle",
+            "pages": [
+              "kdes/storage/file-storage",
+              "kdes/updates/releases"
+            ]
+          },
+          {
+            "group": "Support",
+            "pages": [
+              "kdes/support/troubleshooting"
+            ]
+          }
+        ]
       }
     ],
     "global": {

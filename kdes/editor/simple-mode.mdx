@@ -1,0 +1,27 @@
+---
+title: "Simple SQL Mode"
+description: "Lightweight editor route for reliability and focus"
+---
+
+## Why Simple Mode Exists
+
+- Provides a clean textarea + results table for users who do not need full Monaco tooling.
+- Reduces bundle size and eliminates complex tab/state logic—ideal for troubleshooting.
+
+## Features Included
+
+- Connection selector shared with the main editor.
+- Query history logging + execution timing.
+- Error messaging and basic keyboard shortcuts (`Ctrl/Cmd+Enter` to run).
+
+## What’s Omitted
+
+- Tab management, saved queries, advanced Monaco features, and file operations.
+- Syntax highlighting/autocomplete (keeps dependencies minimal).
+
+## Accessing the Route
+
+- Navigate to `/simple-sql` inside the app or open via the profile dropdown.
+- Uses the same SOAP execution pipeline as the main editor, so results and history stay in sync.
+
+See `docs/SIMPLE_SQL_EDITOR.md` for implementation specifics if you need to extend the feature.
