@@ -1,7 +1,9 @@
 ---
-title: "Local Development"
-description: "Run Koala Data Explorer Studio in dev mode"
+title: "Developer Environment"
+description: "Build Koala Studio from source"
 ---
+
+> Most customers can skip this page and install the signed builds instead. Use these steps only if you're contributing to the desktop app or need to run a custom build.
 
 ## 1. Install Dependencies
 
@@ -11,28 +13,30 @@ npm install
 yarn
 ```
 
-This pulls down Vite, Electron Forge, Supabase client libs, and the Oracle SOAP helpers shared with KDEE.
+This installs Vite, Electron Forge, Supabase SDKs, and shared Oracle SOAP helpers.
 
-## 2. Start the App
+## 2. Configure Environment Variables
+
+- Create `.env` for local work and `.env.production` for CI.
+- Required keys: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`.
+- Optional flags: feature gates, logging toggles, or update endpoints.
+
+## 3. Start the Dev App
 
 ```bash
 npm run dev
 ```
 
-`npm run dev` launches:
+This command spins up:
 
 - Vite renderer dev server
-- Vite build/watchers for `main.ts` and `preload.ts`
-- Electron with hot reload wired to the Vite output
-
-## 3. Configure Env Files
-
-Populate `.env` with Supabase URL + anon key plus any optional feature flags (e.g., toggling the in-app update banner). CI uses `.env.production`.
+- Main/preload watchers
+- Electron running against the Vite outputs with hot reload
 
 ## 4. Debugging Tips
 
 - Renderer DevTools: `Ctrl+Shift+I` / `Cmd+Option+I`
-- Main process logs: view in terminal output
-- SSO helper tracing: run with `ELECTRON_ENABLE_LOGGING=1` to view native window events
+- Main process logs: view the terminal session
+- SSO helper tracing: run with `ELECTRON_ENABLE_LOGGING=1`
 
-No VS Code host is required; everything runs inside the native Electron shell.
+You now have a contributor-grade environment without relying on VS Code as a host.

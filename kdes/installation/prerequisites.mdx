@@ -1,31 +1,24 @@
 ---
-title: "Prerequisites"
-description: "What you need before building or installing KDES"
+title: "System Requirements"
+description: "What end users need before installing Koala Studio"
 ---
 
-## System Requirements
+## Supported Platforms
 
-- **Operating systems:** macOS (Intel/Apple Silicon), Windows 10+, experimental Linux (AppImage/Deb/RPM).
-- **Runtime for contributors:** Node.js 18+ with npm or yarn.
-- **Disk space:** ~2 GB free for dependencies plus build artifacts.
+- **macOS:** Monterey (12) or later on Intel or Apple Silicon.
+- **Windows:** Windows 10 (21H2) or Windows 11 with the WebView2 runtime.
+- **Linux (preview):** Ubuntu 22.04+ via AppImage or `.deb`.
 
-## Environment Variables
+## Account Access
 
-Create `.env` for local development and `.env.production` for CI/CD. Both must provide:
+- A Koala account (same credentials you use in the VS Code extension) to sign in via Supabase.
+- Network access to your Oracle Fusion OTBI/BIP environments.
+- Optional: BTSS license key if you plan to unlock paid features.
 
-```ini
-VITE_SUPABASE_URL=<project url>
-VITE_SUPABASE_ANON_KEY=<anon key>
-```
+## Hardware & Permissions
 
-Optional secrets required for packaging/signing:
+- 8 GB RAM minimum recommended for handling multiple result sets.
+- ~1 GB free disk space for the application plus additional space for cached query results.
+- Ability to install signed applications (admin rights may be required on locked-down machines).
 
-- macOS: `APPLE_API_KEY`, `APPLE_API_KEY_ID`, `APPLE_API_ISSUER`, `APPLE_TEAM_ID` or Apple ID + app-specific password.
-- Windows: `WIN_CSC_LINK` + `WIN_CSC_KEY_PASSWORD`, or `WIN_CERT_SUBJECT_NAME`, or raw `WIN_SIGN_PARAMS`.
-
-## Native Helper Dependencies
-
-- Windows SSO relies on the bundled `Koala.SSO.Helper.exe` (WebView2 runtime).
-- Electron Forge auto-unpacks native modules (bufferutil, utf-8-validate) using the `@electron-forge/plugin-auto-unpack-natives` plugin.
-
-Confirm these prerequisites before moving on to development or packaging steps.
+> Building Koala Studio from source? See the **Contributor Setup** pages for Node.js, environment variables, and signing requirements.

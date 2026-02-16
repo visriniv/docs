@@ -141,6 +141,13 @@
             "group": "Installation",
             "pages": [
               "kdes/installation/prerequisites",
+              "kdes/installation/download-install",
+              "kdes/installation/first-connection"
+            ]
+          },
+          {
+            "group": "Contributor Setup",
+            "pages": [
               "kdes/installation/local-development",
               "kdes/installation/packaging-distribution"
             ]

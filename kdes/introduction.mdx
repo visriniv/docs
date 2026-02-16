@@ -1,20 +1,24 @@
 ---
 title: "Introduction"
-description: "Native Koala Data Explorer Studio overview"
+description: "Get to know Koala Data Explorer Studio"
 ---
 
-## Meet the Native App
+## Meet Koala Data Explorer Studio
 
-Koala Data Explorer Studio (KDES) is the Electron-based desktop companion to the VS Code extension. It delivers the same Oracle Fusion OTBI capabilities in a self-contained macOS, Windows, and optional Linux experience, complete with hardened IPC boundaries and Supabase-backed services.
+Koala Data Explorer Studio (KDES) brings the familiar Koala SQL experience to a stand-alone desktop app for macOS, Windows, and (optionally) Linux. It’s built for analysts, consultants, and developers who want Koala without running VS Code.
 
-- Ships as signed DMG/EXE installers produced through Electron Forge.
-- Shares SOAP/OTBI client code with the extension but adds desktop-specific features such as multi-window controls and native menus.
-- Targets analysts, consultants, and enterprise users who need richer clipboard/file access or cannot install VS Code.
+### What you can do
 
-## Why Add a Studio Section?
+- Run Oracle Fusion OTBI queries with semicolon-scoped execution and per-tab connections.
+- Keep an unlimited SQL history, export results to CSV/XLSX, and copy cells or rows instantly.
+- Switch between the full Monaco editor or the lightweight Simple SQL mode depending on your task.
+- Store data locally for offline access while keeping credentials encrypted in the cloud.
+- Receive in-app update banners so you always know when a signed build is ready.
 
-- We now have a **native** packaging option alongside the VS Code extension.
-- Customers need parallel documentation that mirrors the structure of the existing extension docs.
-- KDEE content must remain untouched; the Studio pages simply live next to it inside Mintlify.
+## How Studio Fits Next to the Extension
 
-Use this section to orient readers before they dive into setup, authentication, and usage guides specific to the native app.
+- KDEE (the VS Code extension) stays exactly as it is for teams that live inside VS Code.
+- KDES offers the same query engine and Supabase backend but packages everything into a native installer with its own menus, shortcuts, and system integrations.
+- Both products share features and connection schemas, so you can move between them without re-learning workflows.
+
+Use the Studio pages in this tab whenever you need install instructions, user workflows, or troubleshooting steps that are specific to the native app.

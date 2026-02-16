@@ -1,35 +1,35 @@
 ---
-title: "Packaging & Distribution"
-description: "Build signed installers for Koala Data Explorer Studio"
+title: "Building Installers (Contributors)"
+description: "How the Koala team produces signed Studio builds"
 ---
+
+> Customers do not need these steps. The signed installers referenced on the Download page are already produced by the Koala team.
 
 ## Local Packaging
 
-- `npm run package` – bundles renderer, main, and preload for smoke testing without producing installers.
-- `npm run make` – runs Electron Forge makers to output platform installers:
+- `npm run package` – bundles renderer, main, and preload for smoke tests.
+- `npm run make` – runs Electron Forge makers to produce installers:
   - macOS DMG in `out/`
-  - Windows Squirrel installer under `out/make/squirrel.windows/`
-  - Optional Linux `.deb`, `.rpm`, and `.AppImage`
+  - Windows Squirrel install set in `out/make/squirrel.windows/`
+  - Optional Linux `.deb`, `.rpm`, `.AppImage`
 
-## Code Signing
+## Code Signing Inputs
 
-- macOS: supply Apple Developer ID credentials or app-specific password; notarized artifacts end up in `out/`.
-- Windows: configure Authenticode signing using a PFX (`WIN_CSC_LINK`) or certificate subject name.
+- **macOS:** Apple Developer ID credentials (API key or Apple ID + app-specific password) for codesign + notarization.
+- **Windows:** either a PFX file referenced via `WIN_CSC_LINK`/`WIN_CSC_KEY_PASSWORD`, a certificate common name (`WIN_CERT_SUBJECT_NAME`), or raw `WIN_SIGN_PARAMS`.
 
-## In-App Updates
+## Update Manifests
 
-Package generation should also emit:
+Each release must also emit:
 
 - Windows `RELEASES` + `.nupkg`
-- macOS `latest-mac.yml` + `.zip`/`.dmg`
-- Linux AppImage update manifests (optional)
+- macOS `latest-mac.yml` + notarized `.zip`/`.dmg`
+- Linux AppImage update JSON (if distributing AppImage)
 
-These feeds power the in-app update banner described in the Updates section.
+These feeds power the in-app banner described in the **Updates & Releases** page.
 
-## Distribution Checklist
+## Publishing Checklist
 
-1. Upload signed installers + manifests to the BTSS distribution endpoint (S3 or corporate site).
-2. Publish release notes JSON/Markdown for the “View release notes” CTA.
-3. Tag releases per the quarterly branch strategy (`vYYYY.Qx`).
-
-This mirrors KDEE’s release rigor while accounting for desktop-specific assets.
+1. Upload installers + manifests to the BTSS distribution endpoint.
+2. Publish release notes consumed by the “View release notes” CTA.
+3. Tag `master` per the quarterly convention (`vYYYY.Qx`) so CI/CD jobs run.

@@ -1,0 +1,35 @@
+---
+title: "First Connection"
+description: "Create your first Oracle connection inside Koala Studio"
+---
+
+## Step 1 – Sign In
+
+1. Open Koala Studio.
+2. Use the same Koala account you use for the VS Code extension (email OTP or SSO, depending on your tenant).
+
+## Step 2 – Launch the Connection Drawer
+
+1. Click **Connections** in the left rail or use `Ctrl/Cmd+,`.
+2. Choose **Add Connection**.
+
+## Step 3 – Choose the Auth Method
+
+- **Basic Auth:** supply the Oracle Fusion username/password.
+- **OAuth PKCE:** enter client ID, auth/token endpoints, and redirect URI (matches your org settings).
+- **Windows SSO:** available on Windows when the WebView2 helper is installed—launches a native window to capture your JWT.
+
+## Step 4 – Save & Test
+
+1. Provide a friendly name and optional description so you can recognize the connection later.
+2. Click **Test Connection** to validate credentials.
+3. Save; the connection now appears in the tab selector and is synced to Supabase so other machines can reuse it.
+
+## Step 5 – Run Your First Query
+
+1. Open a new tab (Ctrl/Cmd+N).
+2. Pick the connection you just created.
+3. Paste or type your SQL and press `Ctrl/Cmd+Enter`.
+4. Inspect results, export to CSV/XLSX, or copy cells/rows as needed.
+
+Your connection metadata remains available the next time you open Koala Studio, and it can be exported to KDEE via encrypted `.kdex` files when needed.
