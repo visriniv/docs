@@ -140,6 +140,7 @@
             "group": "Installation",
             "pages": [
               "kdes/installation/prerequisites",
+              "kdes/installation/account-access",
               "kdes/installation/download-install",
               "kdes/installation/first-connection"
             ]
