@@ -1,21 +1,21 @@
 ---
 title: "KDEE vs. KDES"
-description: "How the native Studio differs from the VS Code extension"
+description: "Two ways to use Koala, one feature set"
 ---
 
 ## Side-by-Side Comparison
 
 | Area | KDEE (VS Code) | KDES (Native Desktop) |
 | --- | --- | --- |
-| Distribution | VS Code Marketplace extension | Electron Forge installers (DMG/EXE, optional Linux) |
-| Authentication | VS Code account context, SecretStorage | Supabase auth + native WebView2 helper for Oracle SSO |
-| Storage | VS Code `globalState` + SecretStorage | File system data lake (`tabs/`, `results/`, `session/`) backed by Supabase |
-| UI Surface | Webview inside VS Code | Full-screen React app with native menus and multi-window controls |
-| Connection Portability | VS Code sync or manual JSON | Encrypted `.kdex` export/import plus Supabase sync roadmap |
-| Updates | Marketplace auto-updates | In-app banner powered by `autoUpdater` + BTSS-hosted feeds |
+| How you install | From the VS Code Marketplace | Download a signed DMG/EXE/AppImage |
+| Where it runs | Inside VS Code (as an extension) | Stand-alone window with native menus |
+| Authentication | Uses VS Code’s account context and SecretStorage | Built-in Supabase sign-in + Windows SSO helper |
+| Local storage | VS Code global state & secrets | Dedicated Koala folder with tab/results caches |
+| Sharing connections | VS Code Settings Sync or export/import | Encrypted `.kdex` today, automatic sync coming |
+| Updates | Managed by VS Code | In-app banner with Restart & Update |
 
-## How to Use This Table
+## Choosing the Right Surface
 
-- Anchor it on the Studio landing page so readers understand why both surfaces exist.
-- Link back to these differences whenever Mintlify cross-references KDEE features that behave slightly differently on desktop.
-- Reinforce that KDES complements, rather than replaces, the extension—users can pick whichever workflow fits their policy constraints.
+- Stay on KDEE if your team already lives inside VS Code or extensions are easier to deploy.
+- Pick KDES when you need native clipboard/file access, richer OS integration, or a self-contained installer for locked-down environments.
+- Mix and match—both apps use the same Supabase backend, so your query history and connections can travel with you.

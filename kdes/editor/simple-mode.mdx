@@ -1,27 +1,29 @@
 ---
 title: "Simple SQL Mode"
-description: "Lightweight editor route for reliability and focus"
+description: "A distraction-free query surface"
 ---
 
-## Why Simple Mode Exists
+## When to Use It
 
-- Provides a clean textarea + results table for users who do not need full Monaco tooling.
-- Reduces bundle size and eliminates complex tab/state logic—ideal for troubleshooting.
+- You only need to paste a query, pick a connection, and see results.
+- Monaco feels heavy on low-powered machines or when troubleshooting.
+- You prefer a clean interface for training or read-only access.
 
-## Features Included
+## What You Get
 
-- Connection selector shared with the main editor.
-- Query history logging + execution timing.
-- Error messaging and basic keyboard shortcuts (`Ctrl/Cmd+Enter` to run).
+- A single editor pane with a connection dropdown and Run button.
+- Query history and execution timing so you can re-run statements quickly.
+- Clear error messaging plus the same keyboard shortcut: `Ctrl/Cmd+Enter`.
 
-## What’s Omitted
+## What Stays Behind
 
-- Tab management, saved queries, advanced Monaco features, and file operations.
-- Syntax highlighting/autocomplete (keeps dependencies minimal).
+- No multi-tab layout, saved queries, or file operations.
+- Syntax highlighting/autocomplete are trimmed to keep the view lightweight.
 
-## Accessing the Route
+## How to Open It
 
-- Navigate to `/simple-sql` inside the app or open via the profile dropdown.
-- Uses the same SOAP execution pipeline as the main editor, so results and history stay in sync.
+1. Click your profile avatar in the top-right corner.
+2. Choose **Open Simple SQL Mode**.
+3. The view opens in a new window so you can keep the full editor running elsewhere if needed.
 
-See `docs/SIMPLE_SQL_EDITOR.md` for implementation specifics if you need to extend the feature.
+Simple mode uses the same connections and history as the primary editor, so you can switch back and forth without any migration.

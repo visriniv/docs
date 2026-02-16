@@ -1,27 +1,26 @@
 ---
 title: "Working with Results"
-description: "Copy, export, and CSV tooling inside KDES"
+description: "View, filter, copy, and export data"
 ---
 
-## Grid Interactions
+## Explore the Grid
 
-- Built on Material React Table with native copy helpers (`enableClickToCopy`).
-- Inline search, sorting, and pagination mirror KDEE behavior but with native window chrome.
+- Click any column header to sort ascending/descending.
+- Use the in-grid search box to filter rows without re-running the query.
+- Hover over a cell to reveal the copy icon, or press `Ctrl/Cmd+C` to copy the current selection.
 
 ## Export Options
 
-- CSV and XLSX exports leverage the same pipelines as the extension.
-- Large result sets stream to disk in chunks (1000 rows per page) before packaging.
+- **CSV or Excel:** choose the format from the toolbar. Koala automatically streams data in chunks so even very large result sets export reliably.
+- **Copy Table:** copy the visible page to paste into chat, email, or spreadsheets.
+- **Pagination Controls:** move between result pages (1,000 rows each) without fetching the query again.
 
-## CSV Viewer
+## Built-in CSV Viewer
 
-- Dedicated CSV parsing components (Papa Parse) let users upload files, inspect data, and re-export without leaving the app.
-- Accessible from the profile dropdown; supports sorting, filtering, pagination, and copy/export actions.
+- Open **CSV Viewer** from the profile menu to inspect any CSV you drag in—great for quick validations or sharing snippets with teammates.
+- Apply the same filters, column toggles, and export actions without needing Excel.
 
-## Reference Material
+## Where Files Are Saved
 
-- `docs/query-results-table-copy-functionality.md`
-- `README.md` CSV parsing section
-- `docs/FILE_STORAGE_GUIDE.md` for where exported files live
-
-Document these workflows in Mintlify so users see parity with the VS Code experience plus the extra CSV tooling unique to the native app.
+- Exports go to your OS download location by default; change this under **Settings → Downloads** if you prefer a dedicated folder.
+- Temporary files live inside the Koala storage directory and are cleaned up automatically every few days (see the Storage page if you need to clear space manually).

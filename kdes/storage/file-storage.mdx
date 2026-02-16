@@ -1,35 +1,35 @@
 ---
 title: "Data Storage & Privacy"
-description: "Where Koala Data Explorer Studio saves data on each OS"
+description: "Where Koala Studio keeps your data"
 ---
 
-## Storage Locations
+## Default Locations
 
 - **macOS:** `~/Library/Application Support/Koala Data Studio/`
 - **Windows:** `%APPDATA%/Koala Data Studio/`
 - **Linux:** `~/.config/Koala Data Studio/`
 
-## Directory Structure
+Use these paths if you ever need to back up your tabs or clear space.
+
+## What’s Inside
 
 ```
 Koala Data Studio/
-├─ tabs/
-│  ├─ metadata/ (tab state)
-│  ├─ results/<tabId>/page-*.json (paginated results)
-│  └─ session/session.json (active layout)
-├─ temp/ (autosave + exports)
-└─ auth/btss-sql-editor-auth-main.json (encrypted tokens)
+├─ tabs/metadata/      # tab names, layouts, connection choices
+├─ tabs/results/<tab>/ # paginated query results (1000 rows per file)
+├─ tabs/session/       # which tabs were open last time
+├─ temp/               # autosave files + recent exports
+└─ auth/               # encrypted tokens tied to your Koala login
 ```
 
-## Cleanup & Maintenance
+## Managing Disk Usage
 
-- Startup jobs remove stale localStorage entries and temp files older than 7 days.
-- Result directories can be manually purged to reclaim disk space; metadata/session files should remain intact to preserve tabs.
+- Delete old `tabs/results/<tabId>` folders if you need to reclaim space; the app will re-fetch results the next time you run the query.
+- Leave `tabs/metadata` and `tabs/session` intact unless Support asks you to reset them—removing them clears tab layouts.
+- Temporary files older than a week are cleaned up automatically, but you can safely empty the `temp` folder at any time.
 
-## Security Notes
+## Privacy & Security
 
-- Query results are plain JSON, so treat the directories as sensitive data.
-- Credentials stay encrypted (AES-256-GCM) and are never stored in plain text on disk.
-- Use OS permissions and disk encryption (FileVault/BitLocker) for additional protection.
-
-See `docs/FILE_STORAGE_GUIDE.md` for deeper troubleshooting steps.
+- Credentials remain encrypted and cannot be read directly from disk.
+- Query results are plain JSON, so treat the storage folder as sensitive information.
+- Pair Koala with OS-level protections such as FileVault or BitLocker for extra assurance.

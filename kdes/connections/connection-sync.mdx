@@ -3,27 +3,25 @@ title: "KDEE ↔ KDES Sync Roadmap"
 description: "How the extension and native app will share connections"
 ---
 
-## Phase 1 – Encrypted Exchange Files
+Koala Studio and the VS Code extension use the same connection model, so we’re rolling out cross-product sync in stages.
 
-- Export/import commands on both apps produce `.kdex` files.
-- User supplies a passphrase -> PBKDF2 derives an AES-256-GCM key.
-- Air-gapped friendly; no shared infrastructure required.
+## Today – Encrypted Exchange Files
 
-## Phase 2 – Shared Supabase Backend
+- Export connections from either app at any time.
+- Choose a passphrase to protect the `.kdex` file, then import it on the other side.
+- Works even in air-gapped environments because no extra service is required.
 
-- Shared npm package (`@koala/connection-core`) defines models + encryption helpers.
-- KDEE authenticates against Supabase to sync metadata/secrets just like KDES.
-- Real-time conflict resolution plus activity logs.
+## Coming Soon – Automatic Cloud Sync
 
-## Phase 3 – API Gateway (Optional)
+- We’re extending the existing Supabase backend to the extension.
+- Once available, adding or editing a connection in one surface updates the other automatically.
+- Conflicts are resolved per-connection, and you’ll see audit info for recent changes.
 
-- Dedicated sync service decouples clients from Supabase.
-- Adds enterprise controls: auditing, fine-grained scopes, and integration hooks.
+## Later – Enterprise Sync API (Optional)
 
-## Why It Matters
+- Large customers will be able to point both apps at a managed Koala sync gateway for extra audit, policy, or approval workflows.
 
-- KDEE and KDES must coexist; users expect seamless connection portability.
-- Mintlify should link to this roadmap so customers know cross-surface sync is actively managed.
-- Until a shared backend ships, `.kdex` exports remain the supported method.
+## What You Should Do Now
 
-See `docs/connection-sync-approaches.md` for the underlying analysis.
+- Use `.kdex` exports/imports whenever you need to move connections between KDEE and KDES.
+- Watch release notes for the Supabase sync announcement; no extra setup will be required beyond signing in.

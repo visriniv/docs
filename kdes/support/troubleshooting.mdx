@@ -1,23 +1,28 @@
 ---
 title: "Troubleshooting & Support"
-description: "Where to look when the native app misbehaves"
+description: "Quick fixes and how to contact Koala"
 ---
 
-## Diagnostic Playbook
+## Quick Checks
 
-- **Logs:** use `Ctrl+Shift+I` / `Cmd+Option+I` for renderer logs; check terminal output for main-process traces.
-- **SSO issues:** verify WebView2 runtime presence; run with `ELECTRON_ENABLE_LOGGING=1` to capture helper output.
-- **Storage corruption:** review `tabs/metadata/` and `tabs/session/session.json` as described in `docs/TROUBLESHOOTING_GUIDE.md`.
+- **App won’t start:** make sure you’re running the latest installer and that antivirus tools haven’t quarantined Koala. Reboot if an update just finished.
+- **Can’t sign in:** confirm you can reach koala.btss.dev in a browser. If you recently reset your Koala password, sign out (profile menu) and sign back in.
+- **SSO window doesn’t appear (Windows):** install or repair the Microsoft WebView2 runtime, then retry.
 
-## Common Issues
+## Connection or Query Issues
 
-- Connection/authentication failures – confirm Supabase session, re-import `.kdex` if metadata is stale.
-- Query performance – rely on infinite scroll storage strategies to keep memory stable; clean up old result directories if disk is full.
-- Update banner loops – ensure BTSS update endpoint hosts the latest manifests and installers per the Updates guide.
+- Re-enter credentials or import a fresh `.kdex` file if your connection list looks empty.
+- If a query hangs, cancel it from the toolbar, adjust your SQL, and rerun. Clearing old result folders (see Storage page) can free disk space for large exports.
+- Switch to Simple SQL mode when you suspect a tab-specific state issue; if the problem goes away, close and reopen the affected tab in the main editor.
 
-## Getting Help
+## Update Problems
 
-- Internal teams: reference `Common.md`, `SETUP_AUTHENTICATION.md`, and `SECURITY_ASSESSMENT_REPORT.md` for compliance answers.
-- Customers: use the Mintlify Support links (Freshdesk) or escalate via account managers.
+- If the banner keeps reappearing after a restart, download the latest installer manually and reinstall over your current build.
+- Still seeing the previous version number under **About Koala Studio**? Contact support with the version listed plus the date of your last successful update.
 
-Link this page anywhere the KDEE docs currently refer to support so users see that the native path is fully covered.
+## Talk to Support
+
+- [Open a Freshdesk ticket](https://btsscorp.freshdesk.com/support/tickets/new) and include logs/screenshot if possible.
+- Enterprise customers can also reach their BTSS account manager for priority help.
+
+When Support requests additional data (logs, storage folders, etc.), they’ll guide you through exporting only what’s needed.

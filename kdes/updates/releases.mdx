@@ -1,31 +1,28 @@
 ---
 title: "Updates & Releases"
-description: "Quarterly branch strategy and in-app update flow"
+description: "Stay current with the latest Koala Studio builds"
 ---
 
-## Branch & Tag Model
+## How Updates Work
 
-- Quarterly branches (`2025_A`, `2025_B`, etc.) feed into `master`.
-- At quarter end, merge into `master`, tag `vYYYY.Qx` (or semantic version), and trigger release workflows.
+1. Koala checks for updates when you launch the app and every few hours after that.
+2. When a new build is ready, a slim banner appears at the top of the window.
+3. Click **Restart & Update** to install immediately, or choose **Later** to dismiss the prompt until the next reminder.
 
-## CI/CD
+The download happens quietly in the background. You’ll only see a fallback link if your network blocks the update service.
 
-- GitHub Actions workflow `.github/workflows/release.yml` builds signed installers for macOS + Windows upon tag push.
-- Secrets required: Supabase creds, Apple signing values, Windows signing settings.
-- Azure DevOps mirror runs `yarn make` on both platforms, signs artifacts, and publishes to BTSS hosting.
+## Manual Installers
 
-## In-App Update Banner
+Prefer to download yourself? Grab the newest DMG/EXE/AppImage from the Koala download portal and install over your existing version. Your settings and connections stay intact.
 
-As documented in `docs/IN_APP_UPDATE_PLAN.md`:
+## Release Cadence
 
-1. `autoUpdater.checkForUpdates()` runs on launch and every 4 hours.
-2. Renderer shows a slim banner: “New Koala Data Explorer update is ready.” with `Restart & Update` / `Later`.
-3. Downloads happen silently; errors swap the CTA to “Retry download” and link to manual installers.
+- New builds typically ship at the end of each quarterly development cycle.
+- Critical fixes may appear between quarters—you’ll see the same banner for those releases.
+- Release notes link directly from the banner so you can preview changes before restarting.
 
-## Release Assets
+## Checking Your Version
 
-- Windows: `RELEASES` + `.nupkg`
-- macOS: `latest-mac.yml` + notarized `.zip`/`.dmg`
-- Linux (optional): `.AppImage` + update JSON
-
-Document these steps so Ops/Docs teams can keep Studio releases at parity with the VS Code extension.
+1. Click your profile avatar.
+2. Choose **About Koala Studio**.
+3. The modal lists the current version plus the date it was installed.

@@ -1,27 +1,30 @@
 ---
 title: "SQL Editing Experience"
-description: "How queries run inside Koala Data Explorer Studio"
+description: "Write and run queries inside Koala Studio"
 ---
 
-## Semicolon-Scoped Execution
+## Familiar Shortcuts
 
-- Runs the statement surrounding the cursor, including empty-line boundaries.
-- Selection-first: highlighted SQL overrides automatic detection.
-- Shortcut parity with KDEE: `Ctrl/Cmd+Enter` (run), `Alt+F` (format), `Ctrl/Cmd+N` (new tab).
+- `Ctrl/Cmd+Enter` runs the highlighted selection or the statement around your cursor.
+- `Alt+F` formats SQL using Koala’s formatter.
+- `Ctrl/Cmd+N` opens a new tab without losing the current editor content.
 
-## Monaco Tabs with Native Chrome
+Everything behaves just like the VS Code extension, so you don’t lose muscle memory.
 
-- Each tab stores its own connection, history, and editor state.
-- Tab chrome adapts to native window controls (padding adjustments for macOS traffic lights).
-- Saved queries and query history use the same Supabase backend as KDEE.
+## Tabs That Remember Everything
 
-## Hardened IPC
+- Each tab keeps its own connection, query text, and history.
+- Rename tabs to highlight environments (e.g., “Prod GL”, “Test HCM”).
+- Duplicate a tab when you want to tweak a query without losing the original.
 
-- Renderer communicates with main/preload via whitelisted channels only.
-- File dialogs, exports, and clipboard actions go through secure handlers to avoid arbitrary native access.
+## Editing Comforts
 
-## Accessibility & Performance
+- Monaco editor powers IntelliSense, syntax highlighting, and multi-caret editing.
+- Light/dark mode follows your OS preference, or choose manually from the profile menu.
+- Autosave protects unsent queries if the app closes unexpectedly.
 
-- Fast-loading Monaco configuration (see `docs/monaco-editor-fast-loading.md`).
-- Infinite scroll + pagination strategies prevent freezing on large result sets.
-- Keyboard shortcuts and VS Code-like UX minimize relearning for KDEE users.
+## Performance When Results Get Large
+
+- Koala streams results so you can scroll through thousands of rows without freezing the UI.
+- Jump between tabs instantly—each one reloads only the data you need.
+- Use the right-rail history to rerun recent statements with a single click.

@@ -1,29 +1,32 @@
 ---
 title: "Authentication & Connections"
-description: "How KDES handles Supabase auth and Oracle credentials"
+description: "Add and reuse Oracle logins safely"
 ---
 
-## Supabase Session Flow
+## Signing In
 
-1. Renderer boots with `VITE_SUPABASE_URL` + `VITE_SUPABASE_ANON_KEY`.
-2. Users sign in through Supabase UI (email magic link or SSO) to establish an app session.
-3. All connection metadata/tabs are scoped to the Supabase user ID.
+1. Launch Koala Studio.
+2. Sign in with the same Koala account you use for the VS Code extension (email OTP or SSO).
+3. Once signed in, your saved connections appear automatically and stay tied to your Koala account.
 
-## Supported Connection Types
+## Connection Types
 
-- **Basic Auth:** username + password encrypted via AES-256-GCM before storage.
-- **SSO:** Windows helper (`Koala.SSO.Helper.exe`) launches a native WebView2 login flow to fetch JWT tokens.
-- **OAuth PKCE:** Full PKCE handshake with Oracle Fusion endpoints.
+- **Basic:** supply your Oracle Fusion username and password. Koala encrypts them before they leave your device.
+- **OAuth PKCE:** enter the client ID plus the authorization and token URLs provided by your Oracle admin.
+- **Windows SSO:** (Windows only) click **Use Windows Login** to open a trusted Microsoft WebView2 window, then complete your organization’s SSO flow.
 
-## Secure Storage Practices
+Each connection can include a friendly name, description, and default schema to keep your list organized.
 
-- Credentials stored in Supabase tables with encrypted fields.
-- Local disk only keeps references/metadata; sensitive blobs remain encrypted.
-- IPC bridges expose minimal methods so renderer code never touches raw secrets.
+## How We Protect Credentials
 
-## Connection Management UI
+- Secrets are encrypted and stored in Koala’s secure cloud tables—never as plain text on disk.
+- Only lightweight metadata (connection name, server URL, description) is cached locally so tabs load quickly.
+- When you remove a connection, it disappears from every machine tied to your account.
 
-- Per-tab connection selectors mirror KDEE behavior.
-- Metadata (name, server URL, auth type, description) syncs with Supabase so users see the same list across machines.
+## Managing Connections in Tabs
 
-Refer to `docs/connection-sync-approaches.md` for schema-level details shared with the VS Code extension.
+- Select a connection from the drop-down at the top of each tab.
+- Switch connections at any time—the editor keeps query text intact even if you point the tab to a different environment.
+- Use the overflow menu to duplicate tabs, rename them, or open the same connection in Simple SQL mode.
+
+This experience mirrors KDEE so you can move between the extension and the native app without relearning anything.
