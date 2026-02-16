@@ -1,24 +1,57 @@
 ---
 title: "Introduction"
-description: "Get to know Koala Data Explorer Studio"
+description: "Professional native SQL tool for Oracle Fusion Cloud"
 ---
 
-## Meet Koala Data Explorer Studio
+## What is Koala Data Explorer Studio?
 
-Koala Data Explorer Studio (KDES) brings the familiar Koala SQL experience to a stand-alone desktop app for macOS, Windows, and (optionally) Linux. It’s built for analysts, consultants, and developers who want Koala without running VS Code.
+Koala Data Explorer Studio (KDES) is the native desktop edition of Koala. It delivers the same Oracle Fusion OTBI power as the VS Code extension but in a stand-alone macOS and Windows app with its own installer, menus, and update flow.
 
-### What you can do
+- Ships as signed DMG/EXE/AppImage installers with native menus, window controls, and OS integrations.
+- Includes Monaco-powered editing, multi-tab workflows, saved queries, SQL history, CSV/XLSX export, and copy helpers.
+- Stores results locally for offline review while credentials stay encrypted in Supabase.
 
-- Run Oracle Fusion OTBI queries with semicolon-scoped execution and per-tab connections (see `README.md` “Key Features”).
-- Keep unlimited SQL history and access saved queries, CSV/XLSX export, and clipboard-safe copy workflows (`docs/query-results-table-copy-functionality.md`).
-- Switch between the full Monaco editor and the lightweight Simple SQL mode (`docs/SIMPLE_SQL_EDITOR.md`) depending on the job.
-- Store data locally for offline access while credentials stay encrypted in Supabase (`docs/FILE_STORAGE_GUIDE.md`).
-- Receive in-app update banners and restart directly into the latest signed release (`docs/IN_APP_UPDATE_PLAN.md`).
+## Why Koala Studio?
 
-## How Studio Fits Next to the Extension
+### Native Convenience
+Launch Koala like any other application—no VS Code dependency, no extension updates to manage.
 
-- KDEE (the VS Code extension) stays exactly as it is for teams that live inside VS Code.
-- KDES offers the same query engine and Supabase backend but packages everything into a native installer with its own menus, shortcuts, and system integrations.
-- Both products share features and connection schemas, so you can move between them without re-learning workflows.
+### Enterprise Friendly
+Give analysts and consultants a self-contained tool that respects OS security controls, supports SSO, and works in locked-down environments.
 
-Use the Studio pages in this tab whenever you need install instructions, user workflows, or troubleshooting steps that are specific to the native app.
+### Seamless Switching
+Connections, query history, and features mirror the extension, so teams can move between KDEE and KDES without relearning anything.
+
+## Key Benefits
+
+<CardGroup cols={2}>
+  <Card title="Native Experience" icon="display">
+    macOS and Windows builds with their own menus, window controls, and tray integration
+  </Card>
+  <Card title="Powerful SQL Editor" icon="code">
+    Monaco tabs, semicolon-scoped execution, smart query history, and tab-specific connections
+  </Card>
+  <Card title="Rich Results" icon="table">
+    Interactive grid with copy helpers, CSV/XLSX export, and an embedded CSV viewer for shared files
+  </Card>
+  <Card title="Automatic Updates" icon="refresh">
+    In-app banner downloads signed builds in the background and restarts with a single click
+  </Card>
+</CardGroup>
+
+## Who Uses Koala Studio?
+
+### Analysts & Consultants
+Need data access without relying on VS Code or developer tooling.
+
+### Enterprise Users
+Operate under strict install policies but still require Oracle query access.
+
+### Developers & Integrators
+Prefer a native shell that keeps SQL tasks separate from coding sessions yet stays in sync with the extension.
+
+## Getting Started
+
+1. [Download the installer](/kdes/installation/download-install) for your OS.
+2. Sign in with your Koala account and create your first connection.
+3. Explore the SQL editor, Simple mode, and CSV tooling using the guides in this section.

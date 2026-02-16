@@ -11,7 +11,6 @@ description: "How the Koala team produces signed Studio builds"
 - `npm run make` – runs Electron Forge makers to produce installers:
   - macOS DMG in `out/`
   - Windows Squirrel install set in `out/make/squirrel.windows/`
-  - Optional Linux `.deb`, `.rpm`, `.AppImage`
 
 ## Code Signing Inputs
 
@@ -24,7 +23,6 @@ Each release must also emit:
 
 - Windows `RELEASES` + `.nupkg`
 - macOS `latest-mac.yml` + notarized `.zip`/`.dmg`
-- Linux AppImage update JSON (if distributing AppImage)
 
 These feeds power the in-app banner described in the **Updates & Releases** page.
 

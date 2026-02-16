@@ -163,7 +163,6 @@
             "group": "SQL Experience",
             "pages": [
               "kdes/editor/sql-workflow",
-              "kdes/editor/simple-mode",
               "kdes/editor/results-export"
             ]
           },
