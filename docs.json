@@ -208,13 +208,6 @@
             "pages": [
               "kdes/support/troubleshooting"
             ]
-          },
-          {
-            "group": "Contributor Setup",
-            "pages": [
-              "kdes/installation/local-development",
-              "kdes/installation/packaging-distribution"
-            ]
           }
         ]
       }
