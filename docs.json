@@ -181,8 +181,7 @@
               "kdes/advanced/data-sources",
               "kdes/advanced/sql-history",
               "kdes/advanced/performance-monitor",
-              "kdes/advanced/multiple-tabs",
-              "kdes/advanced/auto-updates"
+              "kdes/advanced/multiple-tabs"
             ]
           },
           {
