@@ -206,6 +206,12 @@
             "pages": [
               "kdes/support/troubleshooting"
             ]
+          },
+          {
+            "group": "Policies",
+            "pages": [
+              "kdes/policies/privacy-policy"
+            ]
           }
         ]
       }

@@ -1,0 +1,92 @@
+---
+title: "Koala Studio Privacy Policy"
+description: "Customer-facing summary of how Koala Studio handles data, security, and user rights."
+---
+
+Koala Studio is designed for enterprise data teams, so its privacy policy stays simple and
+customer-friendly. This page highlights what data is collected, what never leaves your device,
+and how BTSS keeps information secure while supporting regional compliance (GDPR, CCPA, etc.).
+
+> _Last updated: March 2026_
+
+## 1. Data We Collect
+
+| Category | Details | Why we collect it |
+| --- | --- | --- |
+| **Account details** | Email, password hash, and identity-provider metadata captured by Supabase Authentication during sign-up/sign-in. | Manage your Koala account, enforce licensing, and secure device sessions. |
+| **Connection labels** | Display names, notes, and metadata that help you organise Oracle Fusion / OTBI endpoints. Usernames/passwords stay encrypted locally. | Show friendly names in the UI and keep your workspace consistent across sessions. |
+| **Usage signals** | Anonymous counts such as “queries executed this week” or “update applied.” No query text or table names are transmitted. | Keep auto-updates, licensing, and error alerts working without tracking individual SQL. |
+| **Support content** | Logs, screenshots, or documents you send voluntarily to BTSS support. | Diagnose issues and deliver fixes or advice. |
+
+## 2. Data That Stays on Your Device
+
+- **Query text and result sets**: Stored as JSON/SQL within your operating system’s `userData` folder  
+  (`~/Library/Application Support/Koala Data Studio`, `%APPDATA%\Koala Data Studio`, or `~/.config/Koala Data Studio`).
+- **Session state**: Tab layouts, connection selections, and editor history so Koala reopens exactly where you left off.
+- **Exports and attachments**: CSV, XLSX, and `.kdex` export files live in your Documents folder; Koala does not upload them.
+
+You can delete these files at any time. The app never transmits raw query content or exports back to BTSS.
+
+## 3. How BTSS Uses Information
+
+| Purpose | How it helps you |
+| --- | --- |
+| **Account security** | Authenticates via Supabase, prevents abuse, and enforces device session limits. |
+| **Product experience** | Restores tabs, manages automatic query-history cleanup, and notifies you about updates. |
+| **Customer assistance** | Enables BTSS to troubleshoot tickets, share fixes, and send critical release notes. |
+| **Compliance** | Maintains the records required for licensing, audits, and App Store submissions. |
+
+BTSS does **not** sell personal data or use it for advertising.
+
+## 4. Retention & User Controls
+
+- **Automatic cleanup**: Query history can auto-purge daily or weekly during off-peak hours. You control retention
+  days and max record counts, or run “Cleanup Now” from Settings for immediate deletion.
+- **Account deletion**: Contact `privacy@btsscorp.com` to close your account. BTSS removes Supabase authentication
+  records and revokes licenses within 30 days unless regulations require a longer retention period.
+- **Exports**: You manage CSV/XLSX/`.kdex` files locally. Deleting them from your filesystem removes them permanently.
+
+## 5. Security Practices
+
+- **On-device encryption**: Connection credentials are encrypted with Electron `safeStorage`, which binds keys to
+  your OS profile (Keychain on macOS, DPAPI on Windows, libsecret on Linux). If safeStorage is unavailable, Koala
+  warns you before storing credentials in plaintext.
+- **Encrypted transport**: All communication with Supabase, licensing, and update services uses HTTPS with certificate
+  validation and signature checks on downloaded builds.
+- **Least-privilege cloud usage**: Supabase is used strictly for authentication. Query data, results, and exports never
+  leave your machine.
+- **Signed releases**: macOS and Windows installers are code-signed, and auto-updates verify signatures before install.
+
+## 6. Third-Party Providers
+
+| Provider | Role | Notes |
+| --- | --- | --- |
+| **Supabase** | Authentication and minimal account metadata. | Stores hashed passwords + email. No SQL content. |
+| **Apple / Microsoft / Linux repos** | Deliver signed installers and update manifests. | Standard OS app stores / update feeds. |
+| **Billing partner (e.g., LemonSqueezy)** | Processes payments and invoices. | Payment data never touches Koala Studio. |
+
+All vendors must meet SOC 2 or equivalent security standards and honour their own privacy agreements.
+
+## 7. Children’s Data
+
+Koala Studio targets enterprise professionals and is **not** intended for users under 16.
+BTSS does not knowingly collect information from children. If you believe a child has provided data,
+email `privacy@btsscorp.com` and BTSS will delete it promptly.
+
+## 8. Regional Privacy Rights
+
+- **EU / UK (GDPR/UK GDPR)**: Request access, correction, deletion, or export of your personal data.
+- **California (CCPA/CPRA)**: Ask for disclosure or deletion. Koala does not sell personal data, so opt-out requests are automatically honoured.
+- **Other regions**: BTSS complies with local privacy acts (PDPA, DPDP, etc.) and can host Supabase data in-region for enterprise contracts.
+
+Submit requests via `privacy@btsscorp.com`. BTSS responds within 30 days (or faster where laws require).
+
+## 9. Contact BTSS
+
+Need more details or want to report a concern?
+
+- **Email:** `privacy@btsscorp.com`
+- **Support portal:** https://www.btsscorp.com/support
+- **Mail:** BTSS Corporation, 400 Spectrum Center Drive, Suite 1900, Irvine, CA 92618 USA
+
+Major changes to this policy are announced through release notes and in-app notifications so teams always understand how their data is handled.
