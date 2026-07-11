@@ -1,0 +1,41 @@
+---
+title: "Ingestion"
+description: "Upload FOCUS files, run loads on demand, or schedule automatic ingestion"
+---
+
+Ingestion is how your cost data gets into Koala. Every load is a tracked **run**, so you always know what was ingested and when.
+
+## Two ways to get data in
+
+<CardGroup cols={2}>
+  <Card title="Upload a file" icon="upload">
+    On the **Upload** page, drop in a FOCUS export (for example a `.csv` or `.csv.gz`). Good for a quick look or a one-off.
+  </Card>
+  <Card title="From your cloud storage" icon="cloud-arrow-down">
+    Once a [cloud connection](/finops/connections/connect-clouds) is set up, Koala pulls FOCUS files straight from OCI Object Storage, AWS S3, Azure Blob, or GCP BigQuery.
+  </Card>
+</CardGroup>
+
+## On demand or on a schedule
+
+- **On demand** — trigger a load for a chosen date range whenever you want. Each manual run uses **replace-then-load** for that window, so re-running a range cleanly refreshes it rather than double-counting.
+- **Scheduled** — turn on **automatic ingestion** on a connection (a cron schedule plus a look-back window) and Koala keeps the data current without anyone lifting a finger.
+
+## Tracking runs
+
+The **Tasks** page shows ingestion runs and their status, so you can confirm a load finished and see what it covered. After a successful run, the dashboard's daily rollups refresh automatically, so charts and KPIs reflect the new data.
+
+<Note>
+  Koala ingests **FOCUS** (FinOps Open Cost and Usage Specification) exports. Configure the export in each cloud, then point a Koala connection at it — see [Connect your clouds](/finops/connections/connect-clouds).
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Dashboard" icon="chart-column" href="/finops/dashboard">
+    See your spend once data is in.
+  </Card>
+  <Card title="Insights" icon="lightbulb" href="/finops/insights">
+    Explainable, evidence-backed findings.
+  </Card>
+</CardGroup>

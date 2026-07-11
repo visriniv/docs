@@ -327,6 +327,75 @@
             ]
           }
         ]
+      },
+      {
+        "dropdown": "Koala AI FinOps",
+        "description": "Multi-cloud cost intelligence",
+        "icon": "/logo/koala-symbol.svg",
+        "tabs": [
+          {
+            "tab": "Getting Started",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "finops/introduction",
+                  "finops/how-it-works"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "User Guide",
+            "groups": [
+              {
+                "group": "Connect & ingest",
+                "pages": [
+                  "finops/connections/connect-clouds",
+                  "finops/connections/ingestion"
+                ]
+              },
+              {
+                "group": "Cost visibility",
+                "pages": [
+                  "finops/dashboard",
+                  "finops/explorer"
+                ]
+              },
+              {
+                "group": "Intelligence",
+                "pages": [
+                  "finops/insights",
+                  "finops/allocation",
+                  "finops/chat"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Configuration",
+            "groups": [
+              {
+                "group": "Platform",
+                "pages": [
+                  "finops/account/tenancy-and-users",
+                  "finops/account/ai-engine"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Troubleshooting & Support",
+            "groups": [
+              {
+                "group": "Support",
+                "pages": [
+                  "finops/support/getting-help"
+                ]
+              }
+            ]
+          }
+        ]
       }
     ],
     "global": {}

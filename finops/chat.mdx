@@ -1,0 +1,58 @@
+---
+title: "Ask Koala AI"
+description: "Query your cloud costs in plain language and get answers with charts and totals"
+---
+
+Ask Koala AI is the fastest way to answer a cost question. Type it in plain language on the **Chat** page and get back an answer with the **charts and totals** to match — in seconds, no query writing required.
+
+## What you can ask
+
+Questions about cost and usage across your clouds — for example:
+
+- "What was our daily spend last month? Show it as a bar chart."
+- "Top 5 services by cost this quarter, by provider."
+- "How much did the `payments` application cost in June?"
+- "Which regions grew the most month over month?"
+
+## How it answers
+
+Koala's chat is an agent that turns your question into a real query and runs it:
+
+<Steps>
+  <Step title="Understand">
+    It classifies your intent and pulls out the **time window** and **dimensions** you asked about.
+  </Step>
+  <Step title="Ask if unclear">
+    If a question is ambiguous, it asks a **clarifying question** rather than guessing.
+  </Step>
+  <Step title="Query and answer">
+    It compiles and runs SQL over your ingested data, then formats the result as a readable answer with a chart and totals.
+  </Step>
+</Steps>
+
+<Note>
+  As with insights, **the numbers come from SQL, never from the model** — the AI phrases the answer, the query provides the figures. See [The evidence principle](/finops/how-it-works#the-evidence-principle).
+</Note>
+
+You can also ask Koala **what it can do** or **what data it has**, and it will answer from its own capabilities and schema.
+
+## Quick prompts, follow-ups, and memory
+
+- **Quick prompts** get you started with one click — for example *"Show me my top 5 most expensive services,"* *"Show me optimization opportunities this month,"* *"Spend trend for the last 30 days,"* or *"Quick wins."*
+- After each answer, Koala suggests **follow-up questions** to keep the thread going.
+- A chat remembers its **session context** so you can refer back to earlier turns; **New chat** clears it and starts fresh.
+
+<Note>
+  Chat needs an AI provider configured. If none is set — or a plan's token cap is reached — Koala prompts you to set one up in **Settings → AI Providers**. See [The AI engine](/finops/account/ai-engine).
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="The AI engine" icon="robot" href="/finops/account/ai-engine">
+    Which model powers chat, and the evidence guardrail.
+  </Card>
+  <Card title="Insights" icon="lightbulb" href="/finops/insights">
+    The findings Koala surfaces without being asked.
+  </Card>
+</CardGroup>

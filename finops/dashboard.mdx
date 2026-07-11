@@ -1,0 +1,42 @@
+---
+title: "Dashboard"
+description: "Live spend visibility across every cloud"
+---
+
+The dashboard is your **one view of spend** — real-time cost across OCI, AWS, Azure, and GCP, without merging any spreadsheets.
+
+## What you see
+
+- **KPI tiles** — total spend plus a breakdown by service category (compute, database, storage, network, integration, analytics, web) for the selected period, with month-over-month deltas.
+- **Trend chart** — spend over time, with a **day / month** grain toggle.
+- **Region × service heatmap** — where spend concentrates across regions and services.
+- **Top SKUs** — the costliest line items at a glance.
+- **Department / business report** — top resources by cost, split across your business segments.
+- **Insight Panel** — a plain-language narrative of what's driving the current view (see [Insights](/finops/insights)).
+
+## Day, month, and date range
+
+The dashboard works over whatever window you choose:
+
+- **Day** — a single calendar day.
+- **Month** — a calendar month, aggregated from daily data.
+- **Date range** — any arbitrary start-to-end window.
+
+<Note>
+  Under the hood, Koala keeps a pre-aggregated **daily** rollup and computes months and ranges from it at request time, so charts stay fast even over long histories. Rollups refresh automatically after each [ingestion](/finops/connections/ingestion) run.
+</Note>
+
+## Filtering
+
+Narrow any view by provider, account, service, or region to focus on the slice you care about — a single team's footprint, one provider, or one region.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Cost explorer" icon="table" href="/finops/explorer">
+    Drill from a chart down to the underlying line items.
+  </Card>
+  <Card title="Insights" icon="lightbulb" href="/finops/insights">
+    Let Koala surface what changed and why.
+  </Card>
+</CardGroup>

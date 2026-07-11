@@ -1,0 +1,30 @@
+---
+title: "Cost explorer"
+description: "Slice your cost data and trace any total to its line items"
+---
+
+Where the dashboard gives you the headline view, the **cost explorer** lets you get down to the individual FOCUS line items and trace any number back to its source.
+
+## Filter and browse
+
+Narrow the data with filters — date range, provider, service category, subscription/tenancy, region, and resource group — then browse the matching **line-item records** (resource name and ID, compartment, cost). Because every figure comes from SQL over your ingested data, what you see always reconciles back to the source.
+
+## Export and clean up
+
+- **Export** the current view to **CSV** for offline analysis or sharing.
+- **Purge** ingested data for a scope when you need to clear or re-load it (a confirmation step guards against accidents).
+
+<Tip>
+  To break spend down by an application tag or split shared costs, use the [Allocation](/finops/allocation) page — that's where tag pivots and split allocation live.
+</Tip>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Allocation" icon="tags" href="/finops/allocation">
+    Attribute untagged spend to applications.
+  </Card>
+  <Card title="Ask Koala AI" icon="comments" href="/finops/chat">
+    Ask the same questions in plain language.
+  </Card>
+</CardGroup>

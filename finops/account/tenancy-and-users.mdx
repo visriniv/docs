@@ -1,0 +1,40 @@
+---
+title: "Tenancy & users"
+description: "Sign-in, tenants, roles, and access"
+---
+
+Koala AI FinOps is **multi-tenant**. Everything you do lives inside a **tenant** — one organization's isolated space, with its own connections, cost data, users, and settings. Each business unit sees only its own data, while platform admins keep central oversight.
+
+## Signing in
+
+Sign-in is powered by **Auth0**. You access Koala through your **tenant** — enter your tenant slug (for example `acme`), then authenticate. Organizations that use **SSO** sign in through their own identity provider.
+
+## Roles
+
+Each user has a role within a tenant. Roles are cumulative — each includes what the ones below it can do.
+
+| Role | Can do |
+| --- | --- |
+| **Viewer** | See dashboards, the explorer, allocation, and chat. |
+| **Analyst** | Everything a Viewer can, plus run ingestion and work with allocation and tagging. |
+| **Tenant Admin** | Full control of the tenant — connections, the AI engine, settings, and managing users and roles. |
+
+<Note>
+  **Super admins** are a BTSS-internal, platform-level role that can see and manage all tenants (and edit the shared service ontology) — how new customer tenancies are provisioned. Regular tenants never see other tenants' data.
+</Note>
+
+## Managing users
+
+Tenant admins add and manage users, and set each user's role, from the **Admin** area. A safeguard prevents removing or demoting the **last active Tenant Admin**, so a tenant can't be locked out of its own administration.
+
+## Isolation and governance
+
+- **Tenant isolation** — data never crosses between tenants; each request is scoped to the caller's tenant.
+- **Role-based access** — what a user can do follows their role.
+- **Audit-ready** — SSO, isolation, and role-based access make the platform suitable for governed, enterprise use.
+
+## Next steps
+
+<Card title="The AI engine" icon="robot" href="/finops/account/ai-engine">
+  Configure the model that powers chat and insight explanations.
+</Card>
