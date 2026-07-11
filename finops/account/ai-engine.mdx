@@ -1,0 +1,50 @@
+---
+title: "The AI engine"
+description: "The model that powers chat and insight explanations — and the evidence guardrail"
+---
+
+Koala uses a language model to **explain** your cost data — to narrate insights and answer chat questions in plain language. The model is configurable per tenant.
+
+## Two ways to power the AI
+
+You configure this in **Settings → AI Providers**, and there are two modes:
+
+<CardGroup cols={2}>
+  <Card title="SaaS mode" icon="cloud">
+    Use the **Koala-provided** model. Nothing to set up — usage is **capped by your plan**, and a banner shows tokens used, your limit, and tier. When you reach the cap, Koala prompts you to add your own key.
+  </Card>
+  <Card title="Bring your own key" icon="key">
+    Add your **own provider key** (OpenAI by default) for **uncapped** usage on your own account. Manage, test, and reset usage from the same tab.
+  </Card>
+</CardGroup>
+
+| Setting | Default |
+| --- | --- |
+| **Provider** | `openai` — swappable behind a common interface. |
+| **Model** | `gpt-4o-mini`. |
+| **Base URL** | `https://api.openai.com/v1` (override for a compatible endpoint). |
+
+<Info>
+  Your API key is **encrypted at rest** and shown only as a masked hint. Use **Test** to validate it, and view or export **token usage** from the AI Providers tab.
+</Info>
+
+## The evidence guardrail
+
+The most important thing to understand about Koala's AI is what it does **not** do:
+
+<Warning>
+  **The model never invents numbers.** Every figure in an insight or a chat answer comes from SQL over your own data. The language model only turns those verified results into readable explanations — it is given the evidence and asked to explain it, never to produce the numbers itself.
+</Warning>
+
+This is why Koala's answers are safe to act on: each one can be traced back to the exact query and aggregates that produced it. See [How it works](/finops/how-it-works) for the full pipeline.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Ask Koala AI" icon="comments" href="/finops/chat">
+    Query your cloud costs in plain language.
+  </Card>
+  <Card title="Insights" icon="lightbulb" href="/finops/insights">
+    Evidence-backed findings and recommendations.
+  </Card>
+</CardGroup>

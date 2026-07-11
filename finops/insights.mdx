@@ -1,0 +1,47 @@
+---
+title: "Insights"
+description: "Explainable, evidence-backed findings and recommendations"
+---
+
+Insights are Koala's answer to *"what changed, why, and what should I do about it?"* — surfaced for you instead of hunted for. Each one is **explainable and evidence-backed**.
+
+<Note>
+  You'll meet insights in two places today: the **Insight Panel** on the [dashboard](/finops/dashboard) narrates what's driving the current view, and [Ask Koala AI](/finops/chat) answers optimization questions like *"show me optimization opportunities this month."* A dedicated insights view is emerging alongside them.
+</Note>
+
+## What an insight tells you
+
+Every insight carries a consistent set of facts:
+
+- **Impact** — the amount and currency at stake.
+- **Severity & confidence** — how much it matters and how sure Koala is.
+- **Time window & scope** — the period and the part of your estate it applies to.
+- **Drivers** — what's actually moving the number (the services, regions, or resources behind it).
+- **Recommendation** — the suggested action.
+- **Explanation** — a plain-language narrative that ties it together.
+
+## Always backed by evidence
+
+<Note>
+  Every insight includes its **evidence** — the query, the aggregates, and sample rows that produced it. The narrative is written by the AI, but the numbers are not: they come from SQL over your own data. See [The evidence principle](/finops/how-it-works#the-evidence-principle).
+</Note>
+
+This is what separates a Koala insight from a generic alert: you can open it, see exactly which line items drive it, and trust the figure before you act.
+
+## What insights help you catch
+
+- **Spikes and overage** — costs rising faster than expected, month over month.
+- **Cost drivers** — the services, regions, or resources responsible for a change.
+- **Waste and optimization** — spend that looks reducible.
+- **Trends for planning** — patterns that inform budgets and forecasts.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Cost explorer" icon="table" href="/finops/explorer">
+    Trace a driver down to its line items.
+  </Card>
+  <Card title="Ask Koala AI" icon="comments" href="/finops/chat">
+    Follow up on an insight in plain language.
+  </Card>
+</CardGroup>

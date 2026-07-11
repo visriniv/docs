@@ -1,0 +1,31 @@
+---
+title: "Getting help"
+description: "Support channels and common questions for Koala AI FinOps"
+---
+
+Need help with Koala AI FinOps? Reach us through any of these channels, or check the common questions below.
+
+## Support channels
+
+<CardGroup cols={2}>
+  <Card title="Submit a ticket" icon="ticket" href="https://btsscorp.freshdesk.com/support/tickets/new">
+    Our support portal — the fastest way to get help.
+  </Card>
+  <Card title="Email us" icon="envelope" href="mailto:support@btsscorp.com">
+    support@btsscorp.com
+  </Card>
+  <Card title="Website" icon="globe" href="https://www.btsscorp.com">
+    btsscorp.com
+  </Card>
+  <Card title="Contact BTSS" icon="building" href="https://www.btsscorp.com">
+    Talk to us about a rollout or a demo.
+  </Card>
+</CardGroup>
+
+## Common questions
+
+- **My dashboard is empty.** Data appears after a successful ingestion run. Check that a [cloud connection](/finops/connections/connect-clouds) is set up and that a [load](/finops/connections/ingestion) has completed on the **Tasks** page.
+- **The numbers don't look right.** Every figure comes from SQL over the ingested data — use the [cost explorer](/finops/explorer) to trace a total back to its line items, and confirm the right date range and filters.
+- **Chat says it can't answer.** Ask about cost, usage, services, regions, providers, or time windows. If a question is ambiguous, Koala asks a clarifying question — see [Ask Koala AI](/finops/chat).
+- **Spend isn't attributed to an application.** Untagged resources need labels — see [Allocation](/finops/allocation) for how Koala recommends application labels.
+- **I can't see another team's data.** That's by design — tenant isolation means each business unit sees only its own data. See [Tenancy & users](/finops/account/tenancy-and-users).

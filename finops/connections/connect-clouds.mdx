@@ -1,0 +1,65 @@
+---
+title: "Connect your clouds"
+description: "Point Koala at your OCI, AWS, Azure, and GCP cost exports"
+---
+
+Each cloud connection tells Koala **where your FOCUS cost export lives and how to read it**. You can add more than one configuration per cloud, mark one as the default, and turn on automatic scheduled ingestion. Credentials are **encrypted at rest** and shown only as masked hints.
+
+Set connections up in **Settings → Cloud accounts**. Each provider is below.
+
+## Oracle Cloud (OCI)
+
+Koala reads FOCUS reports from an **OCI Object Storage** bucket using an API-key signing key.
+
+| Field | What it is |
+| --- | --- |
+| **Tenancy OCID / User OCID** | The identities the API key belongs to. |
+| **Fingerprint** | Your API signing key's fingerprint. |
+| **Private key (PEM)** | The signing key content. |
+| **Region** | e.g. `us-ashburn-1`. |
+| **Bucket & FOCUS prefix** | The bucket and path (default `FOCUS Reports/`) holding the exports. |
+
+<Note>OCI connections authenticate with an **API key** (instance principals aren't used).</Note>
+
+## Amazon Web Services (AWS)
+
+Koala reads FOCUS exports from an **S3 bucket**.
+
+| Field | What it is |
+| --- | --- |
+| **S3 bucket, prefix, region** | Where the exports live and which region. |
+| **File pattern** | Which objects to match (default `*.csv.gz`). |
+| **Credentials** | An access key + secret (optionally a session token), **or** an **IAM role ARN** for cross-account access. |
+
+## Microsoft Azure
+
+Koala reads FOCUS exports from an **Azure Blob** container.
+
+| Field | What it is |
+| --- | --- |
+| **Storage account & container** | Where the exports live. |
+| **Authentication** | A **service principal** *or* a **SAS token** — provide one. |
+
+## Google Cloud (GCP)
+
+Koala reads billing data from a **BigQuery billing export**.
+
+| Field | What it is |
+| --- | --- |
+| **Project ID & dataset** | The project and BigQuery dataset holding the export. |
+| **Table pattern** | The export tables to match (default `gcp_billing_export_v1_*`). |
+| **Location** | The dataset location (default `US`). |
+| **Service account key (JSON)** | Optional — if omitted, application default credentials apply. |
+
+## Defaults and scheduling
+
+Every provider supports the same two options:
+
+- **Default configuration** — the one Koala uses when you don't pick another.
+- **Automatic ingestion** — turn on a schedule (a cron expression) and a **look-back window** (how many days of files to re-check on each run), and Koala keeps your data current on its own.
+
+## Next steps
+
+<Card title="Ingestion" icon="file-import" href="/finops/connections/ingestion">
+  Upload files, run a load on demand, or schedule automatic ingestion.
+</Card>

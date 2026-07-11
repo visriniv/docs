@@ -1,0 +1,53 @@
+---
+title: "Allocation"
+description: "Attribute spend to applications — even when resources aren't tagged"
+---
+
+Accurate showback and chargeback depend on knowing **which application each dollar belongs to**. In practice, plenty of resources go untagged. Koala's **application allocation** closes that gap.
+
+## Coverage first
+
+Start by checking how much of your spend is already attributed. In the [cost explorer](/finops/explorer), pivot by `tag:Application` to see labeled coverage and spend per application — and how much remains untagged.
+
+## Recommending application labels
+
+For resources with **no application tag**, Koala recommends a label. The recommendation engine is a **transparent, similarity-based classifier** — not a black box:
+
+<Steps>
+  <Step title="Learn from what's already tagged">
+    Koala reads existing app tags (`Application`, `app`, `product`, `project`, and similar keys) to build labeled profiles for each application.
+  </Step>
+  <Step title="Find untagged candidates">
+    Resources without an app tag are grouped by resource to cut line-item noise.
+  </Step>
+  <Step title="Score and recommend">
+    Each candidate is matched to the closest application profile and returned with a **confidence score**. You control a minimum-confidence threshold, and Koala reports **diagnostics** (sample rows, how many fell below the threshold) so an empty result is always explained.
+  </Step>
+</Steps>
+
+<Note>
+  Because the classifier is transparent and confidence-scored, you can see *why* a label was suggested and tune how aggressive the matching is — rather than trusting an opaque model.
+</Note>
+
+## Tag untagged resources
+
+You don't have to fix tags back in each cloud. From the allocation page you can **apply an `Application` tag to a resource in Koala**; it's picked up on the next [ingestion](/finops/connections/ingestion) run. You can also **export your Koala tags** (to CSV or as a clipboard runbook) to push them back into your cloud tagging, so the two stay in sync.
+
+## Split a shared resource
+
+Some costs belong to more than one owner. **Split allocation** lets you divide a single resource's cost across segments — owner, department, or cost center — with weighted percentages, so shared spend lands accurately on each business unit.
+
+## From coverage to chargeback
+
+With more spend labeled, application pivots become complete enough to drive **showback and chargeback** — giving each business unit an accurate, self-serve view of what it spends.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Cost explorer" icon="table" href="/finops/explorer">
+    Validate coverage and spend by application.
+  </Card>
+  <Card title="Insights" icon="lightbulb" href="/finops/insights">
+    See what's driving each application's cost.
+  </Card>
+</CardGroup>
