@@ -1,0 +1,35 @@
+---
+title: "Inside an entity"
+description: "Source data, mappings, preview, run, and ORCA Learnings"
+---
+
+Open an entity to reach its **workspace** — the room where one entity's work happens, laid out as numbered sections you work top to bottom.
+
+<Steps>
+  <Step title="Source Data">
+    Upload the source extract (CSV, Excel, HDL, or a zip). If the template ships an MVT, use **Download Template**, fill it in, and ORCA auto-maps the fields.
+  </Step>
+  <Step title="Field Mappings">
+    Map source columns to Oracle's import components. MVT fields auto-map; **Propose Mappings** drafts the rest; **Import from cycle** pulls a previous cycle's mappings forward.
+  </Step>
+  <Step title="HDL Preview">
+    Inspect the exact Oracle-format `.dat` ORCA will generate, before anything is sent. Download it to eyeball it.
+  </Step>
+  <Step title="Run">
+    Submit to Oracle — **Run** / **Load to Oracle** for HDL, or the UCM → Load → Import → Purge pipeline for FBDI.
+  </Step>
+  <Step title="Load History">
+    Every load's results and errors, kept per entity.
+  </Step>
+  <Step title="ORCA Learnings">
+    Confirmed error fixes, in three tiers: **Silent** (auto-handled), **Auto-fix** (applied automatically), and **Ask** (needs confirmation).
+  </Step>
+</Steps>
+
+## Never answer the same question twice
+
+**ORCA Learnings** is what makes each cycle faster. Once a fix is confirmed, ORCA captures it with provenance and reapplies it automatically in later cycles — so it never asks you the same question twice. The section starts empty: *"No learned error patterns yet. ORCA learns from confirmed fixes during chat."*
+
+<Tip>
+  Field **mappings** carry forward when you click **Import from cycle** — opt-in per entity, with a diff preview. The **learnings** carry forward automatically.
+</Tip>

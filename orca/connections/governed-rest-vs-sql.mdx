@@ -1,0 +1,39 @@
+---
+title: "Governed REST vs SQL"
+description: "How ORCA stays inside your Oracle security, and when direct SQL is allowed"
+---
+
+This is the most important idea in ORCA. Everything ORCA does over Oracle's **REST APIs is governed** — Oracle checks the connection user's own function and data security on every call, so ORCA only ever sees what that user is allowed to see. New connections are **REST-only by default**.
+
+<Warning>
+  Direct **SQL through BIP bypasses per-user data security**. It stays off until an admin deliberately enables it, and even then the agent must ask before using it.
+</Warning>
+
+## The SQL toggle
+
+Each connection card has an amber **SQL** toggle. When an admin turns it on, a panel explains the trade-off: SQL bypasses Oracle's per-user data security, the agent must ask before falling back to it, and every SQL-derived answer is labelled "via SQL".
+
+When SQL is **off**, the agent never even sees the SQL tools (`run_sql`, `search_tables`, `describe_table`) — the model cannot call what does not exist.
+
+## Production connections
+
+The **Production connection** checkbox is stricter still:
+
+- The agent **always re-asks** before running SQL on a prod connection.
+- **Standing consent can never apply** to a prod connection.
+
+## Standing consent
+
+On a trusted non-production connection, an admin can grant **standing consent** — the "don't ask me again on this connection" toggle. It lets the agent skip the per-question ask, records **who granted it and when**, and is **revocable in Settings** at any time.
+
+<Info>
+  Consent removes the question, never the visibility. Even with standing consent, every SQL answer is still labelled — "via SQL (standing consent)".
+</Info>
+
+## FAQ
+
+**Why don't I see any SQL tools?**
+Because the connection's SQL toggle is off — the default. REST-only connections never expose the SQL tools to the agent. An admin must enable SQL on that connection first.
+
+**The `table` discovery chip says skipped — is it broken?**
+No. Table discovery reads comments over SQL, so it's skipped whenever SQL is disabled. Enable SQL and re-run discovery if you want it.

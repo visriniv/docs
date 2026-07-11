@@ -1,0 +1,33 @@
+---
+title: "Getting help"
+description: "Support channels and common questions for ORCA"
+---
+
+Need help with ORCA? Reach us through any of these channels, or check the common questions below.
+
+## Support channels
+
+<CardGroup cols={2}>
+  <Card title="Submit a ticket" icon="ticket" href="https://btsscorp.freshdesk.com/support/tickets/new">
+    Our support portal — the fastest way to get help.
+  </Card>
+  <Card title="Email us" icon="envelope" href="mailto:support@btsscorp.com">
+    support@btsscorp.com
+  </Card>
+  <Card title="Website" icon="globe" href="https://www.btsscorp.com">
+    btsscorp.com
+  </Card>
+  <Card title="Contact BTSS" icon="building" href="https://www.btsscorp.com">
+    Talk to us about your implementation.
+  </Card>
+</CardGroup>
+
+## Common questions
+
+The ORCA docs answer many common questions where the feature is explained:
+
+- **Why don't I see any SQL tools?** The connection is REST-only by default — see [Governed REST vs SQL](/orca/connections/governed-rest-vs-sql).
+- **Why did ORCA ask permission before answering?** It needed to fall back to direct SQL — see [Governance & autonomy](/orca/agent/governance-and-autonomy).
+- **The chat has no skills to reach for.** Skills appear once the connection's REST catalog is discovered — see [Skills](/orca/agent/skills).
+- **A discovery chip says `skipped` or `failed`.** Each source has its own conditions — see [Oracle connections](/orca/connections/oracle-connections).
+- **The agent, chat, or Propose Mappings are off.** These are the AI layer; add an Anthropic key to switch them on — see [The AI engine](/orca/account/ai-engine).

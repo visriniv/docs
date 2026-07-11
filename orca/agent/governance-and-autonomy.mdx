@@ -1,0 +1,30 @@
+---
+title: "Governance & autonomy"
+description: "The SQL consent moment and how tasks earn autonomy"
+---
+
+## The SQL consent moment
+
+Sometimes the governed REST API genuinely can't answer, and SQL could. If — and only if — SQL is enabled on the connection, chat **stops and asks first**:
+
+> "The governed API can't answer &lt;X&gt;. OK to query the database directly? (Bypasses per-user data security; I'll label anything it finds.)"
+
+Say yes and the answer is labelled **"via SQL (user-approved)"** — or **"via SQL (standing consent)"** if you've granted standing consent on that connection. On a **Production** connection it always re-asks.
+
+<Warning>
+  The ask exists because REST answers respect each user's Oracle data security and SQL does not. It keeps a human in the loop the moment ORCA is about to step outside your security posture, and the label keeps that visible in the answer forever. Consent removes the question, never the visibility.
+</Warning>
+
+**Why did ORCA ask permission before answering?** Because it needed to fall back to direct SQL, which bypasses Oracle's per-user data security. ORCA always asks first and labels the result "via SQL". If it never asked, it answered entirely through the governed REST API — within your own Oracle security.
+
+## How ORCA earns autonomy
+
+Each task earns autonomy as it proves accurate, and auto-downgrades if error rates spike or you override it. It's a safety-first ratchet that runs **under the hood** per (entity, field) — there's no dashboard to watch; you feel it as ORCA asking fewer questions each cycle.
+
+| Level | Behaviour |
+| --- | --- |
+| `L0 · Manual` | You decide everything. |
+| `L1 · Guided` | ORCA proposes, you confirm. |
+| `L2 · Supervised` | ORCA applies, you spot-check. |
+| `L3 · Autonomous` | ORCA applies with no model call. |
+| `L4 · Lights-Out` | Fully autonomous, no overrides. |

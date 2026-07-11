@@ -1,0 +1,57 @@
+---
+title: "Projects, cycles & entities"
+description: "The workspace hierarchy where a conversion runs"
+---
+
+A conversion lives inside a **project → cycle → entity** hierarchy. Set it up top-down.
+
+| Level | What it is |
+| --- | --- |
+| **Project** | One client conversion — the top-level container. |
+| **Cycle** | One full practice run of the conversion. Each is faster than the last because ORCA remembers. |
+| **Entity** | One Oracle business object (Worker, Assignment, Payroll) with its own template, mappings, and state. |
+
+## Create a project
+
+<Steps>
+  <Step title="Start a project">
+    Go to **Projects → Create Project**, type a **Project Name** (ORCA derives a short ID from it), and pick the **Source System** (e.g. PeopleSoft, SAP, Workday, ADP, UKG / Kronos, or CSV).
+  </Step>
+  <Step title="Create">
+    Click **Create Project**.
+  </Step>
+</Steps>
+
+## Start a cycle
+
+<Steps>
+  <Step title="New cycle">
+    In the project, click **New Cycle**, give it a **Cycle ID** (e.g. `cycle-0`), and choose the **Oracle Connection** the cycle loads against.
+  </Step>
+  <Step title="Create and advance">
+    Click **Create Cycle**. It opens in `PLANNING`; edit its status to move it to `IN_PROGRESS` and `COMPLETED`.
+  </Step>
+</Steps>
+
+<Info>
+  The cycle **carries the connection** — everything it loads or queries runs through that pod. There's no separate "start" button; you advance a cycle by editing its status.
+</Info>
+
+## Add entities
+
+In the **Entities** card, use **+ Add Entity** to pick from the templates loaded for this pod (Worker, Assignment, Salary, Payroll, …). Each row shows **Status**, **Files**, **Errors**, **Iteration**, and an **Attention** flag.
+
+<Note>
+  Oracle entities have a real dependency order (Organization / Location first, Payroll last) and the conversion respects it — but the grid does not render a load-order column today. Treat sequencing as consultant knowledge, not a screen.
+</Note>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="The conversion lifecycle" icon="diagram-project" href="/orca/workspace/conversion-lifecycle">
+    From POC to prod cutover across cycles and environments.
+  </Card>
+  <Card title="Inside an entity" icon="layer-group" href="/orca/workspace/entity-workspace">
+    Source data, mappings, preview, run, and learnings.
+  </Card>
+</CardGroup>

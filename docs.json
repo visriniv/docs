@@ -1,7 +1,7 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Koala Data Explorer Documentation",
+  "name": "BTSS Documentation",
   "colors": {
     "primary": "#1f2937",
     "light": "#374151",
@@ -11,206 +11,319 @@
   "styles": "/custom.css",
   "headTags": "/head.html",
   "navigation": {
-    "tabs": [
+    "dropdowns": [
       {
-        "tab": "Getting Started",
-        "groups": [
+        "dropdown": "Koala Data Explorer",
+        "description": "VS Code extension",
+        "icon": "/logo/koala-symbol.svg",
+        "tabs": [
           {
-            "group": "Overview",
-            "pages": [
-              "koala/introduction",
-              "koala/features",
-              "koala/requirements"
+            "tab": "Getting Started",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "koala/introduction",
+                  "koala/features",
+                  "koala/requirements"
+                ]
+              },
+              {
+                "group": "Installation",
+                "pages": [
+                  "koala/installation/vscode-marketplace",
+                  "koala/installation/manual-install",
+                  "koala/installation/pre-release",
+                  "koala/installation/first-connection",
+                  "koala/installation/activity-bar"
+                ]
+              }
             ]
           },
           {
-            "group": "Installation",
-            "pages": [
-              "koala/installation/vscode-marketplace",
-              "koala/installation/manual-install",
-              "koala/installation/pre-release",
-              "koala/installation/first-connection",
-              "koala/installation/activity-bar"
+            "tab": "User Guide",
+            "groups": [
+              {
+                "group": "Connections",
+                "pages": [
+                  "koala/connections/basic-auth",
+                  "koala/connections/oauth-sso",
+                  "koala/connections/windows-sso",
+                  "koala/connections/managing-connections"
+                ]
+              },
+              {
+                "group": "Query Editor",
+                "pages": [
+                  "koala/editor/interface-guide",
+                  "koala/editor/writing-queries",
+                  "koala/editor/executing-queries",
+                  "koala/editor/large-sql",
+                  "koala/editor/keyboard-shortcuts",
+                  "koala/editor/bind-variables"
+                ]
+              },
+              {
+                "group": "Working with Results",
+                "pages": [
+                  "koala/results/viewing-data",
+                  "koala/results/sorting-filtering",
+                  "koala/results/in-grid-search",
+                  "koala/results/exporting-data",
+                  "koala/results/excel-export"
+                ]
+              },
+              {
+                "group": "Advanced Features",
+                "pages": [
+                  "koala/advanced/data-sources",
+                  "koala/advanced/sql-history",
+                  "koala/advanced/performance-monitor",
+                  "koala/advanced/multiple-tabs",
+                  "koala/advanced/auto-deployment"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Configuration",
+            "groups": [
+              {
+                "group": "Settings",
+                "pages": [
+                  "koala/config/extension-settings",
+                  "koala/config/timeout-settings",
+                  "koala/config/logging",
+                  "koala/config/performance"
+                ]
+              },
+              {
+                "group": "Licensing",
+                "pages": [
+                  "koala/licensing/free-vs-paid",
+                  "koala/licensing/activating-license",
+                  "koala/licensing/managing-license",
+                  "koala/licensing/refund-policy"
+                ]
+              }
+            ]
+          },
+          {
+            "tab": "Troubleshooting & Support",
+            "groups": [
+              {
+                "group": "Common Issues",
+                "pages": [
+                  "koala/troubleshooting/connection-issues",
+                  "koala/troubleshooting/query-errors",
+                  "koala/troubleshooting/performance-issues",
+                  "koala/troubleshooting/deployment-issues",
+                  "koala/troubleshooting/sql-validation"
+                ]
+              },
+              {
+                "group": "Support",
+                "pages": [
+                  "koala/support/getting-help"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "User Guide",
-        "groups": [
+        "dropdown": "Koala Data Studio",
+        "description": "Standalone desktop app",
+        "icon": "/logo/koala-symbol.svg",
+        "tabs": [
           {
-            "group": "Connections",
-            "pages": [
-              "koala/connections/basic-auth",
-              "koala/connections/oauth-sso",
-              "koala/connections/windows-sso",
-              "koala/connections/managing-connections"
+            "tab": "Getting Started",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "kdes/introduction",
+                  "kdes/differentiators"
+                ]
+              },
+              {
+                "group": "Installation",
+                "pages": [
+                  "kdes/installation/prerequisites",
+                  "kdes/installation/account-access",
+                  "kdes/installation/download-install",
+                  "kdes/installation/first-connection"
+                ]
+              }
             ]
           },
           {
-            "group": "Query Editor",
-            "pages": [
-              "koala/editor/interface-guide",
-              "koala/editor/writing-queries",
-              "koala/editor/executing-queries",
-              "koala/editor/large-sql",
-              "koala/editor/keyboard-shortcuts",
-              "koala/editor/bind-variables"
+            "tab": "User Guide",
+            "groups": [
+              {
+                "group": "Connections",
+                "pages": [
+                  "kdes/connections/basic-auth",
+                  "kdes/connections/oauth-pkce",
+                  "kdes/connections/windows-sso",
+                  "kdes/connections/managing-connections"
+                ]
+              },
+              {
+                "group": "Query Editor",
+                "pages": [
+                  "kdes/query-editor/interface-guide",
+                  "kdes/query-editor/writing-queries",
+                  "kdes/query-editor/executing-queries",
+                  "kdes/query-editor/large-sql",
+                  "kdes/query-editor/keyboard-shortcuts",
+                  "kdes/query-editor/bind-variables"
+                ]
+              },
+              {
+                "group": "Working with Results",
+                "pages": [
+                  "kdes/results/viewing-data",
+                  "kdes/results/sorting-filtering",
+                  "kdes/results/in-grid-search",
+                  "kdes/results/exporting-data",
+                  "kdes/results/excel-export"
+                ]
+              },
+              {
+                "group": "Advanced Features",
+                "pages": [
+                  "kdes/advanced/data-sources",
+                  "kdes/advanced/sql-history",
+                  "kdes/advanced/multiple-tabs"
+                ]
+              }
             ]
           },
           {
-            "group": "Working with Results",
-            "pages": [
-              "koala/results/viewing-data",
-              "koala/results/sorting-filtering",
-              "koala/results/in-grid-search",
-              "koala/results/exporting-data",
-              "koala/results/excel-export"
+            "tab": "Configuration",
+            "groups": [
+              {
+                "group": "Settings",
+                "pages": [
+                  "kdes/config/app-settings",
+                  "kdes/config/timeout-settings",
+                  "kdes/config/logging-diagnostics",
+                  "kdes/config/performance-settings"
+                ]
+              },
+              {
+                "group": "Licensing",
+                "pages": [
+                  "kdes/licensing/free-vs-paid",
+                  "kdes/licensing/activating-license",
+                  "kdes/licensing/managing-license",
+                  "kdes/licensing/refund-policy"
+                ]
+              }
             ]
           },
           {
-            "group": "Advanced Features",
-            "pages": [
-              "koala/advanced/data-sources",
-              "koala/advanced/sql-history",
-              "koala/advanced/performance-monitor",
-              "koala/advanced/multiple-tabs",
-              "koala/advanced/auto-deployment"
+            "tab": "Troubleshooting & Support",
+            "groups": [
+              {
+                "group": "Common Issues",
+                "pages": [
+                  "kdes/support/troubleshooting"
+                ]
+              },
+              {
+                "group": "Policies",
+                "pages": [
+                  "kdes/policies/privacy-policy"
+                ]
+              }
             ]
           }
         ]
       },
       {
-        "tab": "Configuration",
-        "groups": [
+        "dropdown": "ORCA",
+        "description": "Oracle Fusion conversion agent",
+        "icon": "/logo/koala-symbol.svg",
+        "tabs": [
           {
-            "group": "Settings",
-            "pages": [
-              "koala/config/extension-settings",
-              "koala/config/timeout-settings",
-              "koala/config/logging",
-              "koala/config/performance"
+            "tab": "Getting Started",
+            "groups": [
+              {
+                "group": "Overview",
+                "pages": [
+                  "orca/introduction",
+                  "orca/how-orca-works"
+                ]
+              }
             ]
           },
           {
-            "group": "Licensing",
-            "pages": [
-              "koala/licensing/free-vs-paid",
-              "koala/licensing/activating-license",
-              "koala/licensing/managing-license",
-              "koala/licensing/refund-policy"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Troubleshooting",
-        "groups": [
-          {
-            "group": "Common Issues",
-            "pages": [
-              "koala/troubleshooting/connection-issues",
-              "koala/troubleshooting/query-errors",
-              "koala/troubleshooting/performance-issues",
-              "koala/troubleshooting/deployment-issues",
-              "koala/troubleshooting/sql-validation"
+            "tab": "Platform",
+            "groups": [
+              {
+                "group": "Accounts & Tenancy",
+                "pages": [
+                  "orca/account/tenancy-and-users"
+                ]
+              },
+              {
+                "group": "AI Engine",
+                "pages": [
+                  "orca/account/ai-engine"
+                ]
+              }
             ]
           },
           {
-            "group": "Support",
-            "pages": [
-              "koala/support/getting-help",
-              "koala/support/reporting-issues",
-              "koala/support/faq"
-            ]
-          }
-        ]
-      },
-      {
-        "tab": "Koala Studio",
-        "groups": [
-          {
-            "group": "Overview",
-            "pages": [
-              "kdes/introduction",
-              "kdes/differentiators"
-            ]
-          },
-          {
-            "group": "Installation",
-            "pages": [
-              "kdes/installation/prerequisites",
-              "kdes/installation/account-access",
-              "kdes/installation/download-install",
-              "kdes/installation/first-connection"
+            "tab": "Conversions",
+            "groups": [
+              {
+                "group": "Connections",
+                "pages": [
+                  "orca/connections/oracle-connections",
+                  "orca/connections/governed-rest-vs-sql"
+                ]
+              },
+              {
+                "group": "Workspace",
+                "pages": [
+                  "orca/workspace/projects-cycles-entities",
+                  "orca/workspace/conversion-lifecycle",
+                  "orca/workspace/entity-workspace"
+                ]
+              }
             ]
           },
           {
-            "group": "User Guide - Connections",
-            "pages": [
-              "kdes/connections/basic-auth",
-              "kdes/connections/oauth-pkce",
-              "kdes/connections/windows-sso",
-              "kdes/connections/managing-connections"
+            "tab": "The ORCA Agent",
+            "groups": [
+              {
+                "group": "Agent & Chat",
+                "pages": [
+                  "orca/agent/agent-and-chat",
+                  "orca/agent/skills",
+                  "orca/agent/governance-and-autonomy"
+                ]
+              },
+              {
+                "group": "Integrations",
+                "pages": [
+                  "orca/integrations/connect-to-claude"
+                ]
+              }
             ]
           },
           {
-            "group": "User Guide - Query Editor",
-            "pages": [
-              "kdes/query-editor/interface-guide",
-              "kdes/query-editor/writing-queries",
-              "kdes/query-editor/executing-queries",
-              "kdes/query-editor/large-sql",
-              "kdes/query-editor/keyboard-shortcuts",
-              "kdes/query-editor/bind-variables"
-            ]
-          },
-          {
-            "group": "User Guide - Working with Results",
-            "pages": [
-              "kdes/results/viewing-data",
-              "kdes/results/sorting-filtering",
-              "kdes/results/in-grid-search",
-              "kdes/results/exporting-data",
-              "kdes/results/excel-export"
-            ]
-          },
-          {
-            "group": "Advanced Features",
-            "pages": [
-              "kdes/advanced/data-sources",
-              "kdes/advanced/sql-history",
-              "kdes/advanced/multiple-tabs"
-            ]
-          },
-          {
-            "group": "Configuration",
-            "pages": [
-              "kdes/config/app-settings",
-              "kdes/config/timeout-settings",
-              "kdes/config/logging-diagnostics",
-              "kdes/config/performance-settings"
-            ]
-          },
-          {
-            "group": "Licensing",
-            "pages": [
-              "kdes/licensing/free-vs-paid",
-              "kdes/licensing/activating-license",
-              "kdes/licensing/managing-license",
-              "kdes/licensing/refund-policy"
-            ]
-          },
-          {
-            "group": "Support",
-            "pages": [
-              "kdes/support/troubleshooting"
-            ]
-          },
-          {
-            "group": "Policies",
-            "pages": [
-              "kdes/policies/privacy-policy"
+            "tab": "Troubleshooting & Support",
+            "groups": [
+              {
+                "group": "Support",
+                "pages": [
+                  "orca/support/getting-help"
+                ]
+              }
             ]
           }
         ]
@@ -219,8 +332,8 @@
     "global": {}
   },
   "logo": {
-    "light": "/logo/light.png",
-    "dark": "/logo/dark.png"
+    "light": "/logo/btss-light.svg",
+    "dark": "/logo/btss-dark.svg"
   },
   "navbar": {
     "links": [
@@ -235,8 +348,8 @@
     ],
     "primary": {
       "type": "button",
-      "label": "Install Extension",
-      "href": "https://marketplace.visualstudio.com/items?itemName=btss-corp.koala-data-explorer"
+      "label": "Contact BTSS",
+      "href": "https://www.btsscorp.com"
     }
   },
   "contextual": {
