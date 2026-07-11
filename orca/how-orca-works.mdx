@@ -1,0 +1,32 @@
+---
+title: "How ORCA works"
+description: "The five building blocks and the conversion lifecycle"
+---
+
+ORCA is organized around five building blocks. You set them up roughly in this order, and everything downstream depends on the ones before it.
+
+<CardGroup cols={2}>
+  <Card title="1. Account & tenancy" icon="building" href="/orca/account/tenancy-and-users">
+    Your organization's isolated space, its users, and their roles.
+  </Card>
+  <Card title="2. The AI engine" icon="key" href="/orca/account/ai-engine">
+    The Anthropic API key and model routing that power the agent.
+  </Card>
+  <Card title="3. Oracle connections" icon="plug" href="/orca/connections/oracle-connections">
+    One Oracle Fusion pod, its credentials, and its discovered metadata.
+  </Card>
+  <Card title="4. The workspace" icon="layer-group" href="/orca/workspace/projects-cycles-entities">
+    Projects, cycles, and entities — where a conversion runs.
+  </Card>
+  <Card title="5. The agent & chat" icon="robot" href="/orca/agent/agent-and-chat">
+    The autonomous conversion agent and ask-anything chat.
+  </Card>
+</CardGroup>
+
+## The conversion lifecycle
+
+A real conversion isn't one load — it's a series of cycles that get faster and cleaner as they move toward go-live. You start with a POC on a test pod (`cycle-0`), work the errors until it's clean, then promote cycle by cycle toward the production cutover — each one faster because ORCA carries your mappings and learnings forward.
+
+<Card title="See the conversion lifecycle in detail" icon="arrow-right" href="/orca/workspace/conversion-lifecycle">
+  The full cycle-by-cycle flow, how promotion works, and why each cycle is faster than the last.
+</Card>

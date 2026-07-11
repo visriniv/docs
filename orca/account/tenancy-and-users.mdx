@@ -1,0 +1,60 @@
+---
+title: "Tenancy & users"
+description: "The multi-tenant model, roles, and user management"
+---
+
+ORCA is **multi-tenant**. Everything you do lives inside a **tenant** — one organization's isolated space, with its own users, connections, API key, projects, and data. Nothing crosses between tenants.
+
+## How tenancy works
+
+- **Sign up creates a tenant.** You provide an Organization Name (which becomes a URL slug), your name, email, and password. The first user is the tenant **Admin**.
+- **Sign in is two-step.** Enter your tenant name, then your credentials. If you belong to more than one tenant, use **Switch tenant** to pick another.
+- **Data is scoped by tenant.** Every connection, project, and key belongs to exactly one tenant.
+
+<Note>
+  Sign-in uses ORCA's own email/password accounts, independent of Oracle. There is no SSO today.
+</Note>
+
+## Roles
+
+Each user has one role per tenant. There are two:
+
+| Role | Can do |
+| --- | --- |
+| **Admin** | Manage users, connections, the API key, and agent settings — plus everything an Analyst can do. |
+| **Analyst** | Use the app: run conversions, chat, and view connections and users. Cannot manage users or admin-only settings. |
+
+<Note>
+  **Platform admins** are a special case — an Admin whose tenant is the BTSS platform tenant. They manage tenants (see below). It's a derived capability, not a third role.
+</Note>
+
+## Manage users
+
+Admins add and manage users in **Settings → User Management**.
+
+<Steps>
+  <Step title="Add a user">
+    Click **Add User**, then enter an **Email**, a **Password**, an optional **Display Name**, and a **Role** (Analyst or Admin).
+  </Step>
+  <Step title="Save">
+    Click **Add User**. Use the row actions to change a role or remove a user later.
+  </Step>
+</Steps>
+
+<Warning>
+  Adding a user **creates the account immediately with the password you set** — no invitation email is sent. Share the credentials securely and have the user change the password.
+</Warning>
+
+## Platform admins: managing tenants
+
+BTSS platform admins get a **Tenants** tab (only visible from the platform tenant). From **Settings → Tenants** they can **Create Tenant** (Name + Slug), see all tenants with user counts, and expand a tenant to add or remove its users. This is how new customer tenancies are provisioned.
+
+<Note>
+  Regular tenant admins never see this tab — it's BTSS-internal provisioning.
+</Note>
+
+## Next steps
+
+<Card title="The AI engine" icon="key" href="/orca/account/ai-engine">
+  Add the Anthropic key that powers the ORCA agent.
+</Card>

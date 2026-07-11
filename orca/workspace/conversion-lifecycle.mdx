@@ -1,0 +1,37 @@
+---
+title: "The conversion lifecycle"
+description: "From POC to prod cutover across cycles and environments"
+---
+
+A real conversion isn't one load — it's a series of cycles that get faster and cleaner as they move toward go-live. Each cycle is bound to one connection, and a connection is one **environment** (test → … → production), so promoting a cycle means running the next one against the next environment.
+
+<Steps>
+  <Step title="Define">
+    Create the project, pick the source system, and identify the entities to convert. Plan your cycles.
+  </Step>
+  <Step title="POC — cycle-0">
+    Run a sample conversion on a test pod: map, validate, preview, load a slice, and work the errors until it's clean.
+  </Step>
+  <Step title="Iterate & promote">
+    Open the next cycle against the next environment's connection. **Import from cycle** carries mappings forward and learnings carry automatically. Repeat, faster each time.
+  </Step>
+  <Step title="Prod cutover">
+    The final cycle runs against the production connection for the go-live load.
+  </Step>
+</Steps>
+
+## Promoting a cycle
+
+"Copying a cycle" means:
+
+1. Create a new cycle bound to the **next environment's connection**.
+2. Use **Import from cycle** to pull the previous cycle's mappings forward (with a diff preview).
+3. The **ORCA Learnings** come with it automatically.
+
+<Tip>
+  This is why cycle-1 onward is dramatically faster than the cycle-0 POC — the mappings and every confirmed error fix are already in place.
+</Tip>
+
+<Note>
+  Environments are modelled as **connections**, not a separate concept — a cycle points at whichever connection (test, UAT, prod) you're promoting into. There is no one-click "clone cycle across environments" button today; you create the next cycle and use Import from cycle.
+</Note>

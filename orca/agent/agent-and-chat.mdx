@@ -1,0 +1,44 @@
+---
+title: "The agent & chat"
+description: "The autonomous conversion agent and ask-anything chat"
+---
+
+ORCA gives you two ways to work, and you'll use both.
+
+<CardGroup cols={2}>
+  <Card title="The autonomous agent" icon="robot">
+    Runs an entity through validate → transform → preview → load → error loop, and consolidates the result into one review per entity instead of field-by-field prompts. It classifies Oracle load errors, applies what it has learned, and re-runs.
+  </Card>
+  <Card title="ORCA chat" icon="comments">
+    Ask anything against the connected pod, inside the app — "does this user exist", "what shift are they on", "what's our headcount" — or drive the conversion conversationally.
+  </Card>
+</CardGroup>
+
+## Start a chat
+
+<Steps>
+  <Step title="Open a chat">
+    On the **Chat** page, click **New Chat** (or just start typing).
+  </Step>
+  <Step title="Confirm the connection">
+    Your default connection attaches automatically.
+  </Step>
+  <Step title="Scope it (optional)">
+    Use the **Set context** bar to pin an **entity / project / cycle / connection** when you want the answer scoped.
+  </Step>
+</Steps>
+
+<Info>
+  The chat is **built from the session's connection**, and that binding decides which tools exist. Answers come back as formatted Markdown with a running cost/usage bar beneath them.
+</Info>
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Skills" icon="book-sparkles" href="/orca/agent/skills">
+    Pre-built expert playbooks the chat applies automatically.
+  </Card>
+  <Card title="Governance & autonomy" icon="shield-halved" href="/orca/agent/governance-and-autonomy">
+    The SQL consent moment and how tasks earn autonomy.
+  </Card>
+</CardGroup>

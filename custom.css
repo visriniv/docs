@@ -1,8 +1,8 @@
-/* Target logo by source path - clean version without borders */
+/* Navbar logo: horizontal BTSS wordmark, sized for the top bar */
 img[src*="light.png"],
 img[src*="dark.png"],
 img[src*="/logo/"] {
-  height: 64px !important;
-  max-height: 64px !important;
+  height: 38px !important;
+  max-height: 38px !important;
   width: auto !important;
 }

@@ -1,0 +1,45 @@
+---
+title: "The AI engine"
+description: "The Anthropic API key, model routing, and the autonomous agent"
+---
+
+ORCA's **domain expertise is built into the product**. Templates, deterministic HDL/FBDI generation, the mappings you set, preview, and loads all run **without any AI key** — the conversion engine works on its own. Adding an **Anthropic Claude** key layers the agentic experience on top: discovery, guided mapping, conversational chat, and error learning — the smoothness, finesse, and speed, not the foundation.
+
+## Add your Anthropic API key
+
+An admin sets the key in **Settings → API Keys**.
+
+<Steps>
+  <Step title="Add the key">
+    Click **Add API Key** and paste your Anthropic key (it starts with `sk-ant-`).
+  </Step>
+  <Step title="Save and verify">
+    Click **Save Key**. Use **Test** to validate, or **Update** / **Remove** later.
+  </Step>
+</Steps>
+
+<Info>
+  The key is **encrypted at rest and never shown in plaintext** — the card displays only a masked hint. It's a **per-tenant** key that only admins can manage; analysts can view the tab but see no controls.
+</Info>
+
+<Note>
+  **Without a key, ORCA still works.** You can use templates, set mappings, generate load files, and load to Oracle with the built-in deterministic engine. What a key switches on is the **AI layer** — the conversion agent, chat, the workspace agent panel, **Propose Mappings**, and background jobs. Add a key and ORCA gets faster and smarter; it doesn't stop working without one.
+</Note>
+
+## How ORCA chooses a model
+
+You don't pick a model — ORCA routes each request across Claude's **Haiku, Sonnet, and Opus** tiers to balance cost and capability: lighter, faster models for simple turns, and stronger models for complex reasoning and error diagnosis. In interactive chat this is a quick per-turn choice; heavier conversion reasoning can escalate further.
+
+<Note>
+  Model selection is automatic and not shown per answer. The chat **cost bar** surfaces spend, tokens, and calls for the session — useful for keeping an eye on usage.
+</Note>
+
+## The ORCA Autonomous Agent
+
+On the same tab, an admin can enable **ORCA Autonomous Agent** — project-level orchestration and interview-driven setup. It layers on top of the API key: the project-level chat mode needs both the key and this toggle on.
+
+## Next steps
+
+<Card title="Connect to Oracle" icon="plug" href="/orca/connections/oracle-connections">
+  Point ORCA at an Oracle Fusion pod and run discovery.
+</Card>

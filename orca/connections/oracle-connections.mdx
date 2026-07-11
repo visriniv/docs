@@ -1,0 +1,53 @@
+---
+title: "Oracle connections"
+description: "Create a connection and let ORCA discover the pod's metadata"
+---
+
+A connection is **one Oracle Fusion pod, its credentials, and its own discovered metadata catalog**. Everything ORCA does runs through a connection, and each pod carries its own catalog — nothing is shared between connections.
+
+## Create a connection
+
+<Steps>
+  <Step title="Open the connections tab">
+    Go to **Settings → Oracle Connections** and click **Add Connection**.
+  </Step>
+  <Step title="Fill in the form">
+    In **New Connection**, enter a **Name**, the **Oracle URL** (your pod base URL), a **Username**, and a **Password**.
+  </Step>
+  <Step title="Set options and save">
+    Optionally tick **Set as default connection**. Leave **Production connection** unticked for a test pod. Click **Save**.
+  </Step>
+</Steps>
+
+<Info>
+  The moment you save, ORCA starts **background metadata discovery** against the pod — you don't trigger it manually.
+</Info>
+
+## Metadata discovery
+
+A **Discovery** row of chips appears on the connection card, one per source. Each starts grey (`never run`), spins while it works (`pending → running`), and turns green (`done`) with an object count — or red (`failed`) if the pod refused. Re-trigger the whole sweep any time with the **Re-run discovery** button.
+
+| Source | Discovers | Feeds |
+| --- | --- | --- |
+| `rest` | HCM + FSCM REST resource catalog | The "Discovered APIs" table and the chat/query tools |
+| `hdl` | HCM Data Loader business objects | HDL generation for HCM conversions |
+| `fbdi` | Finance / SCM / Projects import processes | The "FBDI Processes" table and FBDI loads |
+| `table` | Table / column comments (SQL only) | `search_tables`; skipped when SQL is off |
+
+<Note>
+  Two more chips (`fsm`, `soap`) render but are placeholders today — they always record as skipped. For HCM work, `rest` and `hdl` are the ones that matter.
+</Note>
+
+## What a connection powers
+
+One connection powers **ORCA chat**, the **conversion loads** a cycle submits, and the **MCP connector** that lets Claude query the pod from outside the app. Flip the **MCP** toggle and ORCA surfaces a shared **OAuth URL** (recommended) plus a legacy token URL.
+
+<Card title="Connect Claude to ORCA" icon="robot" href="/orca/integrations/connect-to-claude">
+  Query your Oracle data from Claude Desktop or Claude Code over MCP.
+</Card>
+
+## Next steps
+
+<Card title="Governed REST vs SQL" icon="shield-halved" href="/orca/connections/governed-rest-vs-sql">
+  How ORCA stays inside your Oracle security — and when SQL is allowed.
+</Card>
