@@ -6,3 +6,13 @@ img[src*="/logo/"] {
   max-height: 38px !important;
   width: auto !important;
 }
+
+/* Site-wide trademark / legal line (injected after the footer by footer-legal.js) */
+#btss-legal {
+  text-align: center;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  padding: 0 1.5rem 2rem;
+  margin-top: -1.5rem;
+  opacity: 0.6;
+}

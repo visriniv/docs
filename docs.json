@@ -13,7 +13,7 @@
   "navigation": {
     "dropdowns": [
       {
-        "dropdown": "Koala Data Explorer",
+        "dropdown": "Koala Data Explorer Extension",
         "description": "VS Code extension",
         "icon": "/logo/koala-symbol.svg",
         "tabs": [
@@ -132,7 +132,7 @@
         ]
       },
       {
-        "dropdown": "Koala Data Studio",
+        "dropdown": "Koala Data Explorer Studio",
         "description": "Standalone desktop app",
         "icon": "/logo/koala-symbol.svg",
         "tabs": [
@@ -329,7 +329,7 @@
         ]
       },
       {
-        "dropdown": "Koala AI FinOps",
+        "dropdown": "Koala FinOps",
         "description": "Multi-cloud cost intelligence",
         "icon": "/logo/koala-symbol.svg",
         "tabs": [
