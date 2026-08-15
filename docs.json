@@ -297,6 +297,17 @@
             ]
           },
           {
+            "tab": "Configuration",
+            "groups": [
+              {
+                "group": "Configuration Workbench",
+                "pages": [
+                  "orca/workspace/configuration-workbench"
+                ]
+              }
+            ]
+          },
+          {
             "tab": "The ORCA Agent",
             "groups": [
               {

@@ -1,0 +1,103 @@
+---
+title: "Configuration Workbench"
+description: "Pull Oracle setup out of one environment, edit it, and push it into another"
+---
+
+The Configuration Workbench moves Oracle Fusion **setup configuration** (value sets, user‑defined tables, fast formulas, and other Functional Setup Manager tasks) between environments. You pull the configuration out of a source environment into a versioned **workbook**, review and edit it, then push it into a target environment.
+
+## Prerequisites
+
+- A **connection** to your source environment and a connection to your target environment. See [Oracle connections](/orca/connections/oracle-connections).
+- The source connection must be **harvested** — run discovery on it first so its setup tasks are available. Discovery uses SQL, so SQL must be enabled on the connection.
+- Permission to run the setup export and import on both environments.
+
+## Create a workbook
+
+<Steps>
+  <Step title="Open the Configuration Workbench">
+    Select **Configuration Workbench** in the left navigation, then **Create**.
+  </Step>
+  <Step title="Choose what to pull">
+    Pick the **source connection**, then choose the **offering** and **functional area** to pull — or switch to **choose tasks** to select individual setup tasks. Give the workbook a name.
+  </Step>
+  <Step title="Pull the configuration">
+    ORCA exports the selected tasks from the source environment and creates the workbook as a **draft**. Each task appears in the left panel with its business objects and row counts.
+  </Step>
+</Steps>
+
+## Review and edit
+
+Open the workbook to review what you pulled.
+
+- **Edit in the grid.** Each business object shows its rows in a grid. Edit cells directly.
+- **Edit in Excel.** Use **Download Excel** to export the workbook, edit it in Excel, then **Upload Excel** to replace each business object's data with your edited copy.
+- **Keep only what you need.** Uncheck a row to drop it. Dropped rows stay in the workbook for reference but are **excluded from a push** — they are never deleted from any environment.
+
+<Tip>
+  Use **Download package** to see the exact setup package a push would send, before you push it.
+</Tip>
+
+## Publish a version
+
+Publishing saves a numbered, read‑only **version** of the workbook so you have a fixed point to push and to return to.
+
+- **Publish** — save the current draft as the next version.
+- **Edit as draft** — start a new draft from a published version to make further changes.
+- **Discard draft** / **Reset to source** — throw away draft edits, or re‑pull the whole workbook fresh from the source.
+
+## Check for drift
+
+**Detect drift** compares the workbook against the **environment it was pulled from**, so you can see whether that environment has changed since you pulled — and reconcile it.
+
+<Steps>
+  <Step title="Run the check">
+    Select **Detect drift**. The check runs in the background; you can keep working, and the drift view updates itself when it finishes.
+  </Step>
+  <Step title="Review what changed">
+    Each drifted business object gains a **Drift** view showing rows that were added, changed, or removed in the source. Switch a section between **Data** and **Drift** to inspect it.
+  </Step>
+  <Step title="Apply what you want">
+    Accept the source changes you want and **Apply to draft** to merge them into your workbook. Everything else is left untouched.
+  </Step>
+</Steps>
+
+<Note>
+  Detect drift compares against the workbook's **source** environment. Comparing one workbook against a *different* target environment is not part of this workflow.
+</Note>
+
+## Push to a target environment
+
+<Warning>
+  Pushing writes to a live environment. It **only inserts or updates records — it never deletes** — but confirm the version and the target before you push.
+</Warning>
+
+<Steps>
+  <Step title="Select the version to push">
+    Use the version selector to choose the version you want. Confirm the **Push** button names that version (for example, **Push v2**) — this is what will be sent.
+  </Step>
+  <Step title="Select the target">
+    Choose the **target connection** in the connection selector.
+  </Step>
+  <Step title="Push">
+    Select **Push** and confirm. ORCA sends each task to the target as an Oracle setup‑import request, waits for each to finish, and reports how many tasks succeeded.
+  </Step>
+</Steps>
+
+## Verify the load in Oracle
+
+Each task is submitted as an Oracle scheduled process. To confirm what landed:
+
+1. In the target environment, open **Tools → Scheduled Processes**.
+2. Search for the process by its request ID (or by name, for example *Manage Value Sets*).
+3. Open the process and **View Output / Log** to see the per‑object records loaded and rejected.
+
+## Next steps
+
+<CardGroup cols={2}>
+  <Card title="Oracle connections" icon="plug" href="/orca/connections/oracle-connections">
+    Add and harvest the source and target environments.
+  </Card>
+  <Card title="Governed REST vs SQL" icon="shield-halved" href="/orca/connections/governed-rest-vs-sql">
+    How ORCA reads and writes within your Oracle security.
+  </Card>
+</CardGroup>
