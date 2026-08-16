@@ -1,6 +1,6 @@
 ---
 title: "How ORCA works"
-description: "The five building blocks and the conversion lifecycle"
+description: "The building blocks, the conversion lifecycle, and the Configuration Workbench"
 ---
 
 ORCA is organized around five building blocks. You set them up roughly in this order, and everything downstream depends on the ones before it.
@@ -33,7 +33,7 @@ A real conversion isn't one load — it's a series of cycles that get faster and
 
 ## Moving configuration between environments
 
-Alongside conversion, the **Configuration Workbench** uses the same connections to move Oracle setup between environments — pull it out of one environment, edit it, and push it into another.
+Alongside conversion, the **Configuration Workbench** uses the same connections to manage Oracle setup across environments — migrate it from one to the next, detect what has drifted, push a targeted set of changes, and keep every state versioned.
 
 <Card title="Use the Configuration Workbench" icon="sliders" href="/orca/workspace/configuration-workbench">
   Pull, review, check for drift, and push Oracle setup between environments.
