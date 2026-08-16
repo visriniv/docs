@@ -244,7 +244,7 @@
       },
       {
         "dropdown": "ORCA",
-        "description": "AI for Oracle Fusion Cloud",
+        "description": "Convert, configure, and govern Oracle Fusion",
         "icon": "/logo/koala-symbol.svg",
         "tabs": [
           {
