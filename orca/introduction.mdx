@@ -5,12 +5,13 @@ description: "Convert data and manage configuration in Oracle Fusion Cloud"
 
 ## What is ORCA?
 
-ORCA™ is a multi-agent AI system for teams working in Oracle Fusion Cloud (HCM, Finance, and Supply Chain). You use it to do two things against a live pod, and to ask questions about your data in between:
+ORCA™ is a multi-agent AI system for the teams who stand up and maintain Oracle Fusion Cloud — HCM, Finance, and Supply Chain. It works directly against your environment on the two jobs that consume most of an implementation: getting data into Fusion, and moving configuration between environments.
 
-- **Data conversion** — migrate legacy data into Oracle Fusion. ORCA guides data preparation, validates and transforms your data, generates Oracle load files (HDL and FBDI), submits the loads, and helps you work the error cycle.
-- **Configuration Workbench** — pull setup configuration out of an environment into a versioned workbook, review and edit it in a grid or in Excel, and push it into another environment.
+**Data conversion.** ORCA takes legacy data from any source system into Oracle Fusion — preparing and validating it, generating the HDL and FBDI load files Oracle expects, submitting them, and working the error cycle with you until the load is clean. Every fix it learns is carried into the next cycle, so each pass is faster than the last.
 
-Every read and write runs **within your own Oracle security** — as a governed Oracle call made by the connection's user. You can also ask ORCA about your Fusion data in plain language, from the app or from Claude.
+**Configuration Workbench.** ORCA pulls setup out of one environment — value sets, user-defined tables, fast formulas, and other Functional Setup Manager tasks — into a versioned workbook you can review and edit, then pushes it, reconciled, into the next.
+
+Everything happens inside your own Oracle security: each read and write is a governed Oracle call made as the connection's user. And when you simply need an answer — who holds a role, what's driving a license count, which workers are scheduled — you can ask ORCA in plain language, from the app or from Claude.
 
 ## Who uses ORCA?
 
